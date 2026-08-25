@@ -46,6 +46,79 @@ IMAGE_TARGETS = {
 }
 WEBP_QUALITY = 72
 
+# Claude Design emits a desktop-only layout: inline styles, fixed pixel grid
+# columns, no breakpoints. Rather than restructure the markup — which would
+# fight every re-export — we override the specific inline values it produces.
+# Attribute selectors match on those values, and !important is what lets a
+# stylesheet beat an inline style. check_responsive() below fails the build if
+# any of these selectors stops matching, so a redesign cannot silently drop the
+# mobile layout.
+RESPONSIVE_CSS = """
+@media (max-width: 900px){
+  [style*="grid-template-columns: 340px 1fr"],
+  [style*="grid-template-columns: 230px 1fr"],
+  [style*="grid-template-columns: 200px 1fr"],
+  [style*="grid-template-columns: 1fr 460px"],
+  [style*="grid-template-columns: repeat(3, 1fr)"],
+  [style*="grid-template-columns: 1fr 1fr"]{grid-template-columns:1fr !important}
+  [style*="grid-template-columns: 1.4fr 1fr 1fr 1fr"]{grid-template-columns:1fr 1fr !important}
+  [style*="gap: 96px"],[style*="gap: 88px"],[style*="gap: 72px"]{gap:44px !important}
+  [style*="padding: 150px 56px 160px"]{padding:84px 24px 90px !important}
+  [style*="padding: 140px 56px 130px"]{padding:72px 24px 68px !important}
+  [style*="padding: 0 56px 150px"]{padding:0 24px 84px !important}
+  [style*="padding: 160px 56px 170px"]{padding:88px 24px 92px !important}
+  [style*="padding: 90px 56px 70px"]{padding:64px 24px 52px !important}
+  [style*="padding: 26px 56px"]{padding:18px 24px !important}
+  h1[style]{font-size:40px !important}
+  h2[style]{font-size:30px !important}
+  [style*="height: 640px"]{height:420px !important}
+  [style*="height: 620px"]{height:340px !important}
+}
+@media (max-width: 620px){
+  header[style*="position: sticky"]{position:static !important;flex-wrap:wrap !important;gap:14px !important}
+  nav[style*="gap: 34px"]{gap:14px 18px !important;flex-wrap:wrap !important;font-size:14px !important}
+  [style*="grid-template-columns: 220px 1fr"],
+  [style*="grid-template-columns: 1.4fr 1fr 1fr 1fr"]{grid-template-columns:1fr !important}
+  [style*="padding: 150px 56px 160px"],
+  [style*="padding: 140px 56px 130px"],
+  [style*="padding: 160px 56px 170px"],
+  [style*="padding: 0 56px 150px"],
+  [style*="padding: 90px 56px 70px"],
+  [style*="padding: 26px 56px"]{padding-left:18px !important;padding-right:18px !important}
+  [style*="padding: 44px 46px"]{padding:28px 22px !important}
+  [style*="padding: 38px 40px"]{padding:26px 22px !important}
+  [style*="padding: 34px 38px"]{padding:24px 22px !important}
+  h1[style]{font-size:32px !important;line-height:1.22 !important}
+  h2[style]{font-size:26px !important}
+  [style*="font-size: 42px"]{font-size:32px !important}
+  [style*="height: 640px"]{height:300px !important}
+  [style*="height: 620px"]{height:240px !important}
+  [style*="height: 280px"]{height:230px !important}
+  [style*="justify-content: space-between"]{flex-wrap:wrap !important}
+  [style*="border-radius: 110px 110px 18px 18px"]{border-radius:90px 90px 14px 14px !important}
+}
+"""
+
+
+def check_responsive(html):
+    """Every [style*="..."] selector must still match something in the page.
+
+    If a redesign renames or reformats an inline value, the matching override
+    silently stops applying and the mobile layout quietly breaks. Catch it at
+    build time instead of on someone's phone.
+    """
+    wanted = sorted(set(re.findall(r'\[style\*="([^"]+)"\]', RESPONSIVE_CSS)))
+    dead = [w for w in wanted if w not in html]
+    tag_sel = {
+        "header[style*=\"position: sticky\"]": "position: sticky",
+        "nav[style*=\"gap: 34px\"]": "gap: 34px",
+    }
+    for sel, needle in tag_sel.items():
+        if needle not in html and needle not in dead:
+            dead.append(needle)
+    return wanted, dead
+
+
 PAGES = [
     {
         "src": "Aamuvalo x Metsanpohja.dc.html",
@@ -57,6 +130,7 @@ PAGES = [
             "Alankomaissa. Kaksi fasilitaattoria, huolellinen valmistautuminen "
             "ja integraatio. Varaa maksuton keskustelu."),
         "editable": True,
+        "responsive": True,
         "assets_prefix": "assets/",
         "assets_root": os.path.join(SITE, "assets"),
     },
@@ -431,6 +505,18 @@ def build_page(page):
 
     style = "\n".join(font_css) + "\n" + design_css + "\n" + \
         "\n".join(hover_rules) + "\n" + canvas_css
+
+    if page.get("responsive"):
+        wanted, dead = check_responsive(body)
+        if dead:
+            print("  ! responsive overrides that no longer match anything:")
+            for d in dead:
+                print(f"      {d}")
+            print("    The design changed these inline values. Update "
+                  "RESPONSIVE_CSS in tools/flatten.py before shipping.")
+            raise SystemExit(1)
+        log(f"responsive: {len(wanted)} overrides, all matching")
+        style += "\n" + RESPONSIVE_CSS
 
     # No newline between <html> and <head>, and none after </html>: the HTML
     # parser discards whitespace in both places, so emitting it would make the
