@@ -57,48 +57,59 @@ reference.
 
 ---
 
-## First-time setup
+## Setup
 
-**1. Push this repository to GitHub.**
+Live: **https://althea-retriitit.netlify.app**
+Repo: **https://github.com/juhosarvanco/althea-website** (private)
+Netlify project: `althea-retriitit`, team `juhosarvanco`
 
-**2. Create the Netlify site** from that repository. `netlify.toml` already
-sets the publish directory and the functions directory, so accept the
-defaults. Note the site name Netlify assigns — you need it in step 4.
+Already done: repo created and pushed, Netlify project created and connected to
+`main` (pushes deploy automatically, pull requests get deploy previews), and
+these environment variables set:
 
-**3. Create a GitHub OAuth app** at
-*Settings → Developer settings → OAuth Apps → New OAuth App*:
+| Variable | Value |
+| --- | --- |
+| `GITHUB_REPO` | `juhosarvanco/althea-website` |
+| `ALLOWED_LOGINS` | `juhosarvanco` |
+
+`SITE_NAME` is reserved — Netlify injects it, so it needs no configuration.
+
+### Still to do
+
+**1. Create the GitHub OAuth app.** GitHub has no API for this; it is web UI
+only. At *Settings → Developer settings → OAuth Apps → New OAuth App*:
 
 | Field | Value |
 | --- | --- |
 | Application name | Althea admin |
-| Homepage URL | `https://<your-site>` |
-| Authorization callback URL | `https://<your-site>/api/callback` |
+| Homepage URL | `https://althea-retriitit.netlify.app` |
+| Authorization callback URL | `https://althea-retriitit.netlify.app/api/callback` |
 
-Generate a client secret and keep the page open for step 4.
+Register it, then generate a client secret.
 
-**4. Set environment variables** in Netlify under *Site configuration →
-Environment variables*:
+**2. Store the credentials.** The secret must never be committed:
 
-| Variable | Value |
-| --- | --- |
-| `GITHUB_CLIENT_ID` | from the OAuth app |
-| `GITHUB_CLIENT_SECRET` | from the OAuth app — **secret, never commit it** |
-| `GITHUB_REPO` | `owner/repo` |
-| `ALLOWED_LOGINS` | `juho,julia` — GitHub logins allowed to edit |
-| `SITE_NAME` | your Netlify site name, used to build preview URLs |
-| `GITHUB_SCOPE` | optional; `repo` by default, use `public_repo` if the repo is public |
-| `CONTENT_PATHS` | optional; `site/index.html` by default |
+```bash
+npx netlify-cli env:set GITHUB_CLIENT_ID <client-id>
+npx netlify-cli env:set GITHUB_CLIENT_SECRET <client-secret>
+npx netlify-cli api createSiteBuild --data '{"site_id":"32ed0e2d-d89b-409d-a3a4-468ec772d7b2"}'
+```
+
+The last line redeploys — environment changes do not reach already-deployed
+functions until you do. Until this step is done, `/api/auth` returns a page
+saying so rather than an error.
+
+**3. Add the second editor.** Append their GitHub login to `ALLOWED_LOGINS` and
+invite them to the repository:
+
+```bash
+npx netlify-cli env:set ALLOWED_LOGINS "juhosarvanco,<their-login>"
+gh api -X PUT /repos/juhosarvanco/althea-website/collaborators/<their-login> -f permission=push
+```
 
 `ALLOWED_LOGINS` is the access control. Anyone can complete a GitHub login;
-only logins on this list get past it.
-
-**5. Give the other editor write access** to the repository
-(*Settings → Collaborators*). Write access is what lets their saves become
-branches and their Publish merge.
-
-**6. Open `https://<your-site>/admin`** and sign in.
-
----
+only listed logins get past it. Repository write access is what lets their
+saves become branches and their Julkaise merge.
 
 ## Editing copy
 
