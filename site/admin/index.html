@@ -80,6 +80,20 @@
   .chg .now{color:var(--ink)}
   .empty{padding:28px 18px; color:var(--dim); font-size:14px; text-align:center}
 
+  /* ------------------------------------------------------------- swatches */
+  .sw{display:flex; align-items:center; gap:12px; padding:11px 18px}
+  .sw input[type=color]{
+    width:38px; height:38px; padding:0; border:1px solid var(--line);
+    border-radius:9px; background:none; cursor:pointer; flex:none;
+  }
+  .sw .meta{min-width:0}
+  .sw .name{font-size:13.5px; line-height:1.35}
+  .sw .val{font:11.5px/1.5 ui-monospace,Menlo,monospace; color:var(--dim); text-transform:uppercase}
+  .sw.changed .name{font-weight:600}
+  #contrast{font-size:12.5px; line-height:1.55}
+  #contrast .bad{color:var(--warn)}
+  #contrast .good{color:var(--green)}
+
   /* --------------------------------------------------------------- gates */
   .gate{
     position:absolute; inset:0; display:grid; place-items:center;
@@ -161,6 +175,7 @@
   <button class="btn" id="b-save" disabled>Tallenna luonnos</button>
   <button class="btn primary" id="b-pub" disabled>Julkaise</button>
   <button class="btn ghost" id="b-changes">Muutokset</button>
+  <button class="btn ghost" id="b-colors">Värit</button>
   <span class="status"><span class="dot" id="dot"></span><span id="status">Ei muutoksia</span></span>
   <span class="spacer"></span>
   <a class="btn ghost hidden" id="b-preview" target="_blank" rel="noopener"
@@ -172,6 +187,19 @@
 
 <div class="stage hidden" id="stage">
   <iframe id="page" title="Sivun esikatselu"></iframe>
+  <aside class="panel" id="colorpanel">
+    <header>
+      <h2>Värit</h2><span class="spacer"></span>
+      <button class="btn ghost" id="b-close-colors">Sulje</button>
+    </header>
+    <div class="list" id="swatches"></div>
+    <footer style="display:block">
+      <div id="contrast"></div>
+      <button class="btn" id="b-reset-colors" style="margin-top:10px">
+        Palauta alkuperäiset</button>
+    </footer>
+  </aside>
+
   <aside class="panel" id="panel">
     <header>
       <h2>Muutokset</h2><span class="spacer"></span>

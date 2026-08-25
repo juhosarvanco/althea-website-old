@@ -124,8 +124,17 @@ saves become branches and their Julkaise merge.
 5. **Julkaise** merges and the site is live in about a minute.
 6. **Hylkää luonnos** closes the PR and deletes the branch.
 
-Only text is editable — layout, images, colours and links are not reachable
-from the editor, so a copy edit cannot break the design.
+Editable: text, link targets, images (with alt text) and a ten-colour palette.
+Not editable: layout and structure, so no edit can break the design.
+
+Images are re-encoded in the browser exactly as `tools/flatten.py` does at
+build time — resized against a 1440px reference, WebP at quality 0.72, named
+by content hash. A phone photo lands in the repository at tens of kilobytes.
+
+Colours are CSS variables that `flatten.py` extracts from the design's inline
+styles on every build. The admin checks each text/background pair for WCAG AA
+contrast and distinguishes a pair the edit broke from one that was already
+weak, so the warning means something.
 
 ---
 

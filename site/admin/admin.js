@@ -139,7 +139,7 @@
         section: sectionLabel(el),
       });
     }
-    return { text, links, images };
+    return { text, links, images, colors: readPalette(doc) };
   }
 
   /* --------------------------------------------------------------- images */
@@ -233,6 +233,7 @@
     S.images = new Map();
     for (const el of doc.body.querySelectorAll("img")) S.images.set(fieldId(el), el);
     S.baseline = snapshot(S.session.live.content);
+    S.palette = paletteManifest(doc);
 
     // An image swapped in an earlier session lives only on the draft branch, so
     // the live site would 404 it. Point those at the deploy preview, which is
@@ -342,10 +343,21 @@
         out.push({ kind: "alt", id, section: base.section, before: base.alt, after: alt });
       }
     }
+    if (S.palette) {
+      const now = readPalette(frameDoc());
+      for (const c of S.palette.colors) {
+        const before = S.baseline.colors.get(c.var) || c.value.toLowerCase();
+        const after = (now.get(c.var) || "").toLowerCase();
+        if (after && before !== after) {
+          out.push({ kind: "color", id: c.var, section: c.label, before, after });
+        }
+      }
+    }
     return out;
   }
 
-  const KIND = { text: "Teksti", link: "Linkki", image: "Kuva", alt: "Kuvateksti" };
+  const KIND = { text: "Teksti", link: "Linkki", image: "Kuva",
+                 alt: "Kuvateksti", color: "Väri" };
 
   const dirty = () => S.saved !== null && serialize() !== S.saved;
 
@@ -383,6 +395,126 @@
       el.querySelector(".now").textContent = c.after;
       box.appendChild(el);
     }
+  }
+
+  /* -------------------------------------------------------------- palette */
+
+  /** Read the :root block flatten.py emits. Editing this text is what makes a
+   *  colour change real: the stylesheet is part of the document we commit. */
+  function readPalette(doc) {
+    const map = new Map();
+    const el = paletteStyle(doc);
+    const block = el && el.textContent.match(/:root\{([^}]*)\}/);
+    if (!block) return map;
+    for (const m of block[1].matchAll(/--([a-z-]+)\s*:\s*([^;]+)/g)) {
+      map.set(m[1], m[2].trim().toLowerCase());
+    }
+    return map;
+  }
+
+  const paletteStyle = (doc) =>
+    [...doc.querySelectorAll("style:not([data-ce-chrome])")]
+      .find((el) => el.textContent.includes(":root{"));
+
+  function paletteManifest(doc) {
+    const el = doc.getElementById("ce-palette");
+    if (!el) return null;
+    try { return JSON.parse(el.textContent); } catch { return null; }
+  }
+
+  function setPaletteVar(name, value) {
+    const el = paletteStyle(frameDoc());
+    if (!el) return;
+    el.textContent = el.textContent.replace(
+      new RegExp(`(--${name}\\s*:\\s*)[^;}]+`), `$1${value}`);
+  }
+
+  const hexRgb = (h) => {
+    const v = h.replace("#", "");
+    return [0, 2, 4].map((i) => parseInt(v.slice(i, i + 2), 16));
+  };
+
+  function luminance(hex) {
+    const [r, g, b] = hexRgb(hex).map((v) => {
+      v /= 255;
+      return v <= 0.03928 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4;
+    });
+    return 0.2126 * r + 0.7152 * g + 0.0722 * b;
+  }
+
+  function contrast(a, b) {
+    const [hi, lo] = [luminance(a), luminance(b)].sort((x, y) => y - x);
+    return (hi + 0.05) / (lo + 0.05);
+  }
+
+  function renderPalette() {
+    const box = $("#swatches");
+    const man = S.palette;
+    if (!man) {
+      box.innerHTML = '<div class="empty">Tällä sivulla ei ole nimettyä väripalettia.</div>';
+      return;
+    }
+    const now = readPalette(frameDoc());
+    box.innerHTML = "";
+    for (const c of man.colors) {
+      const value = now.get(c.var) || c.value;
+      const changed = value.toLowerCase() !== c.value.toLowerCase();
+      const row = document.createElement("div");
+      row.className = "sw" + (changed ? " changed" : "");
+      row.innerHTML =
+        `<input type="color"><div class="meta">
+           <div class="name"></div><div class="val"></div></div>`;
+      row.querySelector(".name").textContent = c.label;
+      row.querySelector(".val").textContent = value;
+      const input = row.querySelector("input");
+      input.value = value;
+      input.oninput = () => {
+        setPaletteVar(c.var, input.value);
+        row.querySelector(".val").textContent = input.value;
+        row.classList.toggle("changed",
+          input.value.toLowerCase() !== c.value.toLowerCase());
+        renderContrast();
+        refresh();
+      };
+      box.appendChild(row);
+    }
+    renderContrast();
+  }
+
+  function renderContrast() {
+    const man = S.palette;
+    const box = $("#contrast");
+    if (!man) return;
+    const now = readPalette(frameDoc());
+    const base = S.baseline.colors;
+    const label = (v) => man.colors.find((c) => c.var === v)?.label || v;
+    const orig = (v) => base.get(v) || man.colors.find((c) => c.var === v)?.value;
+
+    // A pair that already failed on the published site is not this editor's
+    // doing. Separating the two keeps the panel from blaming someone for
+    // something they did not touch — and from being ignored as noise.
+    const broke = [], already = [];
+    for (const p of man.pairs) {
+      const fg = now.get(p.fg), bg = now.get(p.bg);
+      if (!fg || !bg) continue;
+      const ratio = contrast(fg, bg);
+      if (ratio >= 4.5) continue;
+      const line = `${label(p.fg)} / ${label(p.bg)} — ${ratio.toFixed(1)}:1`;
+      (contrast(orig(p.fg), orig(p.bg)) >= 4.5 ? broke : already).push(line);
+    }
+
+    let html = "";
+    if (broke.length) {
+      html += `<span class="bad"><strong>Muutoksesi heikensi kontrastia:</strong>
+               <br>${broke.join("<br>")}<br><br>Alle 4.5:1 on vaikea lukea.</span>`;
+    }
+    if (already.length) {
+      html += `${broke.length ? "<br><br>" : ""}<span style="color:var(--dim)">
+               Nämä olivat heikkoja jo ennestään, eivät sinun muutoksestasi:<br>
+               ${already.join("<br>")}</span>`;
+    }
+    if (!html) html = '<span class="good">Kaikki tekstiparit ylittävät 4.5:1.</span>';
+    box.innerHTML = html;
   }
 
   /* -------------------------------------------------------------- popover */
@@ -588,7 +720,24 @@
     $("#b-save").onclick = save;
     $("#b-pub").onclick = publish;
     $("#b-discard").onclick = discard;
-    $("#b-changes").onclick = () => $("#panel").classList.toggle("open");
+    $("#b-changes").onclick = () => {
+      $("#colorpanel").classList.remove("open");
+      $("#panel").classList.toggle("open");
+    };
+    $("#b-colors").onclick = () => {
+      $("#panel").classList.remove("open");
+      const open = $("#colorpanel").classList.toggle("open");
+      if (open) renderPalette();
+    };
+    $("#b-close-colors").onclick = () => $("#colorpanel").classList.remove("open");
+    $("#b-reset-colors").onclick = () => {
+      if (!S.palette) return;
+      for (const c of S.palette.colors) {
+        setPaletteVar(c.var, S.baseline.colors.get(c.var) || c.value);
+      }
+      renderPalette();
+      refresh();
+    };
     addEventListener("resize", hidePopover);
     $("#b-close-panel").onclick = () => $("#panel").classList.remove("open");
     $("#b-copy").onclick = async () => {

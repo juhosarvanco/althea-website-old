@@ -12,6 +12,18 @@
 @font-face{font-family:'Karla';font-style:normal;font-weight:300 500;font-display:swap;src:url('assets/fonts/karla-300-500-latin.8781785c.woff2') format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
 @font-face{font-family:'Lora';font-style:normal;font-weight:400 500;font-display:swap;src:url('assets/fonts/lora-400-500-latin-ext.358e1822.woff2') format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF}
 @font-face{font-family:'Lora';font-style:normal;font-weight:400 500;font-display:swap;src:url('assets/fonts/lora-400-500-latin.c04caa5b.woff2') format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+:root{
+  --paper: #faf8f4;
+  --panel: #f0ede6;
+  --ink: #0d1f29;
+  --body: #48555c;
+  --dim: #7a8a82;
+  --accent: #4a5d4e;
+  --line: #a9b5ab;
+  --footer: #c9d2d6;
+  --frame: #e1ddd4;
+  --caption: #5a6560;
+}
 
   body { margin: 0; background: #FAF8F4; -webkit-font-smoothing: antialiased; }
   p { text-wrap: pretty; }
@@ -69,347 +81,348 @@
 </style>
 </head>
 <body>
-<div style="font-family: 'Karla', system-ui, sans-serif; color: #0d1f29; background: #FAF8F4;">
+<div style="font-family: 'Karla', system-ui, sans-serif; color: var(--ink); background: var(--paper)">
 
-  <header data-screen-label="Top bar" style="display: flex; align-items: center; justify-content: space-between; padding: 26px 56px; position: sticky; top: 0; background: rgba(250,248,244,0.92); backdrop-filter: blur(10px); z-index: 20;">
-    <a href="#" style="font-family: 'Lora', serif; font-size: 21px; letter-spacing: 0.2em;">ALTHEA</a>
-    <nav style="display: flex; gap: 34px; font-size: 15px; color: #48555C;">
-      <a href="#retriitit" style="color: #48555C;">Retriitit</a>
-      <a href="#turvallisuus" style="color: #48555C;">Turvallisuus</a>
-      <a href="#meista" style="color: #48555C;">Meistä</a>
-      <a href="#hinta" style="color: #48555C;">Hinta</a>
-      <a href="#ukk" style="color: #48555C;">UKK</a>
-      <a href="#yhteys" style="color: #48555C;">Yhteystiedot</a>
+  <header data-screen-label="Top bar" style="display: flex; align-items: center; justify-content: space-between; padding: 26px 56px; position: sticky; top: 0; background: rgba(250,248,244,0.92); background: rgb(from var(--paper) r g b / 0.92); backdrop-filter: blur(10px); z-index: 20">
+    <a href="#" style="font-family: 'Lora', serif; font-size: 21px; letter-spacing: 0.2em">ALTHEA</a>
+    <nav style="display: flex; gap: 34px; font-size: 15px; color: var(--body)">
+      <a href="#retriitit" style="color: var(--body)">Retriitit</a>
+      <a href="#turvallisuus" style="color: var(--body)">Turvallisuus</a>
+      <a href="#meista" style="color: var(--body)">Meistä</a>
+      <a href="#hinta" style="color: var(--body)">Hinta</a>
+      <a href="#ukk" style="color: var(--body)">UKK</a>
+      <a href="#yhteys" style="color: var(--body)">Yhteystiedot</a>
     </nav>
-    <a href="#yhteys" style="font-size: 15px; color: #FAF8F4; background: #0d1f29; padding: 12px 24px; border-radius: 999px; transition: background 400ms ease-out;" class="scp0">Varaa keskustelu</a>
+    <a href="#yhteys" style="font-size: 15px; color: var(--paper); background: var(--ink); padding: 12px 24px; border-radius: 999px; transition: background 400ms ease-out" class="scp0">Varaa keskustelu</a>
   </header>
 
-  <section data-screen-label="Hero" style="padding: 0 20px;">
-    <div style="height: 640px; border-radius: 18px; overflow: hidden;">
-      <img src="assets/img/temple1.58793b84.webp" alt="Retriittitalon sessiotila, luonnonvalo tulee kattoikkunoista" style="width: 100%; height: 100%; object-fit: cover; filter: saturate(0.82) contrast(0.94) brightness(1.04);">
+  <section data-screen-label="Hero" style="padding: 0 20px">
+    <div style="height: 640px; border-radius: 18px; overflow: hidden">
+      <img src="assets/img/temple1.58793b84.webp" alt="Retriittitalon sessiotila, luonnonvalo tulee kattoikkunoista" style="width: 100%; height: 100%; object-fit: cover; filter: saturate(0.82) contrast(0.94) brightness(1.04)">
     </div>
   </section>
 
-  <section style="padding: 140px 56px 130px; display: grid; grid-template-columns: 1fr 460px; gap: 88px; align-items: end;">
-    <div style="display: flex; flex-direction: column; gap: 28px;">
-      <div style="font-family: ui-monospace, Menlo, monospace; font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: #7A8A82;">Alankomaat · 8–10 osallistujaa · kaksi fasilitaattoria</div>
-      <h1 style="font-family: 'Lora', serif; font-weight: 400; font-size: 60px; line-height: 1.18; margin: 0; max-width: 20ch;">Sukella syvälle itsesi ytimeen.&nbsp;</h1>
-      <p style="margin: 0; font-size: 19px; line-height: 1.75; color: #48555C; max-width: 58ch;">Ohjattuja retriittejä pienelle suomenkieliselle ryhmälle Alankomaissa. Retriittiin kuuluu ohjattu psilosybiinikokemus, joka toteutetaan kokonaan Alankomaiden lainsäädännön puitteissa. Ryhmässä on 8–10 osallistujaa ja kaksi fasilitaattoria.</p>
+  <section style="padding: 140px 56px 130px; display: grid; grid-template-columns: 1fr 460px; gap: 88px; align-items: end">
+    <div style="display: flex; flex-direction: column; gap: 28px">
+      <div style="font-family: ui-monospace, Menlo, monospace; font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--dim)">Alankomaat · 8–10 osallistujaa · kaksi fasilitaattoria</div>
+      <h1 style="font-family: 'Lora', serif; font-weight: 400; font-size: 60px; line-height: 1.18; margin: 0; max-width: 20ch">Sukella syvälle itsesi ytimeen.&nbsp;</h1>
+      <p style="margin: 0; font-size: 19px; line-height: 1.75; color: var(--body); max-width: 58ch">Ohjattuja retriittejä pienelle suomenkieliselle ryhmälle Alankomaissa. Retriittiin kuuluu ohjattu psilosybiinikokemus, joka toteutetaan kokonaan Alankomaiden lainsäädännön puitteissa. Ryhmässä on 8–10 osallistujaa ja kaksi fasilitaattoria.</p>
     </div>
-    <div style="display: flex; flex-direction: column; gap: 18px; align-items: flex-start;">
-      <a href="#yhteys" style="background: #0d1f29; color: #FAF8F4; padding: 18px 32px; border-radius: 999px; font-size: 15.5px; transition: background 400ms ease-out;" class="scp0">Varaa maksuton keskustelu</a>
-      <div style="font-size: 15px; color: #7A8A82;">30 min · maksuton · ei sitoumusta</div>
-      <a href="#tekeminen" style="font-size: 15.5px; border-bottom: 1px solid #A9B5AB; padding-bottom: 3px; margin-top: 12px;">Mitä teemme</a>
-    </div>
-  </section>
-
-  <section id="tekeminen" data-screen-label="Mitä teemme" style="padding: 0 56px 150px; display: grid; grid-template-columns: 340px 1fr; gap: 96px;">
-    <div style="display: flex; flex-direction: column; gap: 16px;">
-      <div style="font-family: ui-monospace, Menlo, monospace; font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: #7A8A82;">01 — Mitä teemme</div>
-      <h2 style="font-family: 'Lora', serif; font-weight: 400; font-size: 40px; line-height: 1.2; margin: 0;">Tilaa pysähtymiselle</h2>
-    </div>
-    <div style="display: flex; flex-direction: column; gap: 32px; max-width: 66ch;">
-      <p style="margin: 0; font-size: 18px; line-height: 1.75; color: #48555C;">Opimme elämän aikana keinoja selvitä. Rakennamme rooleja ja tapoja, jotka ovat aikanaan olleet tarpeen, ja usein ne ovat auttaneet meitä pitkälle.</p>
-      <p style="margin: 0; font-size: 18px; line-height: 1.75; color: #48555C;">Mutta sama keino, joka joskus suojeli, voi myöhemmin viedä kauemmas itsestä. Sitä ei yleensä huomaa itse. Sen huomaa vasta, kun pysähtyy.</p>
-      <p style="margin: 0; font-size: 18px; line-height: 1.75; color: #48555C;">Althea tekee tilaa sille pysähtymiselle. Emme ajattele, että sinun pitäisi tulla joksikin toiseksi. Useimmiten merkittävin muutos alkaa siitä, että ihminen saa katsoa itseään rauhassa eikä joudu heti korjaamaan mitään. Aivomme ovat plastiset, ja tutkimusten mukaan psilosybiini edistää uusien reittien syntymistä. Painotamme toiminnassamme integraation merkitystä, oivallusten integroimiseksi pysyväksi osaksi elämää.&nbsp;</p>
-      <div style="padding: 34px 38px; background: #F0EDE6; border-radius: 18px; display: flex; flex-direction: column; gap: 14px;">
-        <div style="font-size: 15px; font-weight: 500;">Emme lupaa, että tämä muuttaa elämäsi</div>
-        <p style="margin: 0; font-size: 16.5px; line-height: 1.75; color: #48555C;">Osalle retriitti on käännekohta elämässä. Osalle se on merkityksellinen mutta rajattu kokemus. Osa ei saa siitä juuri mitään, ja pieni osa kokee sen vaikeana vielä jälkeenpäin. Se joka väittää muuta, myy sinulle jotain.</p>
-        <p style="margin: 0; font-size: 16.5px; line-height: 1.75; color: #48555C;">Sen sijaan voimme luvata neljä asiaa. Valmistaudumme huolellisesti. Sanomme rehellisesti, jos tämä ei sovi sinulle. Olemme molemmat paikalla koko ajan. Ja tuki jatkuu vielä sen jälkeen, kun olet palannut kotiin.</p>
-      </div>
+    <div style="display: flex; flex-direction: column; gap: 18px; align-items: flex-start">
+      <a href="#yhteys" style="background: var(--ink); color: var(--paper); padding: 18px 32px; border-radius: 999px; font-size: 15.5px; transition: background 400ms ease-out" class="scp0">Varaa maksuton keskustelu</a>
+      <div style="font-size: 15px; color: var(--dim)">30 min · maksuton · ei sitoumusta</div>
+      <a href="#tekeminen" style="font-size: 15.5px; border-bottom: 1px solid var(--line); padding-bottom: 3px; margin-top: 12px">Mitä teemme</a>
     </div>
   </section>
 
-  <section data-screen-label="Viisi asiaa" style="background: #F0EDE6; padding: 150px 56px 160px; display: grid; grid-template-columns: 340px 1fr; gap: 96px; align-items: start;">
-    <div style="display: flex; flex-direction: column; gap: 16px;">
-      <div style="font-family: ui-monospace, Menlo, monospace; font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: #7A8A82;">02 — Erot</div>
-      <h2 style="font-family: 'Lora', serif; font-weight: 400; font-size: 40px; line-height: 1.2; margin: 0;">Viisi asiaa, jotka erottavat meidät</h2>
+  <section id="tekeminen" data-screen-label="Mitä teemme" style="padding: 0 56px 150px; display: grid; grid-template-columns: 340px 1fr; gap: 96px">
+    <div style="display: flex; flex-direction: column; gap: 16px">
+      <div style="font-family: ui-monospace, Menlo, monospace; font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--dim)">01 — Mitä teemme</div>
+      <h2 style="font-family: 'Lora', serif; font-weight: 400; font-size: 40px; line-height: 1.2; margin: 0">Tilaa pysähtymiselle</h2>
     </div>
-    <div style="display: flex; flex-direction: column;">
-      <div style="display: grid; grid-template-columns: 230px 1fr; gap: 44px; padding: 34px 0; border-top: 1px solid rgba(13,31,41,0.14);">
-        <div style="font-size: 17px; font-weight: 500;">Pienet ryhmät ja kaksi fasilitaattoria</div>
-        <p style="margin: 0; font-size: 17px; line-height: 1.75; color: #48555C; max-width: 62ch;">Olemme molemmat paikalla koko session ajan. Emme käytä vierailevia ohjaajia emmekä vapaaehtoisia.</p>
-      </div>
-      <div style="display: grid; grid-template-columns: 230px 1fr; gap: 44px; padding: 34px 0; border-top: 1px solid rgba(13,31,41,0.14);">
-        <div style="font-size: 17px; font-weight: 500;">Kaksikymmentä vuotta kokemusta vaikeista kokemuksista</div>
-        <p style="margin: 0; font-size: 17px; line-height: 1.75; color: #48555C; max-width: 62ch;">Juho on tehnyt psykedeelitukea festivaaleilla Suomessa, Portugalissa ja Kaliforniassa, viimeksi Zendo Projectin tiiminvetäjänä Burning Manissa. Käytännöt on opittu oloissa, jotka ovat paljon retriittitaloa hallitsemattomammat.</p>
-      </div>
-      <div style="display: grid; grid-template-columns: 230px 1fr; gap: 44px; padding: 34px 0; border-top: 1px solid rgba(13,31,41,0.14);">
-        <div style="font-size: 17px; font-weight: 500;">Ohjaus suomeksi</div>
-        <p style="margin: 0; font-size: 17px; line-height: 1.75; color: #48555C; max-width: 62ch;">Omalla äidinkielellä kokemuksesta puhuu toisin kuin englanniksi. Sessiot, purku ja kaikki tapaamiset käydään suomeksi.</p>
-      </div>
-      <div style="display: grid; grid-template-columns: 230px 1fr; gap: 44px; padding: 34px 0; border-top: 1px solid rgba(13,31,41,0.14);">
-        <div style="font-size: 17px; font-weight: 500;">Seulonta kaikille, poikkeuksetta</div>
-        <p style="margin: 0; font-size: 17px; line-height: 1.75; color: #48555C; max-width: 62ch;">Käymme läpi terveyshistoriasi, lääkityksesi ja elämäntilanteesi ennen kuin voit osallistua. Käännytämme mieluummin ihmisen pois kuin otamme hänet mukaan huonosti.</p>
-      </div>
-      <div style="display: grid; grid-template-columns: 230px 1fr; gap: 44px; padding: 34px 0; border-top: 1px solid rgba(13,31,41,0.14); border-bottom: 1px solid rgba(13,31,41,0.14);">
-        <div style="font-size: 17px; font-weight: 500;">Valmistautuminen ja integraatio kuuluvat hintaan</div>
-        <p style="margin: 0; font-size: 17px; line-height: 1.75; color: #48555C; max-width: 62ch;">Retriitti ei ole viikonloppu vaan noin kolmen kuukauden kokonaisuus. Tapaamiset ennen ja jälkeen sisältyvät hintaan, eikä niitä myydä erikseen.</p>
+    <div style="display: flex; flex-direction: column; gap: 32px; max-width: 66ch">
+      <p style="margin: 0; font-size: 18px; line-height: 1.75; color: var(--body)">Opimme elämän aikana keinoja selvitä. Rakennamme rooleja ja tapoja, jotka ovat aikanaan olleet tarpeen, ja usein ne ovat auttaneet meitä pitkälle.</p>
+      <p style="margin: 0; font-size: 18px; line-height: 1.75; color: var(--body)">Mutta sama keino, joka joskus suojeli, voi myöhemmin viedä kauemmas itsestä. Sitä ei yleensä huomaa itse. Sen huomaa vasta, kun pysähtyy.</p>
+      <p style="margin: 0; font-size: 18px; line-height: 1.75; color: var(--body)">Althea tekee tilaa sille pysähtymiselle. Emme ajattele, että sinun pitäisi tulla joksikin toiseksi. Useimmiten merkittävin muutos alkaa siitä, että ihminen saa katsoa itseään rauhassa eikä joudu heti korjaamaan mitään. Aivomme ovat plastiset, ja tutkimusten mukaan psilosybiini edistää uusien reittien syntymistä. Painotamme toiminnassamme integraation merkitystä, oivallusten integroimiseksi pysyväksi osaksi elämää.&nbsp;</p>
+      <div style="padding: 34px 38px; background: var(--panel); border-radius: 18px; display: flex; flex-direction: column; gap: 14px">
+        <div style="font-size: 15px; font-weight: 500">Emme lupaa, että tämä muuttaa elämäsi</div>
+        <p style="margin: 0; font-size: 16.5px; line-height: 1.75; color: var(--body)">Osalle retriitti on käännekohta elämässä. Osalle se on merkityksellinen mutta rajattu kokemus. Osa ei saa siitä juuri mitään, ja pieni osa kokee sen vaikeana vielä jälkeenpäin. Se joka väittää muuta, myy sinulle jotain.</p>
+        <p style="margin: 0; font-size: 16.5px; line-height: 1.75; color: var(--body)">Sen sijaan voimme luvata neljä asiaa. Valmistaudumme huolellisesti. Sanomme rehellisesti, jos tämä ei sovi sinulle. Olemme molemmat paikalla koko ajan. Ja tuki jatkuu vielä sen jälkeen, kun olet palannut kotiin.</p>
       </div>
     </div>
   </section>
 
-  <section id="retriitit" data-screen-label="Retriitin kaari" style="padding: 150px 56px 160px;">
-    <div style="display: flex; flex-direction: column; gap: 18px; max-width: 58ch; margin-bottom: 80px;">
-      <div style="font-family: ui-monospace, Menlo, monospace; font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: #7A8A82;">03 — Retriitit</div>
-      <h2 style="font-family: 'Lora', serif; font-weight: 400; font-size: 40px; line-height: 1.2; margin: 0;">Retriitti on kokonaisuus</h2>
-      <p style="margin: 0; font-size: 18px; line-height: 1.75; color: #48555C;">Työ alkaa noin kuukausi ennen matkaa ja jatkuu kuuden viikon ajan kotiinpaluun jälkeen. Retriittipäivät ovat sen keskikohta.</p>
+  <section data-screen-label="Viisi asiaa" style="background: var(--panel); padding: 150px 56px 160px; display: grid; grid-template-columns: 340px 1fr; gap: 96px; align-items: start">
+    <div style="display: flex; flex-direction: column; gap: 16px">
+      <div style="font-family: ui-monospace, Menlo, monospace; font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--dim)">02 — Erot</div>
+      <h2 style="font-family: 'Lora', serif; font-weight: 400; font-size: 40px; line-height: 1.2; margin: 0">Viisi asiaa, jotka erottavat meidät</h2>
     </div>
-    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 56px;">
-      <div style="display: flex; flex-direction: column; gap: 16px; padding-top: 26px; border-top: 1px solid rgba(13,31,41,0.16);">
-        <div style="font-family: ui-monospace, Menlo, monospace; font-size: 12px; letter-spacing: 0.14em; color: #7A8A82;">01</div>
-        <div style="font-family: 'Lora', serif; font-size: 26px;">Ennen</div>
-        <p style="margin: 0; font-size: 16.5px; line-height: 1.7; color: #48555C;">Käymme läpi terveystietosi, puhumme aivomesti odotuksistasi, mahdollisista huolista tai peloista. Ohjataan myös somaattisia harjoituksia avuksi mahdollisten vaikeiden tunteiden kanssa. Saat myös käytännön ohjeet ruoasta, lääkityksestä ja alkoholin käyttöön ja elintapoihin liittyen.</p>
-        <p style="margin: 0; font-size: 16.5px; line-height: 1.7; color: #48555C;">Valmistautuminen ei ole vapaaehtoinen lisäosa. Se ratkaisee suuren osan kokemuksen laadusta.</p>
+    <div style="display: flex; flex-direction: column">
+      <div style="display: grid; grid-template-columns: 230px 1fr; gap: 44px; padding: 34px 0; border-top: 1px solid rgba(13,31,41,0.14); border-top: 1px solid rgb(from var(--ink) r g b / 0.14)">
+        <div style="font-size: 17px; font-weight: 500">Pienet ryhmät ja kaksi fasilitaattoria</div>
+        <p style="margin: 0; font-size: 17px; line-height: 1.75; color: var(--body); max-width: 62ch">Olemme molemmat paikalla koko session ajan. Emme käytä vierailevia ohjaajia emmekä vapaaehtoisia.</p>
       </div>
-      <div style="display: flex; flex-direction: column; gap: 16px; padding-top: 26px; border-top: 1px solid rgba(13,31,41,0.16);">
-        <div style="font-family: ui-monospace, Menlo, monospace; font-size: 12px; letter-spacing: 0.14em; color: #7A8A82;">02</div>
-        <div style="font-family: 'Lora', serif; font-size: 26px;">Retriitin aikana</div>
-        <p style="margin: 0; font-size: 16.5px; line-height: 1.7; color: #48555C;">Päivät rakentuvat rauhassa. Ensin saapuminen ja ryhmän yhteiset sopimukset, sitten sessiopäivä, ja sen jälkeen aikaa levolle, ulkoilulle ja kokemuksen purkamiselle.</p>
-        <p style="margin: 0; font-size: 16.5px; line-height: 1.7; color: #48555C;">Sinun ei tarvitse suorittaa. Sinun ei tarvitse jakaa enempää kuin haluat. Eikä kokemuksesi tarvitse näyttää tietynlaiselta.</p>
+      <div style="display: grid; grid-template-columns: 230px 1fr; gap: 44px; padding: 34px 0; border-top: 1px solid rgba(13,31,41,0.14); border-top: 1px solid rgb(from var(--ink) r g b / 0.14)">
+        <div style="font-size: 17px; font-weight: 500">Kaksikymmentä vuotta kokemusta vaikeista kokemuksista</div>
+        <p style="margin: 0; font-size: 17px; line-height: 1.75; color: var(--body); max-width: 62ch">Juho on tehnyt psykedeelitukea festivaaleilla Suomessa, Portugalissa ja Kaliforniassa, viimeksi Zendo Projectin tiiminvetäjänä Burning Manissa. Käytännöt on opittu oloissa, jotka ovat paljon retriittitaloa hallitsemattomammat.</p>
       </div>
-      <div style="display: flex; flex-direction: column; gap: 16px; padding-top: 26px; border-top: 1px solid rgba(13,31,41,0.16);">
-        <div style="font-family: ui-monospace, Menlo, monospace; font-size: 12px; letter-spacing: 0.14em; color: #7A8A82;">03</div>
-        <div style="font-family: 'Lora', serif; font-size: 26px;">Jälkeen</div>
-        <p style="margin: 0; font-size: 16.5px; line-height: 1.7; color: #48555C;">Retriitin päättyminen ei päätä työtä. Integraatio on se osuus, jossa kokemuksesta tulee osa elämääsi eikä muisto hienosta viikonlopusta.</p>
-        <p style="margin: 0; font-size: 16.5px; line-height: 1.7; color: #48555C;">Voimakas kokemus ei yksin muuta elämää. Muutos syntyy siitä, miten kokemus ymmärretään ja miten se vähitellen liittyy arkeen.</p>
+      <div style="display: grid; grid-template-columns: 230px 1fr; gap: 44px; padding: 34px 0; border-top: 1px solid rgba(13,31,41,0.14); border-top: 1px solid rgb(from var(--ink) r g b / 0.14)">
+        <div style="font-size: 17px; font-weight: 500">Ohjaus suomeksi</div>
+        <p style="margin: 0; font-size: 17px; line-height: 1.75; color: var(--body); max-width: 62ch">Omalla äidinkielellä kokemuksesta puhuu toisin kuin englanniksi. Sessiot, purku ja kaikki tapaamiset käydään suomeksi.</p>
       </div>
-    </div>
-    <a href="#" style="font-size: 15.5px; border-bottom: 1px solid #A9B5AB; display: inline-block; padding-bottom: 3px; margin-top: 56px;">Katso koko ohjelma</a>
-  </section>
-
-  <section id="turvallisuus" data-screen-label="Turvallisuus" style="background: #F0EDE6; padding: 150px 56px 160px; display: grid; grid-template-columns: 340px 1fr; gap: 96px;">
-    <div style="display: flex; flex-direction: column; gap: 16px;">
-      <div style="font-family: ui-monospace, Menlo, monospace; font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: #7A8A82;">04 — Turvallisuus</div>
-      <h2 style="font-family: 'Lora', serif; font-weight: 400; font-size: 40px; line-height: 1.2; margin: 0;">Turvallisuus ei ole meille adjektiivi</h2>
-      <p style="margin: 8px 0 0; font-size: 16.5px; line-height: 1.75; color: #48555C;">Se on joukko käytäntöjä, jotka voit lukea ennen kuin päätät mitään.</p>
-    </div>
-    <div style="display: flex; flex-direction: column;">
-      <div style="display: grid; grid-template-columns: 200px 1fr; gap: 44px; padding: 34px 0; border-top: 1px solid rgba(13,31,41,0.14);">
-        <div style="font-size: 17px; font-weight: 500;">Kaksi läsnä</div>
-        <p style="margin: 0; font-size: 17px; line-height: 1.75; color: #48555C; max-width: 62ch;">Kaksi fasilitaattoria on läsnä koko session ajan. Emme koskaan jätä sessiotilaa tyhjäksi emmekä aja sessiota yhden ihmisen voimin.</p>
+      <div style="display: grid; grid-template-columns: 230px 1fr; gap: 44px; padding: 34px 0; border-top: 1px solid rgba(13,31,41,0.14); border-top: 1px solid rgb(from var(--ink) r g b / 0.14)">
+        <div style="font-size: 17px; font-weight: 500">Seulonta kaikille, poikkeuksetta</div>
+        <p style="margin: 0; font-size: 17px; line-height: 1.75; color: var(--body); max-width: 62ch">Käymme läpi terveyshistoriasi, lääkityksesi ja elämäntilanteesi ennen kuin voit osallistua. Käännytämme mieluummin ihmisen pois kuin otamme hänet mukaan huonosti.</p>
       </div>
-      <div style="display: grid; grid-template-columns: 200px 1fr; gap: 44px; padding: 34px 0; border-top: 1px solid rgba(13,31,41,0.14);">
-        <div style="font-size: 17px; font-weight: 500;">Vaikea kokemus</div>
-        <p style="margin: 0; font-size: 17px; line-height: 1.75; color: #48555C; max-width: 62ch;">Vaikea kokemus ei ole epäonnistuminen. Se on yksi mahdollinen kulku, ja siihen on varauduttu etukäteen. Toinen meistä voi istua vieressäsi niin kauan kuin on tarpeen. Emme yritä katkaista vaikeaa kokemusta emmekä kääntää sitä mukavaksi. Sen läpi kuljetaan.</p>
+      <div style="display: grid; grid-template-columns: 230px 1fr; gap: 44px; padding: 34px 0; border-top: 1px solid rgba(13,31,41,0.14); border-top: 1px solid rgb(from var(--ink) r g b / 0.14); border-bottom: 1px solid rgba(13,31,41,0.14); border-bottom: 1px solid rgb(from var(--ink) r g b / 0.14)">
+        <div style="font-size: 17px; font-weight: 500">Valmistautuminen ja integraatio kuuluvat hintaan</div>
+        <p style="margin: 0; font-size: 17px; line-height: 1.75; color: var(--body); max-width: 62ch">Retriitti ei ole viikonloppu vaan noin kolmen kuukauden kokonaisuus. Tapaamiset ennen ja jälkeen sisältyvät hintaan, eikä niitä myydä erikseen.</p>
       </div>
-      <div style="display: grid; grid-template-columns: 200px 1fr; gap: 44px; padding: 34px 0; border-top: 1px solid rgba(13,31,41,0.14);">
-        <div style="font-size: 17px; font-weight: 500;">Suostumus</div>
-        <p style="margin: 0; font-size: 17px; line-height: 1.75; color: #48555C; max-width: 62ch;">Emme kosketa sinuun ilman erikseen pyydettyä suostumusta. Voit keskeyttää missä vaiheessa tahansa. Voit myös valita pienemmän annoksen tai jäädä sessiosta kokonaan pois silloinkin, kun olet jo paikan päällä.</p>
-      </div>
-      <div style="display: grid; grid-template-columns: 200px 1fr; gap: 44px; padding: 34px 0; border-top: 1px solid rgba(13,31,41,0.14); border-bottom: 1px solid rgba(13,31,41,0.14);">
-        <div style="font-size: 17px; font-weight: 500;">Mitä emme ole</div>
-        <p style="margin: 0; font-size: 17px; line-height: 1.75; color: #48555C; max-width: 62ch;">Emme ole terveydenhuollon toimija. Emme tarjoa hoitoa emmekä terapiaa emmekä hoida diagnosoituja sairauksia. Jos etsit hoitoa, oikea osoite on terveydenhuolto — autamme miettimään, mistä sitä kannattaa hakea.</p>
-      </div>
-      <a href="#" style="font-size: 15.5px; border-bottom: 1px solid #A9B5AB; align-self: flex-start; padding-bottom: 3px; margin-top: 36px;">Lue turvallisuudesta</a>
     </div>
   </section>
 
-  <section data-screen-label="Kuvat paikasta" style="padding: 0 20px;">
-    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
-      <div style="height: 620px; border-radius: 18px; overflow: hidden;">
-        <img src="assets/img/house.df22992d.webp" alt="Retriittitalo ja avoin maisema" style="width: 100%; height: 100%; object-fit: cover; filter: saturate(0.78) contrast(0.94) brightness(1.03);">
+  <section id="retriitit" data-screen-label="Retriitin kaari" style="padding: 150px 56px 160px">
+    <div style="display: flex; flex-direction: column; gap: 18px; max-width: 58ch; margin-bottom: 80px">
+      <div style="font-family: ui-monospace, Menlo, monospace; font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--dim)">03 — Retriitit</div>
+      <h2 style="font-family: 'Lora', serif; font-weight: 400; font-size: 40px; line-height: 1.2; margin: 0">Retriitti on kokonaisuus</h2>
+      <p style="margin: 0; font-size: 18px; line-height: 1.75; color: var(--body)">Työ alkaa noin kuukausi ennen matkaa ja jatkuu kuuden viikon ajan kotiinpaluun jälkeen. Retriittipäivät ovat sen keskikohta.</p>
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 56px">
+      <div style="display: flex; flex-direction: column; gap: 16px; padding-top: 26px; border-top: 1px solid rgba(13,31,41,0.16); border-top: 1px solid rgb(from var(--ink) r g b / 0.16)">
+        <div style="font-family: ui-monospace, Menlo, monospace; font-size: 12px; letter-spacing: 0.14em; color: var(--dim)">01</div>
+        <div style="font-family: 'Lora', serif; font-size: 26px">Ennen</div>
+        <p style="margin: 0; font-size: 16.5px; line-height: 1.7; color: var(--body)">Käymme läpi terveystietosi, puhumme aivomesti odotuksistasi, mahdollisista huolista tai peloista. Ohjataan myös somaattisia harjoituksia avuksi mahdollisten vaikeiden tunteiden kanssa. Saat myös käytännön ohjeet ruoasta, lääkityksestä ja alkoholin käyttöön ja elintapoihin liittyen.</p>
+        <p style="margin: 0; font-size: 16.5px; line-height: 1.7; color: var(--body)">Valmistautuminen ei ole vapaaehtoinen lisäosa. Se ratkaisee suuren osan kokemuksen laadusta.</p>
       </div>
-      <div style="display: grid; grid-template-rows: 1fr 1fr; gap: 20px;">
-        <div style="border-radius: 18px; overflow: hidden;">
-          <img src="assets/img/eating.68af1853.webp" alt="Yhteinen ruokapöytä" style="width: 100%; height: 100%; object-fit: cover; filter: saturate(0.8) contrast(0.94) brightness(1.02);">
+      <div style="display: flex; flex-direction: column; gap: 16px; padding-top: 26px; border-top: 1px solid rgba(13,31,41,0.16); border-top: 1px solid rgb(from var(--ink) r g b / 0.16)">
+        <div style="font-family: ui-monospace, Menlo, monospace; font-size: 12px; letter-spacing: 0.14em; color: var(--dim)">02</div>
+        <div style="font-family: 'Lora', serif; font-size: 26px">Retriitin aikana</div>
+        <p style="margin: 0; font-size: 16.5px; line-height: 1.7; color: var(--body)">Päivät rakentuvat rauhassa. Ensin saapuminen ja ryhmän yhteiset sopimukset, sitten sessiopäivä, ja sen jälkeen aikaa levolle, ulkoilulle ja kokemuksen purkamiselle.</p>
+        <p style="margin: 0; font-size: 16.5px; line-height: 1.7; color: var(--body)">Sinun ei tarvitse suorittaa. Sinun ei tarvitse jakaa enempää kuin haluat. Eikä kokemuksesi tarvitse näyttää tietynlaiselta.</p>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 16px; padding-top: 26px; border-top: 1px solid rgba(13,31,41,0.16); border-top: 1px solid rgb(from var(--ink) r g b / 0.16)">
+        <div style="font-family: ui-monospace, Menlo, monospace; font-size: 12px; letter-spacing: 0.14em; color: var(--dim)">03</div>
+        <div style="font-family: 'Lora', serif; font-size: 26px">Jälkeen</div>
+        <p style="margin: 0; font-size: 16.5px; line-height: 1.7; color: var(--body)">Retriitin päättyminen ei päätä työtä. Integraatio on se osuus, jossa kokemuksesta tulee osa elämääsi eikä muisto hienosta viikonlopusta.</p>
+        <p style="margin: 0; font-size: 16.5px; line-height: 1.7; color: var(--body)">Voimakas kokemus ei yksin muuta elämää. Muutos syntyy siitä, miten kokemus ymmärretään ja miten se vähitellen liittyy arkeen.</p>
+      </div>
+    </div>
+    <a href="#" style="font-size: 15.5px; border-bottom: 1px solid var(--line); display: inline-block; padding-bottom: 3px; margin-top: 56px">Katso koko ohjelma</a>
+  </section>
+
+  <section id="turvallisuus" data-screen-label="Turvallisuus" style="background: var(--panel); padding: 150px 56px 160px; display: grid; grid-template-columns: 340px 1fr; gap: 96px">
+    <div style="display: flex; flex-direction: column; gap: 16px">
+      <div style="font-family: ui-monospace, Menlo, monospace; font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--dim)">04 — Turvallisuus</div>
+      <h2 style="font-family: 'Lora', serif; font-weight: 400; font-size: 40px; line-height: 1.2; margin: 0">Turvallisuus ei ole meille adjektiivi</h2>
+      <p style="margin: 8px 0 0; font-size: 16.5px; line-height: 1.75; color: var(--body)">Se on joukko käytäntöjä, jotka voit lukea ennen kuin päätät mitään.</p>
+    </div>
+    <div style="display: flex; flex-direction: column">
+      <div style="display: grid; grid-template-columns: 200px 1fr; gap: 44px; padding: 34px 0; border-top: 1px solid rgba(13,31,41,0.14); border-top: 1px solid rgb(from var(--ink) r g b / 0.14)">
+        <div style="font-size: 17px; font-weight: 500">Kaksi läsnä</div>
+        <p style="margin: 0; font-size: 17px; line-height: 1.75; color: var(--body); max-width: 62ch">Kaksi fasilitaattoria on läsnä koko session ajan. Emme koskaan jätä sessiotilaa tyhjäksi emmekä aja sessiota yhden ihmisen voimin.</p>
+      </div>
+      <div style="display: grid; grid-template-columns: 200px 1fr; gap: 44px; padding: 34px 0; border-top: 1px solid rgba(13,31,41,0.14); border-top: 1px solid rgb(from var(--ink) r g b / 0.14)">
+        <div style="font-size: 17px; font-weight: 500">Vaikea kokemus</div>
+        <p style="margin: 0; font-size: 17px; line-height: 1.75; color: var(--body); max-width: 62ch">Vaikea kokemus ei ole epäonnistuminen. Se on yksi mahdollinen kulku, ja siihen on varauduttu etukäteen. Toinen meistä voi istua vieressäsi niin kauan kuin on tarpeen. Emme yritä katkaista vaikeaa kokemusta emmekä kääntää sitä mukavaksi. Sen läpi kuljetaan.</p>
+      </div>
+      <div style="display: grid; grid-template-columns: 200px 1fr; gap: 44px; padding: 34px 0; border-top: 1px solid rgba(13,31,41,0.14); border-top: 1px solid rgb(from var(--ink) r g b / 0.14)">
+        <div style="font-size: 17px; font-weight: 500">Suostumus</div>
+        <p style="margin: 0; font-size: 17px; line-height: 1.75; color: var(--body); max-width: 62ch">Emme kosketa sinuun ilman erikseen pyydettyä suostumusta. Voit keskeyttää missä vaiheessa tahansa. Voit myös valita pienemmän annoksen tai jäädä sessiosta kokonaan pois silloinkin, kun olet jo paikan päällä.</p>
+      </div>
+      <div style="display: grid; grid-template-columns: 200px 1fr; gap: 44px; padding: 34px 0; border-top: 1px solid rgba(13,31,41,0.14); border-top: 1px solid rgb(from var(--ink) r g b / 0.14); border-bottom: 1px solid rgba(13,31,41,0.14); border-bottom: 1px solid rgb(from var(--ink) r g b / 0.14)">
+        <div style="font-size: 17px; font-weight: 500">Mitä emme ole</div>
+        <p style="margin: 0; font-size: 17px; line-height: 1.75; color: var(--body); max-width: 62ch">Emme ole terveydenhuollon toimija. Emme tarjoa hoitoa emmekä terapiaa emmekä hoida diagnosoituja sairauksia. Jos etsit hoitoa, oikea osoite on terveydenhuolto — autamme miettimään, mistä sitä kannattaa hakea.</p>
+      </div>
+      <a href="#" style="font-size: 15.5px; border-bottom: 1px solid var(--line); align-self: flex-start; padding-bottom: 3px; margin-top: 36px">Lue turvallisuudesta</a>
+    </div>
+  </section>
+
+  <section data-screen-label="Kuvat paikasta" style="padding: 0 20px">
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px">
+      <div style="height: 620px; border-radius: 18px; overflow: hidden">
+        <img src="assets/img/house.df22992d.webp" alt="Retriittitalo ja avoin maisema" style="width: 100%; height: 100%; object-fit: cover; filter: saturate(0.78) contrast(0.94) brightness(1.03)">
+      </div>
+      <div style="display: grid; grid-template-rows: 1fr 1fr; gap: 20px">
+        <div style="border-radius: 18px; overflow: hidden">
+          <img src="assets/img/eating.68af1853.webp" alt="Yhteinen ruokapöytä" style="width: 100%; height: 100%; object-fit: cover; filter: saturate(0.8) contrast(0.94) brightness(1.02)">
         </div>
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
-          <div style="border-radius: 18px; overflow: hidden;">
-            <img src="assets/img/bed.ad0a1b40.webp" alt="Makuuhuone, jossa kaksi puusänkyä ja kattoikkuna" style="width: 100%; height: 100%; object-fit: cover; filter: saturate(0.78) contrast(0.94) brightness(1.03);">
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px">
+          <div style="border-radius: 18px; overflow: hidden">
+            <img src="assets/img/bed.ad0a1b40.webp" alt="Makuuhuone, jossa kaksi puusänkyä ja kattoikkuna" style="width: 100%; height: 100%; object-fit: cover; filter: saturate(0.78) contrast(0.94) brightness(1.03)">
           </div>
-          <div style="border-radius: 18px; overflow: hidden;">
-            <img src="assets/img/room.2bc21a15.webp" alt="Vaalea makuuhuone, ikkuna ja pöytä" style="width: 100%; height: 100%; object-fit: cover; filter: saturate(0.78) contrast(0.94) brightness(1.03);">
+          <div style="border-radius: 18px; overflow: hidden">
+            <img src="assets/img/room.2bc21a15.webp" alt="Vaalea makuuhuone, ikkuna ja pöytä" style="width: 100%; height: 100%; object-fit: cover; filter: saturate(0.78) contrast(0.94) brightness(1.03)">
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <section id="paikka" data-screen-label="Paikka" style="padding: 150px 56px 160px; display: grid; grid-template-columns: 340px 1fr; gap: 96px; align-items: start;">
-    <div style="display: flex; flex-direction: column; gap: 16px;">
-      <div style="font-family: ui-monospace, Menlo, monospace; font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: #7A8A82;">05 — Paikka</div>
-      <h2 style="font-family: 'Lora', serif; font-weight: 400; font-size: 40px; line-height: 1.2; margin: 0;">Pohjois-Alankomaat</h2>
+  <section id="paikka" data-screen-label="Paikka" style="padding: 150px 56px 160px; display: grid; grid-template-columns: 340px 1fr; gap: 96px; align-items: start">
+    <div style="display: flex; flex-direction: column; gap: 16px">
+      <div style="font-family: ui-monospace, Menlo, monospace; font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--dim)">05 — Paikka</div>
+      <h2 style="font-family: 'Lora', serif; font-weight: 400; font-size: 40px; line-height: 1.2; margin: 0">Pohjois-Alankomaat</h2>
     </div>
-    <div style="display: flex; flex-direction: column; gap: 26px; max-width: 62ch;">
-      <p style="margin: 0; font-size: 18px; line-height: 1.75; color: #48555C;">Retriitit järjestetään yksityisessä retriittikeskuksessa Pohjois-Alankomaissa, noin puolentoista tunnin ajomatkan päässä Schipholin lentokentältä. Paikka on avoimen maiseman ja rauhallisen metsän keskellä.</p>
-      <p style="margin: 0; font-size: 18px; line-height: 1.75; color: #48555C;">Talo on retriittiryhmän käytössä yksin koko retriitin aikana.</p>
-    </div>
-  </section>
-
-  <section id="meista" data-screen-label="Fasilitaattorit" style="background: #F0EDE6; padding: 150px 56px 160px;">
-    <div style="display: flex; flex-direction: column; gap: 18px; max-width: 58ch; margin-bottom: 80px;">
-      <div style="font-family: ui-monospace, Menlo, monospace; font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: #7A8A82;">06 — Meistä</div>
-      <h2 style="font-family: 'Lora', serif; font-weight: 400; font-size: 40px; line-height: 1.2; margin: 0;">Fasilitaattorit</h2>
-      <p style="margin: 0; font-size: 18px; line-height: 1.75; color: #48555C;">Tehtävämme ei ole kertoa, millainen kokemuksesi pitäisi olla. Tehtävämme on rakentaa turvallinen tila ja kehys, jonka sisällä voit tutkia sitä turvassa ja omassa tahdissasi.&nbsp;</p>
-    </div>
-    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 72px;">
-      <div style="display: grid; grid-template-columns: 220px 1fr; gap: 34px; align-items: start;">
-        <div style="height: 280px; border-radius: 110px 110px 18px 18px; background-color: #E1DDD4; background-image: repeating-linear-gradient(135deg, rgba(13,31,41,0.05) 0 1px, transparent 1px 10px); display: flex; align-items: center; justify-content: center;">
-          <span style="font-family: ui-monospace, Menlo, monospace; font-size: 11px; line-height: 1.7; color: #5A6560; text-align: center;">MUOTOKUVA<br>Julia</span>
-        </div>
-        <div style="display: flex; flex-direction: column; gap: 12px;">
-          <div style="font-family: 'Lora', serif; font-size: 26px;">Julia Grahn</div>
-          <div style="font-size: 14px; letter-spacing: 0.06em; text-transform: uppercase; color: #7A8A82;">Transformatiivinen coach, Somatic Experiencing -harjoittelija</div>
-          <p style="margin: 6px 0 0; font-size: 16.5px; line-height: 1.75; color: #48555C;">Julian työssä yhdistyvät traumainformoitu ja neurotieteisiin perustuvaa coachingia, somaattinen työskentely ja ymmärrys siitä, miten hermosto ja tunteet vaikuttavat muutokseen. Häntä kiinnostaa erityisesti se, mitä tietoisten toimintamalliemme alla tapahtuu.</p>
-          <p style="margin: 4px 0 0; font-family: 'Lora', serif; font-style: italic; font-size: 17px; line-height: 1.7; color: #4A5D4E;">Julian kanssa sinun ei tarvitse tulla korjattavaksi. Saat tulla kohdatuksi.</p>
-        </div>
-      </div>
-      <div style="display: grid; grid-template-columns: 220px 1fr; gap: 34px; align-items: start;">
-        <div style="height: 280px; border-radius: 110px 110px 18px 18px; background-color: #E1DDD4; background-image: repeating-linear-gradient(135deg, rgba(13,31,41,0.05) 0 1px, transparent 1px 10px); display: flex; align-items: center; justify-content: center;">
-          <span style="font-family: ui-monospace, Menlo, monospace; font-size: 11px; line-height: 1.7; color: #5A6560; text-align: center;">MUOTOKUVA<br>Juho</span>
-        </div>
-        <div style="display: flex; flex-direction: column; gap: 12px;">
-          <div style="font-family: 'Lora', serif; font-size: 26px;">Juho Sarvanko</div>
-          <div style="font-size: 14px; letter-spacing: 0.06em; text-transform: uppercase; color: #7A8A82;">Psykedeelisten kokemusten fasilitaattori, rakentavan vuorovaikutuksen ohjaaja (RVO®)</div>
-          <p style="margin: 6px 0 0; font-size: 16.5px; line-height: 1.75; color: #48555C;">Juho on työskennellyt psykedeelien ja muuntuneiden tajunnantilojen parissa kaksikymmentä vuotta. Suurin osa siitä ajasta on kulunut psykedeelituessa festivaaleilla Suomessa, Portugalissa ja Kaliforniassa, viimeksi Zendo Projectin tiiminvetäjänä Burning Manissa.</p>
-          <p style="margin: 0; font-size: 16.5px; line-height: 1.75; color: #48555C;">Siinä työssä opitaan yksi asia yli muiden: miten vaikeaa kokemusta kannatellaan turvallisesti oloissa, jotka ovat paljon retriittitaloa hallitsemattomammat.</p>
-          <p style="margin: 4px 0 0; font-family: 'Lora', serif; font-style: italic; font-size: 17px; line-height: 1.7; color: #4A5D4E;">Juhon kanssa ei tarvitse sanoa asioita oikein. Riittää, että sanoo ne omin sanoin.</p>
-        </div>
-      </div>
-    </div>
-    <a href="#" style="font-size: 15.5px; border-bottom: 1px solid #A9B5AB; display: inline-block; padding-bottom: 3px; margin-top: 56px;">Lue lisää meistä</a>
-  </section>
-
-  <section id="hinta" data-screen-label="Hinta" style="padding: 150px 56px 160px; display: grid; grid-template-columns: 340px 1fr; gap: 96px; align-items: start;">
-    <div style="display: flex; flex-direction: column; gap: 16px;">
-      <div style="font-family: ui-monospace, Menlo, monospace; font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: #7A8A82;">07 — Hinta</div>
-      <h2 style="font-family: 'Lora', serif; font-weight: 400; font-size: 40px; line-height: 1.2; margin: 0;">Hinta ja mitä siihen kuuluu</h2>
-      <p style="margin: 8px 0 0; font-size: 16.5px; line-height: 1.75; color: #48555C;">Hinnat sisältävät arvonlisäveron.</p>
-    </div>
-    <div style="display: flex; flex-direction: column; gap: 44px;">
-      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px;">
-        <div style="background: #F0EDE6; border-radius: 18px; padding: 38px 40px; display: flex; flex-direction: column; gap: 14px;">
-          <div style="font-family: ui-monospace, Menlo, monospace; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: #7A8A82;">3 päivää · yksi sessio</div>
-          <div style="font-family: 'Lora', serif; font-size: 42px;">[HINTA A]</div>
-          <p style="margin: 0; font-size: 16px; line-height: 1.7; color: #48555C;">Kaksi yöpymistä. Sopii sinulle, jolle tämä on ensimmäinen kerta: yksi huolella valmisteltu kokemus ja sen ensimmäinen purku.</p>
-        </div>
-        <div style="background: #F0EDE6; border-radius: 18px; padding: 38px 40px; display: flex; flex-direction: column; gap: 14px;">
-          <div style="font-family: ui-monospace, Menlo, monospace; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: #7A8A82;">5 päivää · kaksi sessiota</div>
-          <div style="font-family: 'Lora', serif; font-size: 42px;">[HINTA B]</div>
-          <p style="margin: 0; font-size: 16px; line-height: 1.7; color: #48555C;">Neljä yöpymistä. Ytimessä on välipäivä: kokemus ehtii asettua, ja työskentelemme sen kanssa ennen toista sessiota.</p>
-        </div>
-      </div>
-      <div style="display: flex; flex-direction: column; gap: 0;">
-        <div style="display: flex; justify-content: space-between; gap: 24px; padding: 18px 0; border-bottom: 1px solid rgba(13,31,41,0.12); font-size: 16.5px;"><span>Maksuton tutustumiskeskustelu, 30 min</span><span style="color: #7A8A82;">sisältyy</span></div>
-        <div style="display: flex; justify-content: space-between; gap: 24px; padding: 18px 0; border-bottom: 1px solid rgba(13,31,41,0.12); font-size: 16.5px;"><span>Terveyshaastattelu ja soveltuvuusarvio</span><span style="color: #7A8A82;">sisältyy</span></div>
-        <div style="display: flex; justify-content: space-between; gap: 24px; padding: 18px 0; border-bottom: 1px solid rgba(13,31,41,0.12); font-size: 16.5px;"><span>Kaksi valmistautumistapaamista</span><span style="color: #7A8A82;">sisältyy</span></div>
-        <div style="display: flex; justify-content: space-between; gap: 24px; padding: 18px 0; border-bottom: 1px solid rgba(13,31,41,0.12); font-size: 16.5px;"><span>Majoitus, kaikki ateriat ja juomat</span><span style="color: #7A8A82;">sisältyy</span></div>
-        <div style="display: flex; justify-content: space-between; gap: 24px; padding: 18px 0; border-bottom: 1px solid rgba(13,31,41,0.12); font-size: 16.5px;"><span>Koko ohjelma, kaksi fasilitaattoria läsnä</span><span style="color: #7A8A82;">sisältyy</span></div>
-        <div style="display: flex; justify-content: space-between; gap: 24px; padding: 18px 0; border-bottom: 1px solid rgba(13,31,41,0.12); font-size: 16.5px;"><span>Kolme integraatiotapaamista retriitin jälkeen</span><span style="color: #7A8A82;">sisältyy</span></div>
-        <div style="display: flex; justify-content: space-between; gap: 24px; padding: 18px 0; border-bottom: 1px solid rgba(13,31,41,0.12); font-size: 16.5px; color: #7A8A82;"><span style="color: #48555C;">Matkat Suomesta Alankomaihin ja lentokentältä</span><span>ei sisälly</span></div>
-        <div style="display: flex; justify-content: space-between; gap: 24px; padding: 18px 0; font-size: 16.5px; color: #7A8A82;"><span style="color: #48555C;">Matkavakuutus ja majoitus retriitin ulkopuolella</span><span>ei sisälly</span></div>
-      </div>
-      <div style="display: flex; flex-direction: column; gap: 12px;">
-        <p style="margin: 0; font-size: 16.5px; line-height: 1.75; color: #48555C; max-width: 62ch;">Maksu jakautuu kahteen erään: varausmaksu vahvistuksen yhteydessä ja loppuosa 30 päivää ennen retriittiä. Jos maksuaikataulu on sinulle este, kerro siitä keskustelussa — sovitaan tapauskohtaisesti.</p>
-        <a href="#" style="font-size: 15.5px; border-bottom: 1px solid #A9B5AB; align-self: flex-start; padding-bottom: 3px; margin-top: 8px;">Katso mitä hintaan kuuluu</a>
-      </div>
+    <div style="display: flex; flex-direction: column; gap: 26px; max-width: 62ch">
+      <p style="margin: 0; font-size: 18px; line-height: 1.75; color: var(--body)">Retriitit järjestetään yksityisessä retriittikeskuksessa Pohjois-Alankomaissa, noin puolentoista tunnin ajomatkan päässä Schipholin lentokentältä. Paikka on avoimen maiseman ja rauhallisen metsän keskellä.</p>
+      <p style="margin: 0; font-size: 18px; line-height: 1.75; color: var(--body)">Talo on retriittiryhmän käytössä yksin koko retriitin aikana.</p>
     </div>
   </section>
 
-  <section id="ukk" data-screen-label="UKK" style="background: #F0EDE6; padding: 150px 56px 160px; display: grid; grid-template-columns: 340px 1fr; gap: 96px; align-items: start;">
-    <div style="display: flex; flex-direction: column; gap: 16px;">
-      <div style="font-family: ui-monospace, Menlo, monospace; font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: #7A8A82;">08 — UKK</div>
-      <h2 style="font-family: 'Lora', serif; font-weight: 400; font-size: 40px; line-height: 1.2; margin: 0;">Usein kysytyt kysymykset</h2>
+  <section id="meista" data-screen-label="Fasilitaattorit" style="background: var(--panel); padding: 150px 56px 160px">
+    <div style="display: flex; flex-direction: column; gap: 18px; max-width: 58ch; margin-bottom: 80px">
+      <div style="font-family: ui-monospace, Menlo, monospace; font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--dim)">06 — Meistä</div>
+      <h2 style="font-family: 'Lora', serif; font-weight: 400; font-size: 40px; line-height: 1.2; margin: 0">Fasilitaattorit</h2>
+      <p style="margin: 0; font-size: 18px; line-height: 1.75; color: var(--body)">Tehtävämme ei ole kertoa, millainen kokemuksesi pitäisi olla. Tehtävämme on rakentaa turvallinen tila ja kehys, jonka sisällä voit tutkia sitä turvassa ja omassa tahdissasi.&nbsp;</p>
     </div>
-    <div style="display: flex; flex-direction: column;">
-      <div style="padding: 30px 0; border-top: 1px solid rgba(13,31,41,0.14); display: flex; flex-direction: column; gap: 12px;">
-        <div style="font-size: 18px; font-weight: 500;">Mitä ainetta käytätte?</div>
-        <p style="margin: 0; font-size: 17px; line-height: 1.75; color: #48555C; max-width: 62ch;">Psilosybiinipitoisia truffeleita eli sklerootioita, jotka ovat sienen maanalainen kehitysmuoto. Ne sisältävät samaa vaikuttavaa ainetta kuin psilosybiinisienet. Ero on olennainen: kuivatut psilosybiinisienet ovat Alankomaissa kiellettyjä, truffelit eivät.</p>
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 72px">
+      <div style="display: grid; grid-template-columns: 220px 1fr; gap: 34px; align-items: start">
+        <div style="height: 280px; border-radius: 110px 110px 18px 18px; background-color: var(--frame); background-image: repeating-linear-gradient(135deg, rgba(13,31,41,0.05) 0 1px, transparent 1px 10px); background-image: repeating-linear-gradient(135deg, rgb(from var(--ink) r g b / 0.05) 0 1px, transparent 1px 10px); display: flex; align-items: center; justify-content: center">
+          <span style="font-family: ui-monospace, Menlo, monospace; font-size: 11px; line-height: 1.7; color: var(--caption); text-align: center">MUOTOKUVA<br>Julia</span>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 12px">
+          <div style="font-family: 'Lora', serif; font-size: 26px">Julia Grahn</div>
+          <div style="font-size: 14px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--dim)">Transformatiivinen coach, Somatic Experiencing -harjoittelija</div>
+          <p style="margin: 6px 0 0; font-size: 16.5px; line-height: 1.75; color: var(--body)">Julian työssä yhdistyvät traumainformoitu ja neurotieteisiin perustuvaa coachingia, somaattinen työskentely ja ymmärrys siitä, miten hermosto ja tunteet vaikuttavat muutokseen. Häntä kiinnostaa erityisesti se, mitä tietoisten toimintamalliemme alla tapahtuu.</p>
+          <p style="margin: 4px 0 0; font-family: 'Lora', serif; font-style: italic; font-size: 17px; line-height: 1.7; color: var(--accent)">Julian kanssa sinun ei tarvitse tulla korjattavaksi. Saat tulla kohdatuksi.</p>
+        </div>
       </div>
-      <div style="padding: 30px 0; border-top: 1px solid rgba(13,31,41,0.14); display: flex; flex-direction: column; gap: 12px;">
-        <div style="font-size: 18px; font-weight: 500;">Onko tämä laillista?</div>
-        <p style="margin: 0; font-size: 17px; line-height: 1.75; color: #48555C; max-width: 62ch;">Alankomaissa kyllä. Psilosybiinipitoiset truffelit ovat siellä laillisia, ja niitä käytetään kokonaan Alankomaiden alueella. Mitään ainetta ei viedä Alankomaiden ulkopuolelle, ei retriitin aikana eikä sen jälkeen. Tämä on ehdoton sääntö.</p>
+      <div style="display: grid; grid-template-columns: 220px 1fr; gap: 34px; align-items: start">
+        <div style="height: 280px; border-radius: 110px 110px 18px 18px; background-color: var(--frame); background-image: repeating-linear-gradient(135deg, rgba(13,31,41,0.05) 0 1px, transparent 1px 10px); background-image: repeating-linear-gradient(135deg, rgb(from var(--ink) r g b / 0.05) 0 1px, transparent 1px 10px); display: flex; align-items: center; justify-content: center">
+          <span style="font-family: ui-monospace, Menlo, monospace; font-size: 11px; line-height: 1.7; color: var(--caption); text-align: center">MUOTOKUVA<br>Juho</span>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 12px">
+          <div style="font-family: 'Lora', serif; font-size: 26px">Juho Sarvanko</div>
+          <div style="font-size: 14px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--dim)">Psykedeelisten kokemusten fasilitaattori, rakentavan vuorovaikutuksen ohjaaja (RVO®)</div>
+          <p style="margin: 6px 0 0; font-size: 16.5px; line-height: 1.75; color: var(--body)">Juho on työskennellyt psykedeelien ja muuntuneiden tajunnantilojen parissa kaksikymmentä vuotta. Suurin osa siitä ajasta on kulunut psykedeelituessa festivaaleilla Suomessa, Portugalissa ja Kaliforniassa, viimeksi Zendo Projectin tiiminvetäjänä Burning Manissa.</p>
+          <p style="margin: 0; font-size: 16.5px; line-height: 1.75; color: var(--body)">Siinä työssä opitaan yksi asia yli muiden: miten vaikeaa kokemusta kannatellaan turvallisesti oloissa, jotka ovat paljon retriittitaloa hallitsemattomammat.</p>
+          <p style="margin: 4px 0 0; font-family: 'Lora', serif; font-style: italic; font-size: 17px; line-height: 1.7; color: var(--accent)">Juhon kanssa ei tarvitse sanoa asioita oikein. Riittää, että sanoo ne omin sanoin.</p>
+        </div>
       </div>
-      <div style="padding: 30px 0; border-top: 1px solid rgba(13,31,41,0.14); display: flex; flex-direction: column; gap: 12px;">
-        <div style="font-size: 18px; font-weight: 500;">Miten annos päätetään?</div>
-        <p style="margin: 0; font-size: 17px; line-height: 1.75; color: #48555C; max-width: 62ch;">Yhdessä sinun kanssasi, kahdenkeskisessä keskustelussa paikan päällä ennen sessiota. Voit aina valita pienemmän annoksen tai jäädä sessiosta pois silloinkin, kun olet jo paikan päällä. Kukaan ei suostuttele sinua ottamaan enempää.</p>
+    </div>
+    <a href="#" style="font-size: 15.5px; border-bottom: 1px solid var(--line); display: inline-block; padding-bottom: 3px; margin-top: 56px">Lue lisää meistä</a>
+  </section>
+
+  <section id="hinta" data-screen-label="Hinta" style="padding: 150px 56px 160px; display: grid; grid-template-columns: 340px 1fr; gap: 96px; align-items: start">
+    <div style="display: flex; flex-direction: column; gap: 16px">
+      <div style="font-family: ui-monospace, Menlo, monospace; font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--dim)">07 — Hinta</div>
+      <h2 style="font-family: 'Lora', serif; font-weight: 400; font-size: 40px; line-height: 1.2; margin: 0">Hinta ja mitä siihen kuuluu</h2>
+      <p style="margin: 8px 0 0; font-size: 16.5px; line-height: 1.75; color: var(--body)">Hinnat sisältävät arvonlisäveron.</p>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 44px">
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px">
+        <div style="background: var(--panel); border-radius: 18px; padding: 38px 40px; display: flex; flex-direction: column; gap: 14px">
+          <div style="font-family: ui-monospace, Menlo, monospace; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--dim)">3 päivää · yksi sessio</div>
+          <div style="font-family: 'Lora', serif; font-size: 42px">[HINTA A]</div>
+          <p style="margin: 0; font-size: 16px; line-height: 1.7; color: var(--body)">Kaksi yöpymistä. Sopii sinulle, jolle tämä on ensimmäinen kerta: yksi huolella valmisteltu kokemus ja sen ensimmäinen purku.</p>
+        </div>
+        <div style="background: var(--panel); border-radius: 18px; padding: 38px 40px; display: flex; flex-direction: column; gap: 14px">
+          <div style="font-family: ui-monospace, Menlo, monospace; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--dim)">5 päivää · kaksi sessiota</div>
+          <div style="font-family: 'Lora', serif; font-size: 42px">[HINTA B]</div>
+          <p style="margin: 0; font-size: 16px; line-height: 1.7; color: var(--body)">Neljä yöpymistä. Ytimessä on välipäivä: kokemus ehtii asettua, ja työskentelemme sen kanssa ennen toista sessiota.</p>
+        </div>
       </div>
-      <div style="padding: 30px 0; border-top: 1px solid rgba(13,31,41,0.14); display: flex; flex-direction: column; gap: 12px;">
-        <div style="font-size: 18px; font-weight: 500;">Kauanko sessio kestää?</div>
-        <p style="margin: 0; font-size: 17px; line-height: 1.75; color: #48555C; max-width: 62ch;">Noin kuusi tuntia aineen ottamisesta laskeutumisen loppuun. Vaikutus alkaa yleensä puolen tunnin tai tunnin kuluttua, voimakkain vaihe on parin tunnin kohdalla ja loppuosa on asteittaista laskeutumista. Yksilölliset erot ovat suuria.</p>
+      <div style="display: flex; flex-direction: column; gap: 0">
+        <div style="display: flex; justify-content: space-between; gap: 24px; padding: 18px 0; border-bottom: 1px solid rgba(13,31,41,0.12); border-bottom: 1px solid rgb(from var(--ink) r g b / 0.12); font-size: 16.5px"><span>Maksuton tutustumiskeskustelu, 30 min</span><span style="color: var(--dim)">sisältyy</span></div>
+        <div style="display: flex; justify-content: space-between; gap: 24px; padding: 18px 0; border-bottom: 1px solid rgba(13,31,41,0.12); border-bottom: 1px solid rgb(from var(--ink) r g b / 0.12); font-size: 16.5px"><span>Terveyshaastattelu ja soveltuvuusarvio</span><span style="color: var(--dim)">sisältyy</span></div>
+        <div style="display: flex; justify-content: space-between; gap: 24px; padding: 18px 0; border-bottom: 1px solid rgba(13,31,41,0.12); border-bottom: 1px solid rgb(from var(--ink) r g b / 0.12); font-size: 16.5px"><span>Kaksi valmistautumistapaamista</span><span style="color: var(--dim)">sisältyy</span></div>
+        <div style="display: flex; justify-content: space-between; gap: 24px; padding: 18px 0; border-bottom: 1px solid rgba(13,31,41,0.12); border-bottom: 1px solid rgb(from var(--ink) r g b / 0.12); font-size: 16.5px"><span>Majoitus, kaikki ateriat ja juomat</span><span style="color: var(--dim)">sisältyy</span></div>
+        <div style="display: flex; justify-content: space-between; gap: 24px; padding: 18px 0; border-bottom: 1px solid rgba(13,31,41,0.12); border-bottom: 1px solid rgb(from var(--ink) r g b / 0.12); font-size: 16.5px"><span>Koko ohjelma, kaksi fasilitaattoria läsnä</span><span style="color: var(--dim)">sisältyy</span></div>
+        <div style="display: flex; justify-content: space-between; gap: 24px; padding: 18px 0; border-bottom: 1px solid rgba(13,31,41,0.12); border-bottom: 1px solid rgb(from var(--ink) r g b / 0.12); font-size: 16.5px"><span>Kolme integraatiotapaamista retriitin jälkeen</span><span style="color: var(--dim)">sisältyy</span></div>
+        <div style="display: flex; justify-content: space-between; gap: 24px; padding: 18px 0; border-bottom: 1px solid rgba(13,31,41,0.12); border-bottom: 1px solid rgb(from var(--ink) r g b / 0.12); font-size: 16.5px; color: var(--dim)"><span style="color: var(--body)">Matkat Suomesta Alankomaihin ja lentokentältä</span><span>ei sisälly</span></div>
+        <div style="display: flex; justify-content: space-between; gap: 24px; padding: 18px 0; font-size: 16.5px; color: var(--dim)"><span style="color: var(--body)">Matkavakuutus ja majoitus retriitin ulkopuolella</span><span>ei sisälly</span></div>
       </div>
-      <div style="padding: 30px 0; border-top: 1px solid rgba(13,31,41,0.14); display: flex; flex-direction: column; gap: 12px;">
-        <div style="font-size: 18px; font-weight: 500;">Osallistuuko ryhmässä ihmisiä, jotka voisivat tunnistaa minut?</div>
-        <p style="margin: 0; font-size: 17px; line-height: 1.75; color: #48555C; max-width: 62ch;">Ryhmät ovat pieniä ja Suomi on pieni maa. Jos tämä huolettaa, kerro siitä ennakkoon. Voimme puhua siitä ja tarvittaessa ohjata sinut toiseen ajankohtaan. Ryhmässä sovitaan aina yhteisesti, ettei mitään henkilökohtaista kerrota eteenpäin.</p>
+      <div style="display: flex; flex-direction: column; gap: 12px">
+        <p style="margin: 0; font-size: 16.5px; line-height: 1.75; color: var(--body); max-width: 62ch">Maksu jakautuu kahteen erään: varausmaksu vahvistuksen yhteydessä ja loppuosa 30 päivää ennen retriittiä. Jos maksuaikataulu on sinulle este, kerro siitä keskustelussa — sovitaan tapauskohtaisesti.</p>
+        <a href="#" style="font-size: 15.5px; border-bottom: 1px solid var(--line); align-self: flex-start; padding-bottom: 3px; margin-top: 8px">Katso mitä hintaan kuuluu</a>
       </div>
-      <div style="padding: 30px 0; border-top: 1px solid rgba(13,31,41,0.14); border-bottom: 1px solid rgba(13,31,41,0.14); display: flex; flex-direction: column; gap: 12px;">
-        <div style="font-size: 18px; font-weight: 500;">Voinko lentää kotiin heti retriitin jälkeen?</div>
-        <p style="margin: 0; font-size: 17px; line-height: 1.75; color: #48555C; max-width: 62ch;">Varaa paluulento vasta retriitin viimeistä päivää seuraavalle päivälle. Kiireinen paluu on yleisin syy siihen, että kokemus jää irralliseksi.</p>
-      </div>
-      <a href="#" style="font-size: 15.5px; border-bottom: 1px solid #A9B5AB; align-self: flex-start; padding-bottom: 3px; margin-top: 36px;">Kaikki kysymykset ja vastaukset</a>
     </div>
   </section>
 
-  <section id="yhteys" data-screen-label="Yhteydenotto" style="padding: 160px 56px 170px; display: grid; grid-template-columns: 1fr 1fr; gap: 96px; align-items: start;">
-    <div style="display: flex; flex-direction: column; gap: 22px; max-width: 46ch;">
-      <div style="font-family: ui-monospace, Menlo, monospace; font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: #7A8A82;">09 — Yhteystiedot</div>
-      <h2 style="font-family: 'Lora', serif; font-weight: 400; font-size: 44px; line-height: 1.18; margin: 0;">Ensimmäinen askel on keskustelu, ei päätös</h2>
-      <p style="margin: 0; font-size: 18px; line-height: 1.75; color: #48555C;">Varaa maksuton 30 minuutin puhelu kanssamme. Se ei sido mihinkään eikä ole myyntipuhelu. Selvitämme yhdessä, onko tämä oikea asia sinulle nyt, ja jos ei ole, sanomme sen suoraan.</p>
-      <p style="margin: 0; font-size: 18px; line-height: 1.75; color: #48555C;"><br></p>
-      <p style="margin: 0; font-size: 16px; line-height: 1.75; color: #7A8A82;">Hakuprosessi kestää kaikkiaan noin kaksi viikkoa. Vastaamme viestiin kahden arkipäivän kuluessa.</p>
-      <a href="mailto:[SÄHKÖPOSTI]" style="font-size: 16.5px; border-bottom: 1px solid #A9B5AB; align-self: flex-start; padding-bottom: 3px;">[SÄHKÖPOSTI]</a>
+  <section id="ukk" data-screen-label="UKK" style="background: var(--panel); padding: 150px 56px 160px; display: grid; grid-template-columns: 340px 1fr; gap: 96px; align-items: start">
+    <div style="display: flex; flex-direction: column; gap: 16px">
+      <div style="font-family: ui-monospace, Menlo, monospace; font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--dim)">08 — UKK</div>
+      <h2 style="font-family: 'Lora', serif; font-weight: 400; font-size: 40px; line-height: 1.2; margin: 0">Usein kysytyt kysymykset</h2>
     </div>
-    <div style="background: #F0EDE6; border-radius: 20px; padding: 44px 46px; display: flex; flex-direction: column; gap: 22px;">
-      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 22px;">
-        <div style="display: flex; flex-direction: column; gap: 8px;">
-          <label for="etunimi" style="font-size: 14.5px; color: #48555C;">Etunimi</label>
-          <input id="etunimi" type="text" style="font-family: 'Karla', sans-serif; font-size: 16px; padding: 15px 18px; border: 1px solid rgba(13,31,41,0.18); border-radius: 12px; background: #FAF8F4; color: #0d1f29;">
-        </div>
-        <div style="display: flex; flex-direction: column; gap: 8px;">
-          <label for="sukunimi" style="font-size: 14.5px; color: #48555C;">Sukunimi</label>
-          <input id="sukunimi" type="text" style="font-family: 'Karla', sans-serif; font-size: 16px; padding: 15px 18px; border: 1px solid rgba(13,31,41,0.18); border-radius: 12px; background: #FAF8F4; color: #0d1f29;">
-        </div>
+    <div style="display: flex; flex-direction: column">
+      <div style="padding: 30px 0; border-top: 1px solid rgba(13,31,41,0.14); border-top: 1px solid rgb(from var(--ink) r g b / 0.14); display: flex; flex-direction: column; gap: 12px">
+        <div style="font-size: 18px; font-weight: 500">Mitä ainetta käytätte?</div>
+        <p style="margin: 0; font-size: 17px; line-height: 1.75; color: var(--body); max-width: 62ch">Psilosybiinipitoisia truffeleita eli sklerootioita, jotka ovat sienen maanalainen kehitysmuoto. Ne sisältävät samaa vaikuttavaa ainetta kuin psilosybiinisienet. Ero on olennainen: kuivatut psilosybiinisienet ovat Alankomaissa kiellettyjä, truffelit eivät.</p>
       </div>
-      <div style="display: flex; flex-direction: column; gap: 8px;">
-        <label for="sposti" style="font-size: 14.5px; color: #48555C;">Sähköposti</label>
-        <input id="sposti" type="email" style="font-family: 'Karla', sans-serif; font-size: 16px; padding: 15px 18px; border: 1px solid rgba(13,31,41,0.18); border-radius: 12px; background: #FAF8F4; color: #0d1f29;">
+      <div style="padding: 30px 0; border-top: 1px solid rgba(13,31,41,0.14); border-top: 1px solid rgb(from var(--ink) r g b / 0.14); display: flex; flex-direction: column; gap: 12px">
+        <div style="font-size: 18px; font-weight: 500">Onko tämä laillista?</div>
+        <p style="margin: 0; font-size: 17px; line-height: 1.75; color: var(--body); max-width: 62ch">Alankomaissa kyllä. Psilosybiinipitoiset truffelit ovat siellä laillisia, ja niitä käytetään kokonaan Alankomaiden alueella. Mitään ainetta ei viedä Alankomaiden ulkopuolelle, ei retriitin aikana eikä sen jälkeen. Tämä on ehdoton sääntö.</p>
       </div>
-      <div style="display: flex; flex-direction: column; gap: 8px;">
-        <label for="viesti" style="font-size: 14.5px; color: #48555C;">Viesti <span style="color: #7A8A82;">(vapaaehtoinen)</span></label>
-        <textarea id="viesti" rows="4" style="font-family: 'Karla', sans-serif; font-size: 16px; padding: 15px 18px; border: 1px solid rgba(13,31,41,0.18); border-radius: 12px; background: #FAF8F4; color: #0d1f29; resize: vertical;"></textarea>
+      <div style="padding: 30px 0; border-top: 1px solid rgba(13,31,41,0.14); border-top: 1px solid rgb(from var(--ink) r g b / 0.14); display: flex; flex-direction: column; gap: 12px">
+        <div style="font-size: 18px; font-weight: 500">Miten annos päätetään?</div>
+        <p style="margin: 0; font-size: 17px; line-height: 1.75; color: var(--body); max-width: 62ch">Yhdessä sinun kanssasi, kahdenkeskisessä keskustelussa paikan päällä ennen sessiota. Voit aina valita pienemmän annoksen tai jäädä sessiosta pois silloinkin, kun olet jo paikan päällä. Kukaan ei suostuttele sinua ottamaan enempää.</p>
       </div>
-      <div style="display: flex; align-items: flex-start; gap: 12px;">
-        <input id="suostumus" type="checkbox" style="width: 18px; height: 18px; margin-top: 2px; accent-color: #4A5D4E;">
-        <label for="suostumus" style="font-size: 15px; line-height: 1.6; color: #48555C;">Hyväksyn tietosuojaselosteen</label>
+      <div style="padding: 30px 0; border-top: 1px solid rgba(13,31,41,0.14); border-top: 1px solid rgb(from var(--ink) r g b / 0.14); display: flex; flex-direction: column; gap: 12px">
+        <div style="font-size: 18px; font-weight: 500">Kauanko sessio kestää?</div>
+        <p style="margin: 0; font-size: 17px; line-height: 1.75; color: var(--body); max-width: 62ch">Noin kuusi tuntia aineen ottamisesta laskeutumisen loppuun. Vaikutus alkaa yleensä puolen tunnin tai tunnin kuluttua, voimakkain vaihe on parin tunnin kohdalla ja loppuosa on asteittaista laskeutumista. Yksilölliset erot ovat suuria.</p>
       </div>
-      <button type="button" style="font-family: 'Karla', sans-serif; font-size: 15.5px; background: #0d1f29; color: #FAF8F4; border: none; padding: 18px 32px; border-radius: 999px; cursor: pointer; align-self: flex-start; margin-top: 4px; transition: background 400ms ease-out;" class="scp0">Varaa maksuton keskustelu</button>
-      <p style="margin: 0; font-family: 'Lora', serif; font-style: italic; font-size: 15.5px; line-height: 1.7; color: #7A8A82;">Älä kirjoita lomakkeeseen terveystietoja. Käymme ne läpi erikseen suojatussa muodossa.</p>
+      <div style="padding: 30px 0; border-top: 1px solid rgba(13,31,41,0.14); border-top: 1px solid rgb(from var(--ink) r g b / 0.14); display: flex; flex-direction: column; gap: 12px">
+        <div style="font-size: 18px; font-weight: 500">Osallistuuko ryhmässä ihmisiä, jotka voisivat tunnistaa minut?</div>
+        <p style="margin: 0; font-size: 17px; line-height: 1.75; color: var(--body); max-width: 62ch">Ryhmät ovat pieniä ja Suomi on pieni maa. Jos tämä huolettaa, kerro siitä ennakkoon. Voimme puhua siitä ja tarvittaessa ohjata sinut toiseen ajankohtaan. Ryhmässä sovitaan aina yhteisesti, ettei mitään henkilökohtaista kerrota eteenpäin.</p>
+      </div>
+      <div style="padding: 30px 0; border-top: 1px solid rgba(13,31,41,0.14); border-top: 1px solid rgb(from var(--ink) r g b / 0.14); border-bottom: 1px solid rgba(13,31,41,0.14); border-bottom: 1px solid rgb(from var(--ink) r g b / 0.14); display: flex; flex-direction: column; gap: 12px">
+        <div style="font-size: 18px; font-weight: 500">Voinko lentää kotiin heti retriitin jälkeen?</div>
+        <p style="margin: 0; font-size: 17px; line-height: 1.75; color: var(--body); max-width: 62ch">Varaa paluulento vasta retriitin viimeistä päivää seuraavalle päivälle. Kiireinen paluu on yleisin syy siihen, että kokemus jää irralliseksi.</p>
+      </div>
+      <a href="#" style="font-size: 15.5px; border-bottom: 1px solid var(--line); align-self: flex-start; padding-bottom: 3px; margin-top: 36px">Kaikki kysymykset ja vastaukset</a>
     </div>
   </section>
 
-  <footer style="background: #0d1f29; color: #C9D2D6; padding: 90px 56px 70px; display: flex; flex-direction: column; gap: 56px;">
-    <div style="display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 56px;">
-      <div style="display: flex; flex-direction: column; gap: 16px;">
-        <div style="font-family: 'Lora', serif; font-size: 21px; letter-spacing: 0.2em; color: #FAF8F4;">ALTHEA</div>
+  <section id="yhteys" data-screen-label="Yhteydenotto" style="padding: 160px 56px 170px; display: grid; grid-template-columns: 1fr 1fr; gap: 96px; align-items: start">
+    <div style="display: flex; flex-direction: column; gap: 22px; max-width: 46ch">
+      <div style="font-family: ui-monospace, Menlo, monospace; font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--dim)">09 — Yhteystiedot</div>
+      <h2 style="font-family: 'Lora', serif; font-weight: 400; font-size: 44px; line-height: 1.18; margin: 0">Ensimmäinen askel on keskustelu, ei päätös</h2>
+      <p style="margin: 0; font-size: 18px; line-height: 1.75; color: var(--body)">Varaa maksuton 30 minuutin puhelu kanssamme. Se ei sido mihinkään eikä ole myyntipuhelu. Selvitämme yhdessä, onko tämä oikea asia sinulle nyt, ja jos ei ole, sanomme sen suoraan.</p>
+      <p style="margin: 0; font-size: 18px; line-height: 1.75; color: var(--body)"><br></p>
+      <p style="margin: 0; font-size: 16px; line-height: 1.75; color: var(--dim)">Hakuprosessi kestää kaikkiaan noin kaksi viikkoa. Vastaamme viestiin kahden arkipäivän kuluessa.</p>
+      <a href="mailto:[SÄHKÖPOSTI]" style="font-size: 16.5px; border-bottom: 1px solid var(--line); align-self: flex-start; padding-bottom: 3px">[SÄHKÖPOSTI]</a>
+    </div>
+    <div style="background: var(--panel); border-radius: 20px; padding: 44px 46px; display: flex; flex-direction: column; gap: 22px">
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 22px">
+        <div style="display: flex; flex-direction: column; gap: 8px">
+          <label for="etunimi" style="font-size: 14.5px; color: var(--body)">Etunimi</label>
+          <input id="etunimi" type="text" style="font-family: 'Karla', sans-serif; font-size: 16px; padding: 15px 18px; border: 1px solid rgba(13,31,41,0.18); border: 1px solid rgb(from var(--ink) r g b / 0.18); border-radius: 12px; background: var(--paper); color: var(--ink)">
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 8px">
+          <label for="sukunimi" style="font-size: 14.5px; color: var(--body)">Sukunimi</label>
+          <input id="sukunimi" type="text" style="font-family: 'Karla', sans-serif; font-size: 16px; padding: 15px 18px; border: 1px solid rgba(13,31,41,0.18); border: 1px solid rgb(from var(--ink) r g b / 0.18); border-radius: 12px; background: var(--paper); color: var(--ink)">
+        </div>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 8px">
+        <label for="sposti" style="font-size: 14.5px; color: var(--body)">Sähköposti</label>
+        <input id="sposti" type="email" style="font-family: 'Karla', sans-serif; font-size: 16px; padding: 15px 18px; border: 1px solid rgba(13,31,41,0.18); border: 1px solid rgb(from var(--ink) r g b / 0.18); border-radius: 12px; background: var(--paper); color: var(--ink)">
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 8px">
+        <label for="viesti" style="font-size: 14.5px; color: var(--body)">Viesti <span style="color: var(--dim)">(vapaaehtoinen)</span></label>
+        <textarea id="viesti" rows="4" style="font-family: 'Karla', sans-serif; font-size: 16px; padding: 15px 18px; border: 1px solid rgba(13,31,41,0.18); border: 1px solid rgb(from var(--ink) r g b / 0.18); border-radius: 12px; background: var(--paper); color: var(--ink); resize: vertical"></textarea>
+      </div>
+      <div style="display: flex; align-items: flex-start; gap: 12px">
+        <input id="suostumus" type="checkbox" style="width: 18px; height: 18px; margin-top: 2px; accent-color: var(--accent)">
+        <label for="suostumus" style="font-size: 15px; line-height: 1.6; color: var(--body)">Hyväksyn tietosuojaselosteen</label>
+      </div>
+      <button type="button" style="font-family: 'Karla', sans-serif; font-size: 15.5px; background: var(--ink); color: var(--paper); border: none; padding: 18px 32px; border-radius: 999px; cursor: pointer; align-self: flex-start; margin-top: 4px; transition: background 400ms ease-out" class="scp0">Varaa maksuton keskustelu</button>
+      <p style="margin: 0; font-family: 'Lora', serif; font-style: italic; font-size: 15.5px; line-height: 1.7; color: var(--dim)">Älä kirjoita lomakkeeseen terveystietoja. Käymme ne läpi erikseen suojatussa muodossa.</p>
+    </div>
+  </section>
+
+  <footer style="background: var(--ink); color: var(--footer); padding: 90px 56px 70px; display: flex; flex-direction: column; gap: 56px">
+    <div style="display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 56px">
+      <div style="display: flex; flex-direction: column; gap: 16px">
+        <div style="font-family: 'Lora', serif; font-size: 21px; letter-spacing: 0.2em; color: var(--paper)">ALTHEA</div>
         
-        <div style="font-size: 15px; color: #7A8A82;">[YRITYSTIEDOT]</div>
+        <div style="font-size: 15px; color: var(--dim)">[YRITYSTIEDOT]</div>
       </div>
-      <div style="display: flex; flex-direction: column; gap: 12px; font-size: 15px;">
-        <div style="font-family: ui-monospace, Menlo, monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #7A8A82;">Sivut</div>
-        <a href="#retriitit" style="color: #C9D2D6;">Retriitit</a>
-        <a href="#turvallisuus" style="color: #C9D2D6;">Turvallisuus</a>
-        <a href="#meista" style="color: #C9D2D6;">Meistä</a>
-        <a href="#hinta" style="color: #C9D2D6;">Hinta</a>
+      <div style="display: flex; flex-direction: column; gap: 12px; font-size: 15px">
+        <div style="font-family: ui-monospace, Menlo, monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--dim)">Sivut</div>
+        <a href="#retriitit" style="color: var(--footer)">Retriitit</a>
+        <a href="#turvallisuus" style="color: var(--footer)">Turvallisuus</a>
+        <a href="#meista" style="color: var(--footer)">Meistä</a>
+        <a href="#hinta" style="color: var(--footer)">Hinta</a>
       </div>
-      <div style="display: flex; flex-direction: column; gap: 12px; font-size: 15px;">
-        <div style="font-family: ui-monospace, Menlo, monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #7A8A82;">Lisää</div>
-        <a href="#ukk" style="color: #C9D2D6;">UKK</a>
-        <a href="#" style="color: #C9D2D6;">Tietosuojaseloste</a>
-        <a href="#" style="color: #C9D2D6;">Käyttöehdot</a>
-        <a href="#" style="color: #C9D2D6;">Peruutusehdot</a>
+      <div style="display: flex; flex-direction: column; gap: 12px; font-size: 15px">
+        <div style="font-family: ui-monospace, Menlo, monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--dim)">Lisää</div>
+        <a href="#ukk" style="color: var(--footer)">UKK</a>
+        <a href="#" style="color: var(--footer)">Tietosuojaseloste</a>
+        <a href="#" style="color: var(--footer)">Käyttöehdot</a>
+        <a href="#" style="color: var(--footer)">Peruutusehdot</a>
       </div>
-      <div style="display: flex; flex-direction: column; gap: 12px; font-size: 15px;">
-        <div style="font-family: ui-monospace, Menlo, monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #7A8A82;">Yhteys</div>
-        <a href="mailto:[SÄHKÖPOSTI]" style="color: #C9D2D6;">[SÄHKÖPOSTI]</a>
+      <div style="display: flex; flex-direction: column; gap: 12px; font-size: 15px">
+        <div style="font-family: ui-monospace, Menlo, monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--dim)">Yhteys</div>
+        <a href="mailto:[SÄHKÖPOSTI]" style="color: var(--footer)">[SÄHKÖPOSTI]</a>
         <span>Vastaamme 2 arkipäivässä</span>
       </div>
     </div>
-    <div style="display: flex; justify-content: space-between; gap: 32px; padding-top: 32px; border-top: 1px solid rgba(201,210,214,0.2); font-size: 14px; color: #7A8A82;">
+    <div style="display: flex; justify-content: space-between; gap: 32px; padding-top: 32px; border-top: 1px solid rgba(201,210,214,0.2); border-top: 1px solid rgb(from var(--footer) r g b / 0.2); font-size: 14px; color: var(--dim)">
       <span>© 2026 Althea</span>
-      <span style="max-width: 92ch;">Althea ei ole terveydenhuollon toimija. Emme tarjoa hoitoa emmekä terapiaa. Retriiteillä käytettäviä psilosybiinipitoisia tryffeleita käytetään kokonaan Alankomaissa, siellä voimassa olevan lainsäädännön puitteissa.</span>
+      <span style="max-width: 92ch">Althea ei ole terveydenhuollon toimija. Emme tarjoa hoitoa emmekä terapiaa. Retriiteillä käytettäviä psilosybiinipitoisia tryffeleita käytetään kokonaan Alankomaissa, siellä voimassa olevan lainsäädännön puitteissa.</span>
     </div>
   </footer>
 
 </div>
+<script type="application/json" id="ce-palette">{"colors": [{"var": "paper", "value": "#FAF8F4", "label": "Tausta"}, {"var": "panel", "value": "#F0EDE6", "label": "Korostustausta"}, {"var": "ink", "value": "#0d1f29", "label": "Tumma tausta ja otsikot"}, {"var": "body", "value": "#48555C", "label": "Leipäteksti"}, {"var": "dim", "value": "#7A8A82", "label": "Vaimennettu teksti"}, {"var": "accent", "value": "#4A5D4E", "label": "Korostusväri"}, {"var": "line", "value": "#A9B5AB", "label": "Viivat"}, {"var": "footer", "value": "#C9D2D6", "label": "Alatunnisteen teksti"}, {"var": "frame", "value": "#E1DDD4", "label": "Kuvapaikan tausta"}, {"var": "caption", "value": "#5A6560", "label": "Kuvapaikan teksti"}], "pairs": [{"fg": "body", "bg": "paper"}, {"fg": "body", "bg": "panel"}, {"fg": "ink", "bg": "paper"}, {"fg": "ink", "bg": "panel"}, {"fg": "dim", "bg": "paper"}, {"fg": "dim", "bg": "panel"}, {"fg": "footer", "bg": "ink"}, {"fg": "paper", "bg": "ink"}, {"fg": "paper", "bg": "accent"}, {"fg": "accent", "bg": "paper"}]}</script>
 </body></html>

@@ -53,6 +53,109 @@ WEBP_QUALITY = 72
 # stylesheet beat an inline style. check_responsive() below fails the build if
 # any of these selectors stops matching, so a redesign cannot silently drop the
 # mobile layout.
+# The design hard-codes every colour as an inline style. To make a palette
+# editable at all, those values have to become CSS variables — and because
+# Claude Design will keep emitting raw hex on every export, that conversion has
+# to happen here rather than by hand.
+#
+# Only colours named below become editable. A colour the design introduces
+# later stays literal until someone gives it a name, which is deliberate: an
+# unnamed swatch in the admin would mean nothing to the person using it.
+PALETTE = [
+    ("paper",  "#FAF8F4", "Tausta"),
+    ("panel",  "#F0EDE6", "Korostustausta"),
+    ("ink",    "#0d1f29", "Tumma tausta ja otsikot"),
+    ("body",   "#48555C", "Leipäteksti"),
+    ("dim",    "#7A8A82", "Vaimennettu teksti"),
+    ("accent", "#4A5D4E", "Korostusväri"),
+    ("line",   "#A9B5AB", "Viivat"),
+    ("footer", "#C9D2D6", "Alatunnisteen teksti"),
+    ("frame",  "#E1DDD4", "Kuvapaikan tausta"),
+    ("caption", "#5A6560", "Kuvapaikan teksti"),
+]
+
+# Foreground/background pairs the admin checks for WCAG AA contrast, so a
+# swatch change cannot quietly make text unreadable.
+CONTRAST_PAIRS = [
+    ("body", "paper"), ("body", "panel"), ("ink", "paper"), ("ink", "panel"),
+    ("dim", "paper"), ("dim", "panel"), ("footer", "ink"), ("paper", "ink"),
+    ("paper", "accent"), ("accent", "paper"),
+]
+
+RGBA_RE = re.compile(r"rgba\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*,\s*([\d.]+)\s*\)")
+HEX_RE = re.compile(r"#[0-9A-Fa-f]{6}\b")
+
+
+def _palette_maps():
+    by_hex, by_rgb = {}, {}
+    for var, hexv, _ in PALETTE:
+        by_hex[hexv.lower()] = var
+        h = hexv.lstrip("#")
+        by_rgb[tuple(int(h[i:i + 2], 16) for i in (0, 2, 4))] = var
+    return by_hex, by_rgb
+
+
+def _sub_hex(text, by_hex):
+    return HEX_RE.sub(
+        lambda m: f"var(--{by_hex[m.group(0).lower()]})"
+        if m.group(0).lower() in by_hex else m.group(0), text)
+
+
+def apply_palette(html):
+    """Rewrite inline colours to palette variables.
+
+    rgba() values are the awkward part: the sticky header's background and every
+    hairline border are the paper and ink colours with alpha, so leaving them
+    literal would make those the only things that ignore a palette change. They
+    become relative-colour syntax, preceded by the original as a fallback for
+    engines that do not support it — within one style attribute the later
+    declaration wins wherever it parses.
+    """
+    by_hex, by_rgb = _palette_maps()
+    used = set()
+
+    def fix(m):
+        out = []
+        for decl in (d.strip() for d in m.group(1).split(";")):
+            if not decl:
+                continue
+            rm = RGBA_RE.search(decl)
+            if rm:
+                rgb = tuple(int(rm.group(i)) for i in (1, 2, 3))
+                var = by_rgb.get(rgb)
+                if var:
+                    used.add(var)
+                    rel = (f"rgb(from var(--{var}) r g b / {rm.group(4)})")
+                    out.append(decl)
+                    out.append(decl[:rm.start()] + rel + decl[rm.end():])
+                    continue
+            new = _sub_hex(decl, by_hex)
+            if new != decl:
+                used.update(by_hex[h.lower()] for h in HEX_RE.findall(decl)
+                            if h.lower() in by_hex)
+            out.append(new)
+        return 'style="' + "; ".join(out) + '"'
+
+    return re.sub(r'style="([^"]*)"', fix, html), used
+
+
+def palette_css():
+    # One declaration per line, lower-cased: changing a swatch through /admin
+    # then rewrites exactly one line, so the pull request names the colour that
+    # actually moved instead of showing the whole block as modified.
+    body = "".join(f"  --{var}: {hexv.lower()};\n" for var, hexv, _ in PALETTE)
+    return ":root{\n" + body + "}"
+
+
+def palette_json():
+    data = {
+        "colors": [{"var": v, "value": h, "label": l} for v, h, l in PALETTE],
+        "pairs": [{"fg": a, "bg": b} for a, b in CONTRAST_PAIRS],
+    }
+    return ('<script type="application/json" id="ce-palette">'
+            + json.dumps(data, ensure_ascii=False) + "</script>")
+
+
 RESPONSIVE_CSS = """
 @media (max-width: 900px){
   [style*="grid-template-columns: 340px 1fr"],
@@ -131,6 +234,7 @@ PAGES = [
             "ja integraatio. Varaa maksuton keskustelu."),
         "editable": True,
         "responsive": True,
+        "palette": True,
         "assets_prefix": "assets/",
         "assets_root": os.path.join(SITE, "assets"),
     },
@@ -503,8 +607,19 @@ def build_page(page):
             f'<meta property="og:description" content="{page["description"]}">',
         ]
 
-    style = "\n".join(font_css) + "\n" + design_css + "\n" + \
-        "\n".join(hover_rules) + "\n" + canvas_css
+    style = "\n".join(font_css) + "\n"
+    if page.get("palette"):
+        style += palette_css() + "\n"
+    style += design_css + "\n" + "\n".join(hover_rules) + "\n" + canvas_css
+
+    palette_used = set()
+    if page.get("palette"):
+        body, palette_used = apply_palette(body)
+        design_css = _sub_hex(design_css, _palette_maps()[0])
+        hover_rules = [_sub_hex(r, _palette_maps()[0]) for r in hover_rules]
+        missing = [v for v, _, _ in PALETTE if v not in palette_used]
+        log(f"palette: {len(PALETTE) - len(missing)}/{len(PALETTE)} colours in use"
+            + (f", unused: {', '.join(missing)}" if missing else ""))
 
     if page.get("responsive"):
         wanted, dead = check_responsive(body)
@@ -527,6 +642,7 @@ def build_page(page):
            + "\n".join(head)
            + f'\n<style>\n{style.strip()}\n</style>\n</head>\n<body>\n'
            + body.strip()
+           + (("\n" + palette_json()) if page.get("palette") else "")
            + "\n</body></html>")
 
     os.makedirs(os.path.dirname(page["out"]), exist_ok=True)

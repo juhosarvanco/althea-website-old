@@ -80,7 +80,10 @@ Laita sivu kirjanmerkkeihin. Tämän jälkeen pääset suoraan tänne.
 
 | Nappi | Mitä tekee |
 | --- | --- |
-| **Muokkaa tekstiä** | Muokattavat tekstit saavat katkoviivareunuksen. Klikkaa ja kirjoita. |
+| **Muokkaa tekstiä** | Muokattavat tekstit ja kuvat saavat katkoviivareunuksen. Klikkaa ja kirjoita. |
+| **Kuvan vaihto** | Klikkaa kuvaa muokkaustilassa. Voit vaihtaa kuvan ja kirjoittaa kuvatekstin. |
+| **Linkin osoite** | Vie kursori linkin sisään, niin osoitekenttä ilmestyy. |
+| **Värit** | Kymmenen nimettyä väriä. Työkalu varoittaa, jos teksti käy vaikealukuiseksi. |
 | **Muutokset** | Näyttää listan siitä, mikä oli ennen ja mikä on nyt. |
 | **Tallenna luonnos** | Tallentaa. **Ei näy vielä kenellekään.** Myös ⌘S. |
 | **Esikatselu ↗** | Avaa sivun sellaisena kuin se näyttäisi julkaistuna. |
@@ -89,8 +92,10 @@ Laita sivu kirjanmerkkeihin. Tämän jälkeen pääset suoraan tänne.
 
 Muutamia asioita, joista voi olla hyvä tietää:
 
-- **Et voi rikkoa sivuston ulkoasua.** Vain tekstit ovat muokattavissa — kuvat,
-  värit, asettelu ja linkit eivät ole.
+- **Et voi rikkoa sivuston asettelua.** Voit muokata tekstejä, vaihtaa kuvia,
+  korjata linkkejä ja säätää värejä — mutta et sivun rakennetta.
+- **Kuvista ei tarvitse huolehtia.** Voit ladata suoraan puhelimen kuvan;
+  työkalu pienentää ja pakkaa sen automaattisesti.
 - **Mikään ei mene liveen vahingossa.** Tallentaminen ja julkaiseminen ovat eri
   napit. Voit tallentaa ja katsoa esikatselua niin monta kertaa kuin haluat.
 - **Kaikki on peruttavissa.** Jokainen julkaisu tallentuu, ja Juho saa
