@@ -6,10 +6,16 @@
 
 import {
   gh, json, repo, requireUser, contentPaths, b64encode, b64decode, previewUrl,
-  encPath,
+  encPath, assetDir,
 } from "./_lib.mjs";
 
 const MAX_BYTES = 2 * 1024 * 1024;
+const MAX_ASSET_BYTES = 4 * 1024 * 1024;
+
+// The editor re-encodes every upload to WebP and names it after a hash of its
+// bytes, so a legitimate filename always looks like this. Anything else is
+// refused rather than written.
+const ASSET_NAME = /^[a-z0-9][a-z0-9-]{0,63}\.[0-9a-f]{8}\.webp$/;
 
 const branchFor = (login) => `content/${String(login).toLowerCase()}`;
 
@@ -67,19 +73,9 @@ async function session(token, user, r) {
   return { user, repo: r.full, base, path, live, draft };
 }
 
-async function save(token, user, r, body) {
-  const path = contentPaths()[0];
-  const content = String(body.content ?? "");
-  if (!content) return json({ error: "tyhjä sisältö" }, 400);
-  if (Buffer.byteLength(content, "utf8") > MAX_BYTES) {
-    return json({ error: "sisältö on liian suuri" }, 413);
-  }
-
-  const base = await defaultBranch(token, r);
-  const branch = branchFor(user.login);
+async function ensureBranch(token, r, branch) {
   const api = `/repos/${r.owner}/${r.name}`;
-
-  // Create the draft branch on first save of a session.
+  const base = await defaultBranch(token, r);
   try {
     await gh(token, `${api}/git/ref/heads/${encPath(branch)}`);
   } catch (e) {
@@ -90,6 +86,57 @@ async function save(token, user, r, body) {
       body: JSON.stringify({ ref: `refs/heads/${branch}`, sha: head.object.sha }),
     });
   }
+  return base;
+}
+
+/** Commit one re-encoded image onto the draft branch. */
+async function asset(token, user, r, body) {
+  const name = String(body.name || "");
+  if (!ASSET_NAME.test(name)) return json({ error: "kelvoton tiedostonimi" }, 400);
+
+  const b64 = String(body.content || "").replace(/\s/g, "");
+  if (!b64) return json({ error: "tyhjä tiedosto" }, 400);
+  if (Math.ceil(b64.length * 3 / 4) > MAX_ASSET_BYTES) {
+    return json({ error: "kuva on liian suuri" }, 413);
+  }
+
+  const branch = branchFor(user.login);
+  await ensureBranch(token, r, branch);
+  const path = `${assetDir()}/${name}`;
+  const api = `/repos/${r.owner}/${r.name}`;
+
+  // Content-addressed: if these exact bytes are already committed, reuse them.
+  let existing = null;
+  try {
+    existing = await gh(token,
+      `${api}/contents/${encPath(path)}?ref=${encodeURIComponent(branch)}`);
+  } catch (e) {
+    if (e.status !== 404) throw e;
+  }
+  if (!existing) {
+    await gh(token, `${api}/contents/${encPath(path)}`, {
+      method: "PUT",
+      body: JSON.stringify({
+        message: `Kuva: ${name}`,
+        content: b64,
+        branch,
+      }),
+    });
+  }
+  return json({ ok: true, path, url: "/" + path.replace(/^site\//, "") });
+}
+
+async function save(token, user, r, body) {
+  const path = contentPaths()[0];
+  const content = String(body.content ?? "");
+  if (!content) return json({ error: "tyhjä sisältö" }, 400);
+  if (Buffer.byteLength(content, "utf8") > MAX_BYTES) {
+    return json({ error: "sisältö on liian suuri" }, 413);
+  }
+
+  const branch = branchFor(user.login);
+  const api = `/repos/${r.owner}/${r.name}`;
+  const base = await ensureBranch(token, r, branch);
 
   const existing = await fileAt(token, r, path, branch);
   const count = Number(body.count) || 0;
@@ -208,6 +255,7 @@ export default async (req) => {
     switch (action) {
       case "session": return json(await session(user.token, user, r));
       case "save":    return await save(user.token, user, r, body);
+      case "asset":   return await asset(user.token, user, r, body);
       case "publish": return await publish(user.token, user, r);
       case "discard": return await discard(user.token, user, r);
       default:        return json({ error: `tuntematon toiminto: ${action}` }, 400);

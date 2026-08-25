@@ -26,6 +26,11 @@ export function contentPaths() {
     .split(",").map((s) => s.trim()).filter(Boolean);
 }
 
+/** The single directory the editor may upload images into. */
+export function assetDir() {
+  return env("ASSET_DIR", "site/assets/img");
+}
+
 export function allowedLogins() {
   return env("ALLOWED_LOGINS", "")
     .split(",").map((s) => s.trim().toLowerCase()).filter(Boolean);

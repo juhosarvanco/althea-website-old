@@ -26,7 +26,9 @@ let branchExists = false;
 let prs = [];
 const B64 = (s) => Buffer.from(s, "utf8").toString("base64");
 const HEAD = '<!DOCTYPE html>\n<html lang="fi"><head></head><body><p>vanha</p></body></html>';
-const files = { main: HEAD };            // ref -> file contents
+const PAGE_PATH = "site/index.html";
+const files = { [`main:${PAGE_PATH}`]: HEAD };   // "ref:path" -> contents
+const pathOf = (u) => decodeURIComponent(u.split("/contents/")[1].split("?")[0]);
 
 globalThis.fetch = async (url, init = {}) => {
   const u = String(url);
@@ -41,12 +43,14 @@ globalThis.fetch = async (url, init = {}) => {
   if (/\/repos\/juho\/althea-website$/.test(u)) return J({ default_branch: "main" });
 
   if (u.includes("/contents/") && method === "GET") {
-    const ref = new URL(u).searchParams.get("ref");
-    if (!(ref in files)) return J({ message: "Not Found" }, 404);
-    return J({ sha: `sha_${ref}`, content: B64(files[ref]) });
+    const key = `${new URL(u).searchParams.get("ref")}:${pathOf(u)}`;
+    if (!(key in files)) return J({ message: "Not Found" }, 404);
+    return J({ sha: `sha_${key}`, content: B64(files[key]) });
   }
   if (u.includes("/contents/") && method === "PUT") {
-    files[body.branch] = body.content ? Buffer.from(body.content, "base64").toString("utf8") : "";
+    const key = `${body.branch}:${pathOf(u)}`;
+    files[key] = body.content ? Buffer.from(body.content, "base64").toString("utf8") : "";
+    calls.push(`WROTE ${pathOf(u)}`);
     return J({ content: { sha: "filesha2" } });
   }
 
@@ -59,7 +63,9 @@ globalThis.fetch = async (url, init = {}) => {
     return J({ number: 12, mergeable: true, mergeable_state: "clean", title: "Sisältömuutokset — Julia Grahn" });
   if (/\/pulls\/12$/.test(u) && method === "PATCH") return J({});
   if (/\/pulls\/12\/merge$/.test(u)) {
-    files.main = files["content/julia"] ?? files.main;
+    for (const k of Object.keys(files)) {
+      if (k.startsWith("content/julia:")) files["main:" + k.split(":")[1]] = files[k];
+    }
     prs = []; return J({ sha: "mergesha" });
   }
 
@@ -69,7 +75,9 @@ globalThis.fetch = async (url, init = {}) => {
   }
   if (u.includes("/git/refs") && method === "POST") { branchExists = true; return J({}); }
   if (u.includes("/git/refs/heads/") && method === "DELETE") {
-    branchExists = false; delete files["content/julia"]; return J({});
+    branchExists = false;
+    Object.keys(files).filter(k => k.startsWith("content/julia:")).forEach(k => delete files[k]);
+    return J({});
   }
 
   return J({ message: `unmocked: ${method} ${u}` }, 500);
@@ -177,6 +185,47 @@ console.log("\ngh.mjs");
 
   res = await api(req("https://althea.fi/api/gh?action=wipe-everything", auth));
   ok("unknown action rejected", res.status === 400);
+}
+
+// ---- image uploads -------------------------------------------------------
+console.log("\ngh.mjs — image uploads");
+{
+  const api = await load("gh.mjs");
+  const auth = { headers: { cookie: "gh_token=tok_abc" } };
+  const post = (body) => api(req("https://althea.fi/api/gh?action=asset", {
+    ...auth, method: "POST",
+    headers: { ...auth.headers, "content-type": "application/json" },
+    body: JSON.stringify(body),
+  }));
+  const PNG = Buffer.from("fake-webp-bytes").toString("base64");
+
+  let res = await post({ name: "hero.a1b2c3d4.webp", content: PNG });
+  let data = await res.json();
+  ok("accepts a correctly named image", res.status === 200 && data.ok);
+  ok("writes into site/assets/img", data.path === "site/assets/img/hero.a1b2c3d4.webp", data.path);
+  ok("returns a site-root URL", data.url === "/assets/img/hero.a1b2c3d4.webp", data.url);
+
+  calls.length = 0;
+  res = await post({ name: "hero.a1b2c3d4.webp", content: PNG });
+  ok("identical bytes are not rewritten", res.status === 200 && !calls.some(c => c.startsWith("WROTE")));
+
+  for (const bad of [
+    "../../../netlify/functions/gh.mjs",
+    "site/index.html",
+    "hero.webp",
+    "hero.a1b2c3d4.js",
+    "hero.NOTHEX12.webp",
+    "../evil.a1b2c3d4.webp",
+  ]) {
+    res = await post({ name: bad, content: PNG });
+    ok(`rejects ${JSON.stringify(bad)}`, res.status === 400);
+  }
+
+  res = await post({ name: "big.a1b2c3d4.webp", content: "A".repeat(8 * 1024 * 1024) });
+  ok("rejects an oversized image", res.status === 413);
+
+  res = await post({ name: "empty.a1b2c3d4.webp", content: "" });
+  ok("rejects an empty image", res.status === 400);
 }
 
 console.log(`\n${pass} passed, ${fail} failed\n`);
