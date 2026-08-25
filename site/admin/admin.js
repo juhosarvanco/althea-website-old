@@ -37,6 +37,8 @@
     editing: false,
     saved: null,           // serialized HTML as last committed
     popFor: null,          // element the popover currently describes
+    palette: null,
+    stranded: null,        // edits left behind by a failed publish
   };
 
   /* ------------------------------------------------------------------ api */
@@ -688,6 +690,66 @@
     toast("Luonnos tallennettu. Esikatselu valmistuu hetkessä.");
   });
 
+  /** Replay one recorded edit onto a freshly loaded page. */
+  function applyChange(c) {
+    if (c.kind === "text") {
+      const el = S.fields.get(c.id);
+      // Setting textContent would flatten any <strong> or <a> inside the
+      // field, so leave those for the person to redo rather than quietly
+      // destroying markup.
+      if (!el || el.children.length) return false;
+      el.textContent = c.after;
+      return true;
+    }
+    if (c.kind === "link") {
+      const el = S.links.get(c.id);
+      if (!el) return false;
+      el.setAttribute("href", c.after);
+      return true;
+    }
+    if (c.kind === "alt") {
+      const el = S.images.get(c.id);
+      if (!el) return false;
+      el.setAttribute("alt", c.after);
+      return true;
+    }
+    if (c.kind === "color") {
+      setPaletteVar(c.id, c.after);
+      return true;
+    }
+    return false;   // images: the uploaded file went with the discarded branch
+  }
+
+  /** Move stranded edits onto the current published version.
+   *
+   *  A draft goes unmergeable whenever the design side rewrites the same file —
+   *  re-running flatten.py touches nearly every line. Sending the person to
+   *  resolve a merge conflict on GitHub is not a real answer, so replay the
+   *  recorded edits onto a fresh copy instead and let them check the result. */
+  const recover = () => guard("Siirto", async () => {
+    const pending = S.stranded || changes();
+    if (!pending.length) { toast("Ei siirrettäviä muutoksia."); return; }
+
+    await api("discard");
+    S.session = await api("session");
+    await mount();
+
+    const failed = pending.filter((c) => !applyChange(c));
+    S.stranded = null;
+    $("#b-recover").classList.add("hidden");
+    setEditing(true);
+
+    const moved = pending.length - failed.length;
+    if (!failed.length) {
+      toast(`${moved} muutosta siirretty uusimman version päälle. ` +
+            "Tarkista ja tallenna.");
+    } else {
+      const kinds = [...new Set(failed.map((c) => KIND[c.kind]))].join(", ");
+      toast(`${moved} muutosta siirretty. ${failed.length} pitää tehdä ` +
+            `uudelleen käsin (${kinds}).`, true);
+    }
+  });
+
   const publish = () => guard("Julkaisu", async () => {
     if (dirty()) {
       const list = changes();
@@ -697,7 +759,18 @@
       S.session.draft = { ...(S.session.draft || {}), pr: r.pr, url: r.url, preview: r.preview };
     }
     if (!S.session.draft) { toast("Ei julkaistavia muutoksia."); return; }
-    await api("publish");
+    try {
+      await api("publish");
+    } catch (e) {
+      if (e.data && (e.data.error === "conflict" || e.data.error === "merge")) {
+        S.stranded = changes();
+        $("#b-recover").classList.remove("hidden");
+        toast(`${e.message} Paina "Siirrä uusimpaan", niin siirrän ` +
+              "muutoksesi uusimman version päälle.", true);
+        return;
+      }
+      throw e;
+    }
     toast("Julkaistu. Sivusto päivittyy noin minuutissa.");
     S.session = await api("session");
     await mount();
@@ -720,6 +793,7 @@
     $("#b-save").onclick = save;
     $("#b-pub").onclick = publish;
     $("#b-discard").onclick = discard;
+    $("#b-recover").onclick = recover;
     $("#b-changes").onclick = () => {
       $("#colorpanel").classList.remove("open");
       $("#panel").classList.toggle("open");

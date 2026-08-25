@@ -5,7 +5,7 @@
 
 [build]
   publish = "site"
-  command = "echo 'static site — nothing to build'"
+  command = "node tools/prepare-deploy.mjs"
 
 [functions]
   directory = "netlify/functions"
@@ -22,7 +22,6 @@
   for = "/admin/*"
   [headers.values]
     Cache-Control = "no-store"
-    X-Robots-Tag = "noindex, nofollow"
 
 [[headers]]
   for = "/*"
