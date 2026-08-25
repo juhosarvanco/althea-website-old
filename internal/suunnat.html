@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="fi"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Viisi suuntaa AVARA-designille — sisäinen</title>
+<meta name="description" content="Sisäinen designvertailu. Ei julkaista.">
+<meta name="robots" content="noindex, nofollow">
+<style>
+@font-face{font-family:'Archivo';font-style:normal;font-weight:300 500;font-display:swap;src:url('assets/fonts/archivo-300-500-latin-ext.ce9978ac.woff2') format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF}
+@font-face{font-family:'Archivo';font-style:normal;font-weight:300 500;font-display:swap;src:url('assets/fonts/archivo-300-500-latin.153b9fed.woff2') format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:'Hanken Grotesk';font-style:normal;font-weight:300 600;font-display:swap;src:url('assets/fonts/hanken-grotesk-300-600-latin-ext.9596920e.woff2') format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF}
+@font-face{font-family:'Hanken Grotesk';font-style:normal;font-weight:300 600;font-display:swap;src:url('assets/fonts/hanken-grotesk-300-600-latin.79d486fc.woff2') format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:'Instrument Serif';font-style:italic;font-weight:400;font-display:swap;src:url('assets/fonts/instrument-serif-400-italic-latin-ext.5a9e3055.woff2') format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF}
+@font-face{font-family:'Instrument Serif';font-style:italic;font-weight:400;font-display:swap;src:url('assets/fonts/instrument-serif-400-italic-latin.da28c961.woff2') format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:'Instrument Serif';font-style:normal;font-weight:400;font-display:swap;src:url('assets/fonts/instrument-serif-400-latin-ext.f17c2bcf.woff2') format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF}
+@font-face{font-family:'Instrument Serif';font-style:normal;font-weight:400;font-display:swap;src:url('assets/fonts/instrument-serif-400-latin.d8312243.woff2') format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:'Karla';font-style:normal;font-weight:300 500;font-display:swap;src:url('assets/fonts/karla-300-500-latin-ext.3b657fab.woff2') format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF}
+@font-face{font-family:'Karla';font-style:normal;font-weight:300 500;font-display:swap;src:url('assets/fonts/karla-300-500-latin.8781785c.woff2') format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:'Lora';font-style:normal;font-weight:400 500;font-display:swap;src:url('assets/fonts/lora-400-500-latin-ext.358e1822.woff2') format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF}
+@font-face{font-family:'Lora';font-style:normal;font-weight:400 500;font-display:swap;src:url('assets/fonts/lora-400-500-latin.c04caa5b.woff2') format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:'Newsreader';font-style:normal;font-weight:200 400;font-display:swap;src:url('assets/fonts/newsreader-200-400-latin-ext.92c4e25d.woff2') format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF}
+@font-face{font-family:'Newsreader';font-style:normal;font-weight:200 400;font-display:swap;src:url('assets/fonts/newsreader-200-400-latin.780858ef.woff2') format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:'Public Sans';font-style:normal;font-weight:300 500;font-display:swap;src:url('assets/fonts/public-sans-300-500-latin-ext.89e75cd8.woff2') format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF}
+@font-face{font-family:'Public Sans';font-style:normal;font-weight:300 500;font-display:swap;src:url('assets/fonts/public-sans-300-500-latin.0ac87ecc.woff2') format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:'Spectral';font-style:normal;font-weight:200;font-display:swap;src:url('assets/fonts/spectral-200-latin-ext.2ace056b.woff2') format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF}
+@font-face{font-family:'Spectral';font-style:normal;font-weight:200;font-display:swap;src:url('assets/fonts/spectral-200-latin.c2a13adb.woff2') format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:'Spectral';font-style:normal;font-weight:300;font-display:swap;src:url('assets/fonts/spectral-300-latin-ext.dafcf309.woff2') format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF}
+@font-face{font-family:'Spectral';font-style:normal;font-weight:300;font-display:swap;src:url('assets/fonts/spectral-300-latin.db1e6b5b.woff2') format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:'Spectral';font-style:normal;font-weight:400;font-display:swap;src:url('assets/fonts/spectral-400-latin-ext.12260279.woff2') format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF}
+@font-face{font-family:'Spectral';font-style:normal;font-weight:400;font-display:swap;src:url('assets/fonts/spectral-400-latin.05ae28e9.woff2') format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+
+  body { margin: 0; background: #EFECE6; -webkit-font-smoothing: antialiased; }
+  p { text-wrap: pretty; }
+  a { color: #4A5D4E; text-decoration-thickness: 1px; text-underline-offset: 3px; }
+  a:hover { color: #0d1f29; }
+
+.scp0:hover{background: #4A5D4E !important}
+.scp1:hover{background: #C4A091 !important}
+.scp2:hover{background: #B08968 !important; color: #2A2622 !important}
+html,body{background:#f0eee6}
+</style>
+</head>
+<body>
+<section style="padding: 72px 80px 40px; font-family: 'Hanken Grotesk', system-ui, sans-serif; color: #0d1f29;">
+  <div style="max-width: 760px; margin-bottom: 48px; display: flex; flex-direction: column; gap: 14px;">
+    <div style="font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: #7A8580;">Kierros 2 · yhdistelmä</div>
+    <h2 style="font-family: 'Newsreader', Georgia, serif; font-weight: 300; font-size: 40px; line-height: 1.2; margin: 0;">Aamuvalo × Metsänpohja</h2>
+    <p style="font-size: 16.5px; line-height: 1.7; color: #4A5560; margin: 0; max-width: 62ch;">Aamuvalon paletti, iso hero-kuva, top bar ja kuva-asetelma; Metsänpohjan tekstiasetelma, Lora + Karla ja holvikaarikuvapaikat ihmisille.</p>
+  </div>
+
+  <div style="display: flex; flex-wrap: wrap; gap: 80px; align-items: flex-start;">
+  <div id="2a" style="flex: 0 0 1280px; width: 1280px; display: flex; flex-direction: column; gap: 28px;">
+    
+    <div style="display: grid; grid-template-columns: 300px 1fr 1fr 1fr; gap: 40px; padding: 26px 0; border-top: 1px solid #DAD5CB; border-bottom: 1px solid #DAD5CB;">
+      <div style="display: flex; flex-direction: column; gap: 12px;">
+        <div style="display: flex; align-items: baseline; gap: 14px;">
+          <span style="font-family: ui-monospace, Menlo, monospace; font-size: 12px; letter-spacing: 0.1em; background: #0d1f29; color: #F5F1EA; padding: 5px 9px; border-radius: 6px;">2a</span>
+          <span style="font-family: 'Lora', serif; font-size: 26px;">Aamuvalo × Metsänpohja</span>
+        </div>
+        <div style="display: flex; height: 26px; border-radius: 6px; overflow: hidden;">
+          <div style="width: 44%; background: #FAF8F4;"></div>
+          <div style="width: 30%; background: #D9D6CE;"></div>
+          <div style="width: 12%; background: #0d1f29;"></div>
+          <div style="width: 10%; background: #A9B5AB;"></div>
+          <div style="width: 4%; background: #4A5D4E;"></div>
+        </div>
+        <div style="font-family: ui-monospace, Menlo, monospace; font-size: 11.5px; line-height: 1.9; color: #5A6560;">#FAF8F4 44 · #D9D6CE 30<br>#0d1f29 12 · #A9B5AB 10<br>#4A5D4E 4</div>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 10px;">
+        <div style="font-family: ui-monospace, Menlo, monospace; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: #8A9490;">Typografia</div>
+        <div style="font-family: 'Lora', serif; font-weight: 400; font-size: 27px; line-height: 1.2;">Lora Regular</div>
+        <div style="font-family: 'Karla', sans-serif; font-size: 15px; color: #4A5560;">Karla 300/400/500</div>
+        <div style="font-family: ui-monospace, Menlo, monospace; font-size: 11.5px; line-height: 1.8; color: #5A6560;">60 / 40 / 26 / 18 / 15 px<br>riviväli 1.7 · otsikot 1.2</div>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 10px;">
+        <div style="font-family: ui-monospace, Menlo, monospace; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: #8A9490;">Kuvat</div>
+        <p style="margin: 0; font-size: 14.5px; line-height: 1.7; color: #4A5560;">Iso hiljainen hero-kuva heti top barin alla, teksti aina kuvan jälkeen. Tilakuvat 18px pyöristyksellä epäsymmetrisenä asetelmana. Ihmiset aina holvikaaressa. Grading vaalea ja viileä, ei mustia.</p>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 10px;">
+        <div style="font-family: ui-monospace, Menlo, monospace; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: #8A9490;">Rytmi & liike</div>
+        <p style="margin: 0; font-size: 14.5px; line-height: 1.7; color: #4A5560;">Vasemmalle ladottu tekstiasetelma: eyebrow, otsikko, 58 merkin johdanto, sitten sisältö. Sektioiden väli 150px. Fade + 16px nousu 650ms ease-out, kuvat kirkastuvat 700ms.</p>
+      </div>
+    </div>
+    
+
+    <div style="border-radius: 20px; overflow: hidden; border: 1px solid #DAD5CB; background: #FAF8F4; font-family: 'Karla', sans-serif; color: #0d1f29;">
+      <div style="display: flex; align-items: center; justify-content: space-between; padding: 28px 56px;">
+        <div style="font-family: 'Lora', serif; font-size: 21px; letter-spacing: 0.2em;">AVARA</div>
+        <div style="display: flex; gap: 34px; font-size: 14.5px; color: #48555C;">
+          <span>Retriitit</span><span>Turvallisuus</span><span>Paikka</span><span>Ohjaajat</span><span>UKK</span>
+        </div>
+        <div style="font-size: 14.5px; color: #FAF8F4; background: #0d1f29; padding: 11px 22px; border-radius: 999px;">Keskustele kanssamme</div>
+      </div>
+
+      <div style="height: 620px; margin: 0 20px; border-radius: 18px; background-color: #D9D6CE; background-image: repeating-linear-gradient(135deg, rgba(13,31,41,0.045) 0 1px, transparent 1px 12px); display: flex; align-items: center; justify-content: center;">
+        <span style="font-family: ui-monospace, Menlo, monospace; font-size: 12px; line-height: 1.8; letter-spacing: 0.06em; color: #5A6560; text-align: center;">KUVA · koko leveys, 620 px korkea<br>niitty aamu-usvassa, paljon tyhjää taivasta<br>vaalea viileä grading, ei mustia</span>
+      </div>
+
+      <div style="padding: 150px 56px 140px; display: grid; grid-template-columns: 1fr 460px; gap: 88px; align-items: end;">
+        <div style="display: flex; flex-direction: column; gap: 28px;">
+          <div style="font-family: ui-monospace, Menlo, monospace; font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: #7A8A82;">Hemrik, Hollanti · 5 vrk · 8–14 henkilöä</div>
+          <h3 style="font-family: 'Lora', serif; font-weight: 400; font-size: 60px; line-height: 1.18; margin: 0; max-width: 20ch;">Metsä, jossa mikään ei kiirehdi.</h3>
+          <p style="margin: 0; font-size: 19px; line-height: 1.75; color: #48555C; max-width: 54ch;">Ohjattu psilosybiiniretriitti pienelle suomalaiselle ryhmälle Hollannissa, jossa toiminta on laillista. Valmistautuminen alkaa Suomessa viikkoja ennen matkaa, ja integraatio jatkuu kotona vielä kuukauden ajan.</p>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 20px; align-items: flex-start;">
+          <div style="background: #0d1f29; color: #FAF8F4; padding: 18px 32px; border-radius: 999px; font-size: 15.5px;" class="scp0">Varaa rauhallinen keskustelu</div>
+          <div style="font-size: 15px; color: #7A8A82;">15 min · maksuton · ei sitoumusta</div>
+          <div style="font-size: 15.5px; color: #0d1f29; border-bottom: 1px solid #A9B5AB; padding-bottom: 3px; margin-top: 14px;">Kenelle retriitti sopii?</div>
+        </div>
+      </div>
+
+      <div style="padding: 0 20px;">
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+          <div style="height: 560px; border-radius: 18px; background-color: #D2CFC6; background-image: repeating-linear-gradient(135deg, rgba(13,31,41,0.045) 0 1px, transparent 1px 12px); display: flex; align-items: center; justify-content: center;">
+            <span style="font-family: ui-monospace, Menlo, monospace; font-size: 12px; line-height: 1.8; color: #5A6560; text-align: center;">KUVA 4:5<br>temppelisali, luonnonvalo</span>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 20px;">
+            <div style="height: 270px; border-radius: 18px; background-color: #DDD9D0; background-image: repeating-linear-gradient(135deg, rgba(13,31,41,0.045) 0 1px, transparent 1px 12px); display: flex; align-items: center; justify-content: center;">
+              <span style="font-family: ui-monospace, Menlo, monospace; font-size: 12px; color: #5A6560;">KUVA 16:9 · makuuhuone</span>
+            </div>
+            <div style="height: 270px; border-radius: 18px; background-color: #CFD4CC; background-image: repeating-linear-gradient(135deg, rgba(13,31,41,0.045) 0 1px, transparent 1px 12px); display: flex; align-items: center; justify-content: center;">
+              <span style="font-family: ui-monospace, Menlo, monospace; font-size: 12px; color: #5A6560;">KUVA 16:9 · polku metsässä</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div style="padding: 150px 56px 160px;">
+        <div style="display: flex; flex-direction: column; gap: 18px; max-width: 58ch; margin-bottom: 80px;">
+          <div style="font-family: ui-monospace, Menlo, monospace; font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: #7A8A82;">06 — Ohjaajat</div>
+          <h3 style="font-family: 'Lora', serif; font-weight: 400; font-size: 42px; line-height: 1.2; margin: 0;">Ihmiset, jotka ovat paikalla</h3>
+          <p style="margin: 0; font-size: 18px; line-height: 1.75; color: #48555C;">Ohjaajia on aina vähintään kaksi. Tapaat heidät jo ennakkokeskustelussa, joten kukaan ei ole vieras siinä vaiheessa, kun se merkitsee eniten.</p>
+        </div>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 72px;">
+          <div style="display: grid; grid-template-columns: 220px 1fr; gap: 34px; align-items: start;">
+            <div style="height: 280px; border-radius: 110px 110px 18px 18px; background-color: #DDD9D0; background-image: repeating-linear-gradient(135deg, rgba(13,31,41,0.05) 0 1px, transparent 1px 10px); display: flex; align-items: center; justify-content: center;">
+              <span style="font-family: ui-monospace, Menlo, monospace; font-size: 11px; color: #5A6560; text-align: center;">MUOTOKUVA<br>holvikaari</span>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 12px;">
+              <div style="font-family: 'Lora', serif; font-size: 26px;">Maria Lindholm</div>
+              <div style="font-size: 14px; letter-spacing: 0.06em; text-transform: uppercase; color: #7A8A82;">Vastaava ohjaaja</div>
+              <p style="margin: 6px 0 0; font-size: 16.5px; line-height: 1.75; color: #48555C;">Psykoterapeutti, kaksitoista vuotta työtä traumojen ja ahdistuksen parissa. Kouluttautunut ohjatun psykedeeliterapian menetelmiin Hollannissa. Puhuu vähän ja kuuntelee pitkään.</p>
+            </div>
+          </div>
+          <div style="display: grid; grid-template-columns: 220px 1fr; gap: 34px; align-items: start;">
+            <div style="height: 280px; border-radius: 110px 110px 18px 18px; background-color: #DDD9D0; background-image: repeating-linear-gradient(135deg, rgba(13,31,41,0.05) 0 1px, transparent 1px 10px); display: flex; align-items: center; justify-content: center;">
+              <span style="font-family: ui-monospace, Menlo, monospace; font-size: 11px; color: #5A6560; text-align: center;">MUOTOKUVA<br>holvikaari</span>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 12px;">
+              <div style="font-family: 'Lora', serif; font-size: 26px;">Tuomas Ahonen</div>
+              <div style="font-size: 14px; letter-spacing: 0.06em; text-transform: uppercase; color: #7A8A82;">Ohjaaja, integraatio</div>
+              <p style="margin: 6px 0 0; font-size: 16.5px; line-height: 1.75; color: #48555C;">Sairaanhoitaja ja ryhmänohjaaja. Vastaa terveysseulonnasta ja siitä, että jokainen tietää mitä seuraavaksi tapahtuu. Vetää integraatiotapaamiset kotiinpaluun jälkeen.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+</section>
+
+<section style="padding: 40px 80px 140px; font-family: 'Hanken Grotesk', system-ui, sans-serif; color: #0d1f29;">
+
+  <div style="max-width: 760px; margin-bottom: 72px; display: flex; flex-direction: column; gap: 18px;">
+    <div style="font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: #7A8580;">Kierros 1 · viisi visuaalista suuntaa</div>
+    <h1 style="font-family: 'Newsreader', Georgia, serif; font-weight: 300; font-size: 46px; line-height: 1.2; letter-spacing: -0.01em; margin: 0;">Viisi suuntaa hermostoa rauhoittavalle retriittisivustolle</h1>
+    <p style="font-size: 17px; line-height: 1.7; color: #4A5560; margin: 0; max-width: 62ch;">Jokaisesta suunnasta näkyy konsepti, paletti käyttösuhteineen, typografia, kuvakäsittely, layout-logiikka ja mikrointeraktiot — sekä renderöity hero-sektio ja yksi sisältösektio. Työnimenä <strong style="font-weight: 500;">AVARA</strong>; vaihdettavissa yhdellä kertaa, kun nimi on päätetty. Kuvien paikalla on merkityt paikanvaraajat — oikeat kuvat tulevat New Edenistä.</p>
+    <p style="font-size: 15px; line-height: 1.7; color: #7A8580; margin: 6px 0 0;">Viittaa suuntiin tunnuksilla <a href="#1a">1a</a> · <a href="#1b">1b</a> · <a href="#1c">1c</a> · <a href="#1d">1d</a> · <a href="#1e">1e</a>. Vertailu löytyy alalaidasta.</p>
+  </div>
+
+  <div style="display: flex; flex-wrap: wrap; gap: 80px; align-items: flex-start;">
+
+    <!-- ============================ 1a USVA ============================ -->
+    <div id="1a" style="flex: 0 0 1280px; width: 1280px; display: flex; flex-direction: column; gap: 28px;">
+      
+      <div style="display: flex; gap: 40px; align-items: flex-start;">
+        <div style="display: flex; align-items: baseline; gap: 16px; width: 300px; flex: none;">
+          <span style="font-family: ui-monospace, Menlo, monospace; font-size: 12px; letter-spacing: 0.1em; background: #0d1f29; color: #F5F1EA; padding: 5px 9px; border-radius: 6px;">1a</span>
+          <span style="font-family: 'Newsreader', serif; font-weight: 300; font-size: 32px;">Usva</span>
+        </div>
+        <p style="margin: 0; font-size: 16px; line-height: 1.7; max-width: 60ch; color: #3C4750;">Vaalea, viileä ja editoriaalinen. Sivu lukee kuin hyvin taitettu kirja: paljon tyhjää, kapea tekstipalsta, kuva kerrallaan. Suunta puhuu harkitsevalle lukijalle, joka haluaa ymmärtää ennen kuin tuntee.</p>
+      </div>
+
+      <div style="display: grid; grid-template-columns: 300px 1fr 1fr 1fr; gap: 40px; padding: 26px 0; border-top: 1px solid #DAD5CB; border-bottom: 1px solid #DAD5CB;">
+        <div style="display: flex; flex-direction: column; gap: 12px;">
+          <div style="font-family: ui-monospace, Menlo, monospace; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: #8A9490;">Paletti</div>
+          <div style="display: flex; height: 26px; border-radius: 6px; overflow: hidden;">
+            <div style="width: 58%; background: #F5F1EA;"></div>
+            <div style="width: 22%; background: #D9D6CE;"></div>
+            <div style="width: 12%; background: #0d1f29;"></div>
+            <div style="width: 6%; background: #4A5D4E;"></div>
+            <div style="width: 2%; background: #C4A091;"></div>
+          </div>
+          <div style="font-family: ui-monospace, Menlo, monospace; font-size: 11.5px; line-height: 1.9; color: #5A6560;">#F5F1EA 58 · #D9D6CE 22<br>#0d1f29 12 · #4A5D4E 6<br>#C4A091 2</div>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 10px;">
+          <div style="font-family: ui-monospace, Menlo, monospace; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: #8A9490;">Typografia</div>
+          <div style="font-family: 'Newsreader', serif; font-weight: 300; font-size: 27px; line-height: 1.2;">Newsreader Light</div>
+          <div style="font-family: 'Hanken Grotesk', sans-serif; font-weight: 400; font-size: 15px; color: #4A5560;">Hanken Grotesk 300/400/500</div>
+          <div style="font-family: ui-monospace, Menlo, monospace; font-size: 11.5px; line-height: 1.8; color: #5A6560;">72 / 44 / 28 / 19 / 15 px<br>riviväli 1.7 · otsikot 1.15</div>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 10px;">
+          <div style="font-family: ui-monospace, Menlo, monospace; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: #8A9490;">Kuvat</div>
+          <p style="margin: 0; font-size: 14.5px; line-height: 1.7; color: #4A5560;">Pystykuvat 4:5, ei koskaan koko leveydeltä. Viileä grading: keltaa alas, mustat nostettu harmaaseen, kontrasti matala. Kuva istuu palstan reunaan, ei keskitettynä. Kuvatekstit pienellä groteskilla.</p>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 10px;">
+          <div style="font-family: ui-monospace, Menlo, monospace; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: #8A9490;">Rytmi & liike</div>
+          <p style="margin: 0; font-size: 14.5px; line-height: 1.7; color: #4A5560;">Jaksotettu: 160px sektioiden väli, ohut vaakaviiva erottimena. Yksi ajatus per näkymä. Fade + 12px nousu, 600ms ease-out, kerran per elementti. Linkeissä alleviivaus kasvaa 300ms. Ei parallaksia.</p>
+        </div>
+      </div>
+      
+
+      <div style="border-radius: 20px; overflow: hidden; border: 1px solid #DAD5CB; background: #F5F1EA;">
+        <!-- nav -->
+        <div style="display: flex; align-items: center; justify-content: space-between; padding: 26px 56px; border-bottom: 1px solid rgba(13,31,41,0.08);">
+          <div style="font-family: 'Newsreader', serif; font-size: 21px; letter-spacing: 0.22em; color: #0d1f29;">AVARA</div>
+          <div style="display: flex; gap: 34px; font-size: 14.5px; color: #3C4750;">
+            <span>Retriitit</span><span>Turvallisuus</span><span>Paikka</span><span>Ohjaajat</span><span>UKK</span>
+          </div>
+          <div style="font-size: 14.5px; color: #4A5D4E; border-bottom: 1px solid #4A5D4E; padding-bottom: 3px;">Keskustele kanssamme</div>
+        </div>
+        <!-- hero -->
+        <div style="display: grid; grid-template-columns: 1fr 480px; gap: 88px; padding: 128px 56px 140px; align-items: center;">
+          <div style="display: flex; flex-direction: column; gap: 32px;">
+            <div style="font-family: ui-monospace, Menlo, monospace; font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: #4A5D4E;">Laillinen retriitti · Hemrik, Hollanti</div>
+            <h2 style="font-family: 'Newsreader', serif; font-weight: 200; font-size: 68px; line-height: 1.12; letter-spacing: -0.015em; margin: 0; color: #0d1f29;">Viisi päivää hiljaisuutta,<br>ohjattuna.</h2>
+            <p style="margin: 0; font-size: 19px; line-height: 1.75; color: #3C4750; max-width: 46ch;">Pieni suomalainen ryhmä, laillinen retriittikeskus Hollannissa ja kaksi ohjaajaa, jotka ovat läsnä koko ajan. Ei kiirettä, ei suorittamista — tilaa sille mitä nousee.</p>
+            <div style="display: flex; align-items: center; gap: 28px; margin-top: 8px;">
+              <div style="background: #0d1f29; color: #F5F1EA; padding: 17px 30px; border-radius: 10px; font-size: 15.5px;" class="scp0">Varaa rauhallinen keskustelu</div>
+              <div style="font-size: 15.5px; color: #3C4750; border-bottom: 1px solid rgba(13,31,41,0.3); padding-bottom: 3px;">Lue ensin turvallisuudesta</div>
+            </div>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 14px;">
+            <div style="aspect-ratio: 4/5; border-radius: 14px; background-color: #D9D6CE; background-image: repeating-linear-gradient(135deg, rgba(13,31,41,0.055) 0 1px, transparent 1px 10px); display: flex; align-items: center; justify-content: center; padding: 24px; text-align: center;">
+              <span style="font-family: ui-monospace, Menlo, monospace; font-size: 12px; line-height: 1.8; letter-spacing: 0.06em; color: #4A5560;">KUVA 4:5<br>aamu-usva metsänreunassa,<br>viileä grading</span>
+            </div>
+            <span style="font-family: ui-monospace, Menlo, monospace; font-size: 11.5px; color: #8A9490;">New Eden, Hemrik — 20 ha metsää ja niittyä</span>
+          </div>
+        </div>
+        <!-- sisältösektio -->
+        <div style="padding: 0 56px;"><div style="height: 1px; background: rgba(13,31,41,0.1);"></div></div>
+        <div style="padding: 150px 56px;">
+          <div style="display: grid; grid-template-columns: 300px 1fr; gap: 88px;">
+            <div style="font-family: ui-monospace, Menlo, monospace; font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: #4A5D4E; padding-top: 14px;">02 — Kenelle</div>
+            <div style="display: flex; flex-direction: column; gap: 40px; max-width: 66ch;">
+              <h3 style="font-family: 'Newsreader', serif; font-weight: 200; font-size: 42px; line-height: 1.2; margin: 0; color: #0d1f29;">Kenelle tämä on tarkoitettu</h3>
+              <p style="margin: 0; font-size: 18px; line-height: 1.75; color: #3C4750;">Useimmat, jotka tulevat mukaan, ovat 30–60-vuotiaita ja ensikertalaisia. Moni on harkinnut asiaa pitkään, lukenut paljon eikä ole puhunut siitä juuri kenellekään. Se on täysin tavallinen lähtökohta.</p>
+              <p style="margin: 0; font-size: 18px; line-height: 1.75; color: #3C4750;">Retriitti sopii sinulle, jos etsit selkeyttä elämäntilanteeseen, haluat ymmärtää itseäsi paremmin tai olet valmis pysähtymään jonkin äärelle, jota on ollut helpompi väistää. Sinun ei tarvitse tietää etukäteen, mitä etsit.</p>
+              <div style="padding: 34px 38px; background: #EDE9E1; border-radius: 16px; display: flex; flex-direction: column; gap: 14px;">
+                <div style="font-size: 15px; font-weight: 500; color: #0d1f29;">Kenelle tämä ei sovi</div>
+                <p style="margin: 0; font-size: 16.5px; line-height: 1.75; color: #4A5560;">Emme ota mukaan, jos taustalla on psykoosisairaus tai kaksisuuntainen mielialahäiriö suvussa tai omassa historiassa, jos käytössä on tiettyjä mielialalääkkeitä, tai jos elämäntilanne on juuri nyt akuutissa kriisissä. Käymme nämä läpi kanssasi ennakkokeskustelussa — rehellisesti ja ilman kiirettä.</p>
+                <div style="font-size: 15px; color: #4A5D4E; border-bottom: 1px solid #4A5D4E; align-self: flex-start; padding-bottom: 3px; margin-top: 6px;">Lue soveltuvuudesta tarkemmin</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============================ 1b ILTAPIIRI ============================ -->
+    <div id="1b" style="flex: 0 0 1280px; width: 1280px; display: flex; flex-direction: column; gap: 28px;">
+      
+      <div style="display: flex; gap: 40px; align-items: flex-start;">
+        <div style="display: flex; align-items: baseline; gap: 16px; width: 300px; flex: none;">
+          <span style="font-family: ui-monospace, Menlo, monospace; font-size: 12px; letter-spacing: 0.1em; background: #0d1f29; color: #F5F1EA; padding: 5px 9px; border-radius: 6px;">1b</span>
+          <span style="font-family: 'Spectral', serif; font-weight: 300; font-size: 32px;">Iltapiiri</span>
+        </div>
+        <p style="margin: 0; font-size: 16px; line-height: 1.7; max-width: 60ch; color: #3C4750;">Tumma petrooli, lämmin kynttilänvalo ja kuvavetoinen, yhtenäinen vieritys. Tunne on illan piiri: hämärä on turvallinen, ei kolkko. Lämpimät hunaja- ja terrakottasävyt pitävät pinnan pehmeänä.</p>
+      </div>
+
+      <div style="display: grid; grid-template-columns: 300px 1fr 1fr 1fr; gap: 40px; padding: 26px 0; border-top: 1px solid #DAD5CB; border-bottom: 1px solid #DAD5CB;">
+        <div style="display: flex; flex-direction: column; gap: 12px;">
+          <div style="font-family: ui-monospace, Menlo, monospace; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: #8A9490;">Paletti</div>
+          <div style="display: flex; height: 26px; border-radius: 6px; overflow: hidden;">
+            <div style="width: 62%; background: #0d1f29;"></div>
+            <div style="width: 15%; background: #16303C;"></div>
+            <div style="width: 12%; background: #F5F1EA;"></div>
+            <div style="width: 8%; background: #B08968;"></div>
+            <div style="width: 3%; background: #C4A091;"></div>
+          </div>
+          <div style="font-family: ui-monospace, Menlo, monospace; font-size: 11.5px; line-height: 1.9; color: #5A6560;">#0d1f29 62 · #16303C 15<br>#F5F1EA 12 · #B08968 8<br>#C4A091 3</div>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 10px;">
+          <div style="font-family: ui-monospace, Menlo, monospace; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: #8A9490;">Typografia</div>
+          <div style="font-family: 'Spectral', serif; font-weight: 200; font-size: 27px; line-height: 1.2;">Spectral ExtraLight</div>
+          <div style="font-family: 'Archivo', sans-serif; font-weight: 400; font-size: 15px; color: #4A5560;">Archivo 300/400/500</div>
+          <div style="font-family: ui-monospace, Menlo, monospace; font-size: 11.5px; line-height: 1.8; color: #5A6560;">80 / 46 / 30 / 19 / 15 px<br>riviväli 1.75 · otsikot 1.1</div>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 10px;">
+          <div style="font-family: ui-monospace, Menlo, monospace; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: #8A9490;">Kuvat</div>
+          <p style="margin: 0; font-size: 14.5px; line-height: 1.7; color: #4A5560;">Koko leveys, 16:9 ja 21:9. Grading lämpimään: kultainen tunti, mustat sävytetty petrooliin, ei kirkkaita kohokohtia. Kuvan alareuna häivytetään pohjaväriin, jolloin sektioiden raja katoaa.</p>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 10px;">
+          <div style="font-family: ui-monospace, Menlo, monospace; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: #8A9490;">Rytmi & liike</div>
+          <p style="margin: 0; font-size: 14.5px; line-height: 1.7; color: #4A5560;">Yhtenäinen vieritys ilman koviaviivoja; sektiot erottuvat vain tilasta (140px). Teksti häivähtää sisään 700ms ease-out. CTA:n reuna lämpenee hunajaan 400ms. Ei parallaksia, ei karusellia.</p>
+        </div>
+      </div>
+      
+
+      <div style="border-radius: 20px; overflow: hidden; border: 1px solid #DAD5CB; background: #0d1f29; font-family: 'Archivo', sans-serif;">
+        <div style="display: flex; align-items: center; justify-content: space-between; padding: 28px 56px;">
+          <div style="font-family: 'Spectral', serif; font-size: 21px; letter-spacing: 0.24em; color: #F5F1EA;">AVARA</div>
+          <div style="display: flex; gap: 34px; font-size: 14.5px; color: #C6CFD3; font-weight: 300;">
+            <span>Retriitit</span><span>Turvallisuus</span><span>Paikka</span><span>Ohjaajat</span><span>UKK</span>
+          </div>
+          <div style="font-size: 14.5px; color: #0d1f29; background: #B08968; padding: 11px 22px; border-radius: 999px;">Keskustele kanssamme</div>
+        </div>
+        <div style="position: relative; height: 660px; margin: 8px 24px 0; border-radius: 16px; overflow: hidden; background-color: #16303C; background-image: repeating-linear-gradient(135deg, rgba(245,241,234,0.05) 0 1px, transparent 1px 11px); display: flex; align-items: flex-end;">
+          <div style="position: absolute; inset: 0; background: linear-gradient(to top, rgba(13,31,41,0.92) 0%, rgba(13,31,41,0.25) 55%, rgba(13,31,41,0.1) 100%);"></div>
+          <div style="position: absolute; top: 48px; right: 48px; font-family: ui-monospace, Menlo, monospace; font-size: 12px; line-height: 1.8; letter-spacing: 0.06em; color: rgba(245,241,234,0.55); text-align: right;">KUVA 21:9 · koko leveys<br>ihmisiä piirissä kynttilänvalossa,<br>lämmin grading</div>
+          <div style="position: relative; padding: 0 64px 64px; display: flex; flex-direction: column; gap: 26px; max-width: 780px;">
+            <h2 style="font-family: 'Spectral', serif; font-weight: 200; font-size: 76px; line-height: 1.08; letter-spacing: -0.01em; margin: 0; color: #F5F1EA;">Tule niin kuin olet.<br>Lähde hitaammin.</h2>
+            <p style="margin: 0; font-size: 19px; line-height: 1.75; color: #CBD4D8; font-weight: 300; max-width: 52ch;">Ohjattu psilosybiiniretriitti Hollannin metsässä, jossa toiminta on laillista. Kymmenen osallistujaa, viisi vuorokautta, kaksi ohjaajaa läsnä ympäri vuorokauden.</p>
+            <div style="display: flex; align-items: center; gap: 28px; margin-top: 10px;">
+              <div style="background: #B08968; color: #0d1f29; padding: 18px 32px; border-radius: 999px; font-size: 15.5px;" class="scp1">Varaa rauhallinen keskustelu</div>
+              <div style="font-size: 15.5px; color: #CBD4D8; font-weight: 300;">15 min · maksuton · ei sitoumusta</div>
+            </div>
+          </div>
+        </div>
+        <div style="padding: 150px 64px 160px;">
+          <div style="display: flex; flex-direction: column; gap: 22px; max-width: 60ch; margin-bottom: 88px;">
+            <div style="font-family: ui-monospace, Menlo, monospace; font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: #B08968;">03 — Retriitin kaari</div>
+            <h3 style="font-family: 'Spectral', serif; font-weight: 200; font-size: 46px; line-height: 1.15; margin: 0; color: #F5F1EA;">Mitä viikon aikana tapahtuu</h3>
+            <p style="margin: 0; font-size: 18px; line-height: 1.75; color: #A9B7BD; font-weight: 300;">Kaari alkaa Suomessa viikkoja ennen matkaa ja jatkuu kotona vielä pitkään sen jälkeen. Retriittipäivät ovat vain sen keskikohta.</p>
+          </div>
+          <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 44px;">
+            <div style="display: flex; flex-direction: column; gap: 18px; padding-top: 26px; border-top: 1px solid rgba(176,137,104,0.45);">
+              <div style="font-family: ui-monospace, Menlo, monospace; font-size: 12px; letter-spacing: 0.14em; color: #B08968;">01</div>
+              <div style="font-family: 'Spectral', serif; font-size: 26px; font-weight: 300; color: #F5F1EA;">Valmistautuminen</div>
+              <p style="margin: 0; font-size: 16px; line-height: 1.7; color: #A9B7BD; font-weight: 300;">Ennakkokeskustelu, terveysseulonta ja kaksi ryhmätapaamista etänä. Käymme läpi toiveesi, pelkosi ja lääkityksesi.</p>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 18px; padding-top: 26px; border-top: 1px solid rgba(176,137,104,0.45);">
+              <div style="font-family: ui-monospace, Menlo, monospace; font-size: 12px; letter-spacing: 0.14em; color: #B08968;">02</div>
+              <div style="font-family: 'Spectral', serif; font-size: 26px; font-weight: 300; color: #F5F1EA;">Matka ja saapuminen</div>
+              <p style="margin: 0; font-size: 16px; line-height: 1.7; color: #A9B7BD; font-weight: 300;">Yhteinen lento Helsingistä, kuljetus Schipholilta noin 90 minuuttia. Ensimmäinen ilta on pelkkää asettumista.</p>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 18px; padding-top: 26px; border-top: 1px solid rgba(176,137,104,0.45);">
+              <div style="font-family: ui-monospace, Menlo, monospace; font-size: 12px; letter-spacing: 0.14em; color: #B08968;">03</div>
+              <div style="font-family: 'Spectral', serif; font-size: 26px; font-weight: 300; color: #F5F1EA;">Sessiot</div>
+              <p style="margin: 0; font-size: 16px; line-height: 1.7; color: #A9B7BD; font-weight: 300;">Kaksi ohjattua sessiota, joiden välissä kokonainen lepopäivä. Oma patja, huopa ja tila. Ohjaaja on aina käden mitan päässä.</p>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 18px; padding-top: 26px; border-top: 1px solid rgba(176,137,104,0.45);">
+              <div style="font-family: ui-monospace, Menlo, monospace; font-size: 12px; letter-spacing: 0.14em; color: #B08968;">04</div>
+              <div style="font-family: 'Spectral', serif; font-size: 26px; font-weight: 300; color: #F5F1EA;">Integraatio</div>
+              <p style="margin: 0; font-size: 16px; line-height: 1.7; color: #A9B7BD; font-weight: 300;">Neljä viikkoa kotiinpaluun jälkeen: kaksi ryhmätapaamista ja yksi henkilökohtainen keskustelu. Tämä on se osa, joka usein unohtuu.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============================ 1c PELLAVA ============================ -->
+    <div id="1c" style="flex: 0 0 1280px; width: 1280px; display: flex; flex-direction: column; gap: 28px;">
+      
+      <div style="display: flex; gap: 40px; align-items: flex-start;">
+        <div style="display: flex; align-items: baseline; gap: 16px; width: 300px; flex: none;">
+          <span style="font-family: ui-monospace, Menlo, monospace; font-size: 12px; letter-spacing: 0.1em; background: #0d1f29; color: #F5F1EA; padding: 5px 9px; border-radius: 6px;">1c</span>
+          <span style="font-family: 'Hanken Grotesk', sans-serif; font-weight: 400; font-size: 32px; letter-spacing: -0.01em;">Pellava</span>
+        </div>
+        <p style="margin: 0; font-size: 16px; line-height: 1.7; max-width: 60ch; color: #3C4750;">Lämmin, lähes yksivärinen ja täysin groteskilla ladottu. Ei antiikvaa, ei koristetta — rauha syntyy tilasta ja kirjaintason hallinnasta. Tuntuu enemmän hyvin suunnitellulta hoitolaitokselta kuin hengelliseltä yhteisöltä.</p>
+      </div>
+
+      <div style="display: grid; grid-template-columns: 300px 1fr 1fr 1fr; gap: 40px; padding: 26px 0; border-top: 1px solid #DAD5CB; border-bottom: 1px solid #DAD5CB;">
+        <div style="display: flex; flex-direction: column; gap: 12px;">
+          <div style="font-family: ui-monospace, Menlo, monospace; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: #8A9490;">Paletti</div>
+          <div style="display: flex; height: 26px; border-radius: 6px; overflow: hidden;">
+            <div style="width: 52%; background: #F5F1EA;"></div>
+            <div style="width: 26%; background: #E8E0D3;"></div>
+            <div style="width: 12%; background: #2A2622;"></div>
+            <div style="width: 8%; background: #B08968;"></div>
+            <div style="width: 2%; background: #4A5D4E;"></div>
+          </div>
+          <div style="font-family: ui-monospace, Menlo, monospace; font-size: 11.5px; line-height: 1.9; color: #5A6560;">#F5F1EA 52 · #E8E0D3 26<br>#2A2622 12 · #B08968 8<br>#4A5D4E 2</div>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 10px;">
+          <div style="font-family: ui-monospace, Menlo, monospace; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: #8A9490;">Typografia</div>
+          <div style="font-family: 'Hanken Grotesk', sans-serif; font-weight: 300; font-size: 27px; line-height: 1.2; letter-spacing: -0.015em;">Hanken Grotesk Light</div>
+          <div style="font-family: 'Hanken Grotesk', sans-serif; font-weight: 500; font-size: 15px; color: #4A5560;">Sama perhe 300 / 400 / 500</div>
+          <div style="font-family: ui-monospace, Menlo, monospace; font-size: 11.5px; line-height: 1.8; color: #5A6560;">64 / 40 / 26 / 18 / 15 px<br>riviväli 1.75 · otsikot −0.02em</div>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 10px;">
+          <div style="font-family: ui-monospace, Menlo, monospace; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: #8A9490;">Kuvat</div>
+          <p style="margin: 0; font-size: 14.5px; line-height: 1.7; color: #4A5560;">Kuvia vähän ja harkiten: 3:2 vaakakuvia palstan levyisenä, aina yksi kerrallaan. Lämmin, hiukan haalistunut grading — pellava, vaalea puu, luonnonvalo. Ei ihmiskasvoja hero-tasolla.</p>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 10px;">
+          <div style="font-family: ui-monospace, Menlo, monospace; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: #8A9490;">Rytmi & liike</div>
+          <p style="margin: 0; font-size: 14.5px; line-height: 1.7; color: #4A5560;">Kaksipalstainen ankkuri: vasemmalla pysyvä otsikko, oikealla sisältö. Sektioiden väli 140px, taustaväri vaihtuu pellavaan joka toisessa. Liike minimissään: pelkkä 500ms fade, ei siirtymää.</p>
+        </div>
+      </div>
+      
+
+      <div style="border-radius: 20px; overflow: hidden; border: 1px solid #DAD5CB; background: #F5F1EA; font-family: 'Hanken Grotesk', sans-serif; color: #2A2622;">
+        <div style="display: flex; align-items: center; justify-content: space-between; padding: 30px 60px;">
+          <div style="font-size: 19px; font-weight: 500; letter-spacing: 0.16em;">AVARA</div>
+          <div style="display: flex; gap: 34px; font-size: 14.5px; color: #4C453E; font-weight: 400;">
+            <span>Retriitit</span><span>Turvallisuus</span><span>Paikka</span><span>Ohjaajat</span><span>UKK</span>
+          </div>
+          <div style="font-size: 14.5px; color: #2A2622; border: 1px solid rgba(42,38,34,0.25); padding: 10px 20px; border-radius: 999px;">Keskustele kanssamme</div>
+        </div>
+        <div style="padding: 150px 60px 130px;">
+          <div style="max-width: 20ch; margin-bottom: 56px;">
+            <h2 style="font-weight: 300; font-size: 66px; line-height: 1.14; letter-spacing: -0.025em; margin: 0;">Aikaa pysähtyä. Ihmisiä, jotka jäävät viereen.</h2>
+          </div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 88px; align-items: end;">
+            <p style="margin: 0; font-size: 19px; line-height: 1.75; color: #4C453E; max-width: 52ch;">Järjestämme pieniä, ohjattuja psilosybiiniretriittejä New Edenin keskuksessa Hollannissa, jossa toiminta on laillista. Matka Suomesta, majoitus, sessiot ja neljän viikon integraatio ovat yhtä ja samaa kokonaisuutta — sinun ei tarvitse järjestää mitään itse.</p>
+            <div style="display: flex; align-items: center; gap: 30px; justify-content: flex-end;">
+              <div style="background: #2A2622; color: #F5F1EA; padding: 18px 32px; border-radius: 12px; font-size: 15.5px;" class="scp2">Varaa rauhallinen keskustelu</div>
+              <div style="font-size: 15.5px; color: #4C453E; border-bottom: 1px solid rgba(42,38,34,0.3); padding-bottom: 3px;">Katso seuraavat ajankohdat</div>
+            </div>
+          </div>
+        </div>
+        <div style="padding: 0 60px;">
+          <div style="aspect-ratio: 3/1.15; border-radius: 16px; background-color: #E8E0D3; background-image: repeating-linear-gradient(135deg, rgba(42,38,34,0.05) 0 1px, transparent 1px 10px); display: flex; align-items: center; justify-content: center;">
+            <span style="font-family: ui-monospace, Menlo, monospace; font-size: 12px; line-height: 1.8; letter-spacing: 0.06em; color: #6B635A; text-align: center;">KUVA 3:1 · palstan levyinen<br>vaalea puu, pellavaverhot, luonnonvalo — lämmin grading</span>
+          </div>
+        </div>
+        <div style="margin-top: 140px; background: #E8E0D3; padding: 140px 60px;">
+          <div style="display: grid; grid-template-columns: 340px 1fr; gap: 96px;">
+            <div style="display: flex; flex-direction: column; gap: 16px;">
+              <div style="font-family: ui-monospace, Menlo, monospace; font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: #8A7C6B;">04 — Turvallisuus</div>
+              <h3 style="font-weight: 300; font-size: 40px; line-height: 1.18; letter-spacing: -0.02em; margin: 0;">Turvallisuus ei ole alaviite</h3>
+              <p style="margin: 8px 0 0; font-size: 16.5px; line-height: 1.75; color: #4C453E;">Kerromme nämä asiat etusivulla, koska ne ovat useimmiten ensimmäinen kysymys.</p>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 0;">
+              <div style="display: grid; grid-template-columns: 200px 1fr; gap: 44px; padding: 34px 0; border-top: 1px solid rgba(42,38,34,0.14);">
+                <div style="font-size: 17px; font-weight: 500;">Laillisuus</div>
+                <p style="margin: 0; font-size: 17px; line-height: 1.75; color: #4C453E; max-width: 62ch;">Retriitit järjestetään Hollannissa, jossa käytettävä luonnontuote on laillinen. Emme järjestä toimintaa Suomessa emmekä kuljeta mitään maasta toiseen.</p>
+              </div>
+              <div style="display: grid; grid-template-columns: 200px 1fr; gap: 44px; padding: 34px 0; border-top: 1px solid rgba(42,38,34,0.14);">
+                <div style="font-size: 17px; font-weight: 500;">Seulonta</div>
+                <p style="margin: 0; font-size: 17px; line-height: 1.75; color: #4C453E; max-width: 62ch;">Jokainen käy läpi terveyskyselyn ja henkilökohtaisen keskustelun. Osan hakijoista ohjaamme muualle — se on osa työtämme, ei epäonnistuminen.</p>
+              </div>
+              <div style="display: grid; grid-template-columns: 200px 1fr; gap: 44px; padding: 34px 0; border-top: 1px solid rgba(42,38,34,0.14);">
+                <div style="font-size: 17px; font-weight: 500;">Vasta-aiheet</div>
+                <p style="margin: 0; font-size: 17px; line-height: 1.75; color: #4C453E; max-width: 62ch;">Psykoosisairaus tai kaksisuuntainen mielialahäiriö itsellä tai lähisuvussa, vakava sydänsairaus sekä tietyt mielialalääkkeet ovat esteitä. Lääkitysten purkamista ei tehdä omin päin.</p>
+              </div>
+              <div style="display: grid; grid-template-columns: 200px 1fr; gap: 44px; padding: 34px 0; border-top: 1px solid rgba(42,38,34,0.14); border-bottom: 1px solid rgba(42,38,34,0.14);">
+                <div style="font-size: 17px; font-weight: 500;">Läsnäolo</div>
+                <p style="margin: 0; font-size: 17px; line-height: 1.75; color: #4C453E; max-width: 62ch;">Sessioissa on aina vähintään kaksi ohjaajaa hereillä. Ryhmäkoko pidetään pienenä juuri tästä syystä.</p>
+              </div>
+              <div style="font-size: 15.5px; color: #2A2622; border-bottom: 1px solid #B08968; align-self: flex-start; padding-bottom: 3px; margin-top: 36px;">Koko turvallisuusprotokolla</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============================ 1d AAMUVALO ============================ -->
+    <div id="1d" style="flex: 0 0 1280px; width: 1280px; display: flex; flex-direction: column; gap: 28px;">
+      
+      <div style="display: flex; gap: 40px; align-items: flex-start;">
+        <div style="display: flex; align-items: baseline; gap: 16px; width: 300px; flex: none;">
+          <span style="font-family: ui-monospace, Menlo, monospace; font-size: 12px; letter-spacing: 0.1em; background: #0d1f29; color: #F5F1EA; padding: 5px 9px; border-radius: 6px;">1d</span>
+          <span style="font-family: 'Instrument Serif', serif; font-size: 34px;">Aamuvalo</span>
+        </div>
+        <p style="margin: 0; font-size: 16px; line-height: 1.7; max-width: 60ch; color: #3C4750;">Vaalea ja kuvavetoinen: isoja, hiljaisia usvakuvia ja hyvin vähän tekstiä kerrallaan. Sivu hengittää pysähdyksissä — jokainen näkymä on melkein tyhjä. Viilein ja ilmavin viidestä.</p>
+      </div>
+
+      <div style="display: grid; grid-template-columns: 300px 1fr 1fr 1fr; gap: 40px; padding: 26px 0; border-top: 1px solid #DAD5CB; border-bottom: 1px solid #DAD5CB;">
+        <div style="display: flex; flex-direction: column; gap: 12px;">
+          <div style="font-family: ui-monospace, Menlo, monospace; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: #8A9490;">Paletti</div>
+          <div style="display: flex; height: 26px; border-radius: 6px; overflow: hidden;">
+            <div style="width: 44%; background: #FAF8F4;"></div>
+            <div style="width: 30%; background: #D9D6CE;"></div>
+            <div style="width: 12%; background: #0d1f29;"></div>
+            <div style="width: 10%; background: #A9B5AB;"></div>
+            <div style="width: 4%; background: #4A5D4E;"></div>
+          </div>
+          <div style="font-family: ui-monospace, Menlo, monospace; font-size: 11.5px; line-height: 1.9; color: #5A6560;">#FAF8F4 44 · #D9D6CE 30<br>#0d1f29 12 · #A9B5AB 10<br>#4A5D4E 4</div>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 10px;">
+          <div style="font-family: ui-monospace, Menlo, monospace; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: #8A9490;">Typografia</div>
+          <div style="font-family: 'Instrument Serif', serif; font-size: 30px; line-height: 1.15;">Instrument Serif</div>
+          <div style="font-family: 'Public Sans', sans-serif; font-weight: 300; font-size: 15px; color: #4A5560;">Public Sans 300/400</div>
+          <div style="font-family: ui-monospace, Menlo, monospace; font-size: 11.5px; line-height: 1.8; color: #5A6560;">88 / 48 / 28 / 18 / 14 px<br>riviväli 1.7 · otsikot 1.05</div>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 10px;">
+          <div style="font-family: ui-monospace, Menlo, monospace; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: #8A9490;">Kuvat</div>
+          <p style="margin: 0; font-size: 14.5px; line-height: 1.7; color: #4A5560;">Kuva on pääosassa: koko ruudun korkuisia usvakuvia, joissa on runsaasti tyhjää taivasta. Grading vaalea ja viileä, mustia ei ole. Teksti ei koskaan kuvan päällä — se tulee kuvan jälkeen, luonnonvalkoisella.</p>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 10px;">
+          <div style="font-family: ui-monospace, Menlo, monospace; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: #8A9490;">Rytmi & liike</div>
+          <p style="margin: 0; font-size: 14.5px; line-height: 1.7; color: #4A5560;">Vuorottelu kuva → tyhjä tekstinäkymä → kuva. Tekstinäkymissä sisältö keskitetty, leveys 58 merkkiä, pystypadding 180px. Kuvat kirkastuvat 700ms sisään tullessaan. Ei muuta liikettä.</p>
+        </div>
+      </div>
+      
+
+      <div style="border-radius: 20px; overflow: hidden; border: 1px solid #DAD5CB; background: #FAF8F4; font-family: 'Public Sans', sans-serif; color: #0d1f29;">
+        <div style="display: flex; align-items: center; justify-content: space-between; padding: 28px 56px;">
+          <div style="font-family: 'Instrument Serif', serif; font-size: 24px; letter-spacing: 0.14em;">AVARA</div>
+          <div style="display: flex; gap: 34px; font-size: 14px; color: #48555C; font-weight: 300;">
+            <span>Retriitit</span><span>Turvallisuus</span><span>Paikka</span><span>Ohjaajat</span><span>UKK</span>
+          </div>
+          <div style="font-size: 14px; color: #48555C;">Keskustele kanssamme →</div>
+        </div>
+        <div style="height: 620px; margin: 0 20px; border-radius: 18px; background-color: #D9D6CE; background-image: repeating-linear-gradient(135deg, rgba(13,31,41,0.045) 0 1px, transparent 1px 12px); display: flex; align-items: center; justify-content: center;">
+          <span style="font-family: ui-monospace, Menlo, monospace; font-size: 12px; line-height: 1.8; letter-spacing: 0.06em; color: #5A6560; text-align: center;">KUVA · koko leveys, 620 px korkea<br>niitty aamu-usvassa, paljon tyhjää taivasta<br>vaalea viileä grading, ei mustia</span>
+        </div>
+        <div style="padding: 170px 56px; display: flex; flex-direction: column; align-items: center; gap: 34px; text-align: center;">
+          <div style="font-family: ui-monospace, Menlo, monospace; font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; color: #7A8A82;">Hemrik, Hollanti · 5 vrk</div>
+          <h2 style="font-family: 'Instrument Serif', serif; font-weight: 400; font-size: 84px; line-height: 1.05; letter-spacing: -0.01em; margin: 0; max-width: 16ch;">Metsä, jossa mikään ei kiirehdi</h2>
+          <p style="margin: 0; font-size: 19px; line-height: 1.75; color: #48555C; font-weight: 300; max-width: 54ch;">Ohjattu psilosybiiniretriitti kahdenkymmenen hehtaarin luonnossa, 90 minuutin päässä Schipholista. Pieni ryhmä, kaksi ohjaajaa, viisi vuorokautta ilman aikataulua, jota sinun pitäisi jaksaa.</p>
+          <div style="background: #0d1f29; color: #FAF8F4; padding: 18px 34px; border-radius: 999px; font-size: 15.5px; margin-top: 12px; font-weight: 400;" class="scp0">Varaa rauhallinen keskustelu</div>
+        </div>
+        <div style="padding: 0 20px 20px;">
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+            <div style="height: 560px; border-radius: 18px; background-color: #D2CFC6; background-image: repeating-linear-gradient(135deg, rgba(13,31,41,0.045) 0 1px, transparent 1px 12px); display: flex; align-items: center; justify-content: center;">
+              <span style="font-family: ui-monospace, Menlo, monospace; font-size: 12px; line-height: 1.8; color: #5A6560; text-align: center;">KUVA 4:5<br>temppelisali, luonnonvalo</span>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 20px;">
+              <div style="height: 270px; border-radius: 18px; background-color: #DDD9D0; background-image: repeating-linear-gradient(135deg, rgba(13,31,41,0.045) 0 1px, transparent 1px 12px); display: flex; align-items: center; justify-content: center;">
+                <span style="font-family: ui-monospace, Menlo, monospace; font-size: 12px; color: #5A6560;">KUVA 16:9 · makuuhuone</span>
+              </div>
+              <div style="height: 270px; border-radius: 18px; background-color: #CFD4CC; background-image: repeating-linear-gradient(135deg, rgba(13,31,41,0.045) 0 1px, transparent 1px 12px); display: flex; align-items: center; justify-content: center;">
+                <span style="font-family: ui-monospace, Menlo, monospace; font-size: 12px; color: #5A6560;">KUVA 16:9 · polku metsässä</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div style="padding: 160px 56px 170px; display: grid; grid-template-columns: 1fr 1fr; gap: 96px; align-items: start;">
+          <div style="display: flex; flex-direction: column; gap: 20px;">
+            <div style="font-family: ui-monospace, Menlo, monospace; font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; color: #7A8A82;">05 — Paikka</div>
+            <h3 style="font-family: 'Instrument Serif', serif; font-weight: 400; font-size: 50px; line-height: 1.1; margin: 0;">New Eden, Hemrik</h3>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 26px;">
+            <p style="margin: 0; font-size: 18px; line-height: 1.75; color: #48555C; font-weight: 300; max-width: 60ch;">Retriittikeskus sijaitsee Frieslandin maaseudulla, kahdenkymmenen hehtaarin metsä- ja niittyalueen keskellä. Rakennukset ovat vaaleaa puuta ja luonnonvalkoista; ikkunoista näkyy puita joka suuntaan.</p>
+            <p style="margin: 0; font-size: 18px; line-height: 1.75; color: #48555C; font-weight: 300; max-width: 60ch;">Nukut kahden hengen huoneessa tai yhden hengen huoneessa lisämaksusta. Ruoka on kasvispainotteista ja kevyttä, valmistettu paikan päällä. Puhelinta ei kielletä, mutta useimmat unohtavat sen laukkuun toisena päivänä.</p>
+            <div style="font-size: 15.5px; color: #0d1f29; border-bottom: 1px solid #A9B5AB; align-self: flex-start; padding-bottom: 3px; margin-top: 8px;">Katso koko kuvagalleria</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============================ 1e METSÄNPOHJA ============================ -->
+    <div id="1e" style="flex: 0 0 1280px; width: 1280px; display: flex; flex-direction: column; gap: 28px;">
+      
+      <div style="display: flex; gap: 40px; align-items: flex-start;">
+        <div style="display: flex; align-items: baseline; gap: 16px; width: 300px; flex: none;">
+          <span style="font-family: ui-monospace, Menlo, monospace; font-size: 12px; letter-spacing: 0.1em; background: #0d1f29; color: #F5F1EA; padding: 5px 9px; border-radius: 6px;">1e</span>
+          <span style="font-family: 'Lora', serif; font-weight: 400; font-size: 32px;">Metsänpohja</span>
+        </div>
+        <p style="margin: 0; font-size: 16px; line-height: 1.7; max-width: 60ch; color: #3C4750;">Keskisävyinen ja orgaaninen: sammalenvihreä on pohjaväri, ei aksentti. Kaarevat muodot, holvikuvat ja terrakotta tekevät sivusta kädenlämpöisen. Ainoa suunta, joka ei ole vaalea eikä tumma.</p>
+      </div>
+
+      <div style="display: grid; grid-template-columns: 300px 1fr 1fr 1fr; gap: 40px; padding: 26px 0; border-top: 1px solid #DAD5CB; border-bottom: 1px solid #DAD5CB;">
+        <div style="display: flex; flex-direction: column; gap: 12px;">
+          <div style="font-family: ui-monospace, Menlo, monospace; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: #8A9490;">Paletti</div>
+          <div style="display: flex; height: 26px; border-radius: 6px; overflow: hidden;">
+            <div style="width: 44%; background: #4A5D4E;"></div>
+            <div style="width: 30%; background: #F5F1EA;"></div>
+            <div style="width: 11%; background: #2E2A24;"></div>
+            <div style="width: 11%; background: #C4A091;"></div>
+            <div style="width: 4%; background: #B08968;"></div>
+          </div>
+          <div style="font-family: ui-monospace, Menlo, monospace; font-size: 11.5px; line-height: 1.9; color: #5A6560;">#4A5D4E 44 · #F5F1EA 30<br>#2E2A24 11 · #C4A091 11<br>#B08968 4</div>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 10px;">
+          <div style="font-family: ui-monospace, Menlo, monospace; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: #8A9490;">Typografia</div>
+          <div style="font-family: 'Lora', serif; font-weight: 400; font-size: 27px; line-height: 1.2;">Lora Regular</div>
+          <div style="font-family: 'Karla', sans-serif; font-weight: 400; font-size: 15px; color: #4A5560;">Karla 300/400/500</div>
+          <div style="font-family: ui-monospace, Menlo, monospace; font-size: 11.5px; line-height: 1.8; color: #5A6560;">60 / 38 / 26 / 18 / 15 px<br>riviväli 1.7 · otsikot 1.2</div>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 10px;">
+          <div style="font-family: ui-monospace, Menlo, monospace; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: #8A9490;">Kuvat</div>
+          <p style="margin: 0; font-size: 14.5px; line-height: 1.7; color: #4A5560;">Holvikaarirajaus (kaareva yläreuna) portreteissa ja tilakuvissa, muuten 20px pyöristys. Grading lämmin ja hieman vaimennettu, vihreät työnnetty oliiviin. Kasvokuvat saavat olla lähellä ja epätäydellisiä.</p>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 10px;">
+          <div style="font-family: ui-monospace, Menlo, monospace; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: #8A9490;">Rytmi & liike</div>
+          <p style="margin: 0; font-size: 14.5px; line-height: 1.7; color: #4A5560;">Yhtenäinen vieritys, jossa värilohkot vaihtuvat isoina pintoina sammal ↔ pellava. Ei kortteja, ei varjoja. Sisältö nousee 16px ja häivähtää 650ms ease-out. Napit pehmenevät terrakottaan 400ms.</p>
+        </div>
+      </div>
+      
+
+      <div style="border-radius: 20px; overflow: hidden; border: 1px solid #DAD5CB; background: #4A5D4E; font-family: 'Karla', sans-serif;">
+        <div style="display: flex; align-items: center; justify-content: space-between; padding: 30px 60px;">
+          <div style="font-family: 'Lora', serif; font-size: 21px; letter-spacing: 0.2em; color: #F5F1EA;">AVARA</div>
+          <div style="display: flex; gap: 34px; font-size: 14.5px; color: #DCE0D8;">
+            <span>Retriitit</span><span>Turvallisuus</span><span>Paikka</span><span>Ohjaajat</span><span>UKK</span>
+          </div>
+          <div style="font-size: 14.5px; color: #2E2A24; background: #C4A091; padding: 11px 22px; border-radius: 999px;">Keskustele kanssamme</div>
+        </div>
+        <div style="display: grid; grid-template-columns: 1fr 480px; gap: 80px; padding: 120px 60px 140px; align-items: center;">
+          <div style="display: flex; flex-direction: column; gap: 30px;">
+            <div style="font-family: ui-monospace, Menlo, monospace; font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: #C4A091;">Ohjatut retriitit Hollannissa</div>
+            <h2 style="font-family: 'Lora', serif; font-weight: 400; font-size: 62px; line-height: 1.18; margin: 0; color: #F5F1EA;">Et ole yksin missään vaiheessa.</h2>
+            <p style="margin: 0; font-size: 19px; line-height: 1.75; color: #DCE0D8; max-width: 48ch;">Ohjattu psilosybiiniretriitti pienelle suomalaiselle ryhmälle. Valmistautuminen alkaa Suomessa viikkoja ennen matkaa, ja integraatio jatkuu kotona vielä kuukauden ajan.</p>
+            <div style="display: flex; align-items: center; gap: 26px; margin-top: 10px;">
+              <div style="background: #F5F1EA; color: #2E2A24; padding: 18px 32px; border-radius: 999px; font-size: 15.5px;" class="scp1">Varaa rauhallinen keskustelu</div>
+              <div style="font-size: 15.5px; color: #DCE0D8; border-bottom: 1px solid rgba(245,241,234,0.4); padding-bottom: 3px;">Kenelle retriitti sopii?</div>
+            </div>
+          </div>
+          <div style="height: 600px; border-radius: 240px 240px 20px 20px; background-color: #566A59; background-image: repeating-linear-gradient(135deg, rgba(245,241,234,0.07) 0 1px, transparent 1px 11px); display: flex; align-items: center; justify-content: center; padding: 30px; text-align: center;">
+            <span style="font-family: ui-monospace, Menlo, monospace; font-size: 12px; line-height: 1.8; letter-spacing: 0.06em; color: rgba(245,241,234,0.7);">KUVA · holvikaarirajaus<br>ihminen istumassa ikkunan äärellä,<br>lämmin vaimennettu grading</span>
+          </div>
+        </div>
+        <div style="background: #F5F1EA; padding: 150px 60px 160px; color: #2E2A24;">
+          <div style="display: flex; flex-direction: column; gap: 18px; max-width: 58ch; margin-bottom: 80px;">
+            <div style="font-family: ui-monospace, Menlo, monospace; font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: #8A7C6B;">06 — Ohjaajat</div>
+            <h3 style="font-family: 'Lora', serif; font-weight: 400; font-size: 42px; line-height: 1.2; margin: 0;">Ihmiset, jotka ovat paikalla</h3>
+            <p style="margin: 0; font-size: 18px; line-height: 1.75; color: #4C453E;">Ohjaajia on aina vähintään kaksi. Tapaat heidät jo ennakkokeskustelussa, joten kukaan ei ole vieras siinä vaiheessa, kun se merkitsee eniten.</p>
+          </div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 72px;">
+            <div style="display: grid; grid-template-columns: 220px 1fr; gap: 34px; align-items: start;">
+              <div style="height: 280px; border-radius: 110px 110px 18px 18px; background-color: #E3DED3; background-image: repeating-linear-gradient(135deg, rgba(46,42,36,0.06) 0 1px, transparent 1px 10px); display: flex; align-items: center; justify-content: center;">
+                <span style="font-family: ui-monospace, Menlo, monospace; font-size: 11px; color: #6B635A; text-align: center;">MUOTOKUVA<br>holvikaari</span>
+              </div>
+              <div style="display: flex; flex-direction: column; gap: 12px;">
+                <div style="font-family: 'Lora', serif; font-size: 26px;">Maria Lindholm</div>
+                <div style="font-size: 14px; letter-spacing: 0.06em; text-transform: uppercase; color: #8A7C6B;">Vastaava ohjaaja</div>
+                <p style="margin: 6px 0 0; font-size: 16.5px; line-height: 1.75; color: #4C453E;">Psykoterapeutti, kaksitoista vuotta työtä traumojen ja ahdistuksen parissa. Kouluttautunut ohjatun psykedeeliterapian menetelmiin Hollannissa. Puhuu vähän ja kuuntelee pitkään.</p>
+              </div>
+            </div>
+            <div style="display: grid; grid-template-columns: 220px 1fr; gap: 34px; align-items: start;">
+              <div style="height: 280px; border-radius: 110px 110px 18px 18px; background-color: #E3DED3; background-image: repeating-linear-gradient(135deg, rgba(46,42,36,0.06) 0 1px, transparent 1px 10px); display: flex; align-items: center; justify-content: center;">
+                <span style="font-family: ui-monospace, Menlo, monospace; font-size: 11px; color: #6B635A; text-align: center;">MUOTOKUVA<br>holvikaari</span>
+              </div>
+              <div style="display: flex; flex-direction: column; gap: 12px;">
+                <div style="font-family: 'Lora', serif; font-size: 26px;">Tuomas Ahonen</div>
+                <div style="font-size: 14px; letter-spacing: 0.06em; text-transform: uppercase; color: #8A7C6B;">Ohjaaja, integraatio</div>
+                <p style="margin: 6px 0 0; font-size: 16.5px; line-height: 1.75; color: #4C453E;">Sairaanhoitaja ja ryhmänohjaaja. Vastaa terveysseulonnasta ja siitä, että jokainen tietää mitä seuraavaksi tapahtuu. Vetää integraatiotapaamiset kotiinpaluun jälkeen.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ============================ VERTAILU ============================ -->
+  
+  <div style="margin-top: 120px; max-width: 1280px;">
+    <h2 style="font-family: 'Newsreader', serif; font-weight: 300; font-size: 38px; margin: 0 0 14px; color: #0d1f29;">Vertailu — kenelle mikäkin sopii</h2>
+    <p style="margin: 0 0 44px; font-size: 16.5px; line-height: 1.7; color: #4A5560; max-width: 62ch;">Kaikki viisi täyttävät samat perusperiaatteet: väljät marginaalit, matala kontrasti, hitaat siirtymät, ei kiireellisyyttä. Ero on siinä, kenen hermosto rauhoittuu millä.</p>
+    <div style="display: flex; flex-direction: column;">
+      <div style="display: grid; grid-template-columns: 190px 1fr 1fr; gap: 48px; padding: 28px 0; border-top: 1px solid #DAD5CB;">
+        <div style="display: flex; flex-direction: column; gap: 6px;"><div style="font-family: 'Newsreader', serif; font-size: 25px; font-weight: 300;">1a Usva</div><div style="font-family: ui-monospace, Menlo, monospace; font-size: 11px; color: #8A9490;">vaalea · viileä · editoriaali</div></div>
+        <p style="margin: 0; font-size: 16.5px; line-height: 1.75; color: #3C4750;">Lukijalle, joka haluaa tietää ennen kuin tuntee. Toimii parhaiten, jos sisältöä on paljon ja se on hyvin kirjoitettua — turvallisuus, vasta-aiheet ja UKK saavat tässä eniten arvokkuutta.</p>
+        <p style="margin: 0; font-size: 16.5px; line-height: 1.75; color: #6B7570;"><strong style="color: #3C4750; font-weight: 500;">Riski:</strong> voi tuntua etäiseltä ja kliiniseltä, jos kuvat eivät ole erinomaisia. Vaatii oikeasti hyvää tekstiä — heikko copy paljastuu heti.</p>
+      </div>
+      <div style="display: grid; grid-template-columns: 190px 1fr 1fr; gap: 48px; padding: 28px 0; border-top: 1px solid #DAD5CB;">
+        <div style="display: flex; flex-direction: column; gap: 6px;"><div style="font-family: 'Spectral', serif; font-size: 25px; font-weight: 300;">1b Iltapiiri</div><div style="font-family: ui-monospace, Menlo, monospace; font-size: 11px; color: #8A9490;">tumma · lämmin · kuvavetoinen</div></div>
+        <p style="margin: 0; font-size: 16.5px; line-height: 1.75; color: #3C4750;">Emotionaalisin ja mieleenpainuvin. Sopii, jos haluat sivun tuntuvan illalta kynttilöiden äärellä ja jos New Edenin kuvista löytyy vahvaa hämärää materiaalia.</p>
+        <p style="margin: 0; font-size: 16.5px; line-height: 1.75; color: #6B7570;"><strong style="color: #3C4750; font-weight: 500;">Riski:</strong> tumma teema voi luisua kolkoksi tai salamyhkäiseksi — juuri sitä mielikuvaa, jota aiheen kanssa kannattaa välttää. Vaatii lämpimät kuvat, muuten kylmenee.</p>
+      </div>
+      <div style="display: grid; grid-template-columns: 190px 1fr 1fr; gap: 48px; padding: 28px 0; border-top: 1px solid #DAD5CB;">
+        <div style="display: flex; flex-direction: column; gap: 6px;"><div style="font-family: 'Hanken Grotesk', sans-serif; font-size: 25px; font-weight: 400;">1c Pellava</div><div style="font-family: ui-monospace, Menlo, monospace; font-size: 11px; color: #8A9490;">vaalea · lämmin · groteski</div></div>
+        <p style="margin: 0; font-size: 16.5px; line-height: 1.75; color: #3C4750;">Ammattimaisin ja vähiten "henkinen". Paras valinta, jos kohderyhmä on varovainen ja arvostaa asiallisuutta — tämä ei näytä miltään muulta psykedeelisivustolta.</p>
+        <p style="margin: 0; font-size: 16.5px; line-height: 1.75; color: #6B7570;"><strong style="color: #3C4750; font-weight: 500;">Riski:</strong> voi jäädä persoonattomaksi tai muistuttaa konsulttitoimistoa. Erottuvuus lepää yksin typografian ja kuvien varassa.</p>
+      </div>
+      <div style="display: grid; grid-template-columns: 190px 1fr 1fr; gap: 48px; padding: 28px 0; border-top: 1px solid #DAD5CB;">
+        <div style="display: flex; flex-direction: column; gap: 6px;"><div style="font-family: 'Instrument Serif', serif; font-size: 27px;">1d Aamuvalo</div><div style="font-family: ui-monospace, Menlo, monospace; font-size: 11px; color: #8A9490;">vaalea · viileä · immersiivinen</div></div>
+        <p style="margin: 0; font-size: 16.5px; line-height: 1.75; color: #3C4750;">Rauhoittavin ensivaikutelma: iso hiljainen kuva ja hyvin vähän sanoja. Vahvin valinta, jos New Edenin kuvamateriaali on laadukasta ja sitä on paljon.</p>
+        <p style="margin: 0; font-size: 16.5px; line-height: 1.75; color: #6B7570;"><strong style="color: #3C4750; font-weight: 500;">Riski:</strong> tietoa on vähän per näkymä, joten sivu venyy pitkäksi ja turvallisuustiedon löytäminen vaatii vierittämistä. Täysin riippuvainen kuvien laadusta.</p>
+      </div>
+      <div style="display: grid; grid-template-columns: 190px 1fr 1fr; gap: 48px; padding: 28px 0; border-top: 1px solid #DAD5CB; border-bottom: 1px solid #DAD5CB;">
+        <div style="display: flex; flex-direction: column; gap: 6px;"><div style="font-family: 'Lora', serif; font-size: 25px;">1e Metsänpohja</div><div style="font-family: ui-monospace, Menlo, monospace; font-size: 11px; color: #8A9490;">keskisävy · lämmin · orgaaninen</div></div>
+        <p style="margin: 0; font-size: 16.5px; line-height: 1.75; color: #3C4750;">Inhimillisin ja kodikkain. Kaarevat muodot ja sammalpinta tekevät sivusta helposti lähestyttävän, ja ohjaajat sekä ihmiset nousevat keskiöön.</p>
+        <p style="margin: 0; font-size: 16.5px; line-height: 1.75; color: #6B7570;"><strong style="color: #3C4750; font-weight: 500;">Riski:</strong> lähimpänä tuttua "wellness"-estetiikkaa; kaaret ja vihreä voivat vaikuttaa pehmoiselta, jos niitä käyttää liikaa. Vaatii kurinalaisuutta pysyäkseen aikuisena.</p>
+      </div>
+    </div>
+    <p style="margin: 44px 0 0; font-size: 16.5px; line-height: 1.75; color: #3C4750; max-width: 66ch;">Suositukseni: <a href="#1c">1c</a> tai <a href="#1a">1a</a>, jos ensisijainen tehtävä on luottamus varovaisen ensikertalaisen silmissä. <a href="#1d">1d</a>, jos kuvamateriaali on kunnossa ja haluat vahvan tunnereaktion heti. Kerro valintasi — tai yhdistelmä, esim. 1c:n rakenne ja 1d:n kuvakäsittely — niin rakennan koko etusivun ja alasivujen rakenteen sen pohjalta.</p>
+  </div>
+  
+
+</section>
+</body></html>

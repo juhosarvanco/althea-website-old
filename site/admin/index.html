@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="fi"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Althea — sisällönmuokkaus</title>
+<style>
+  :root{
+    --paper:#FAF8F4; --panel:#F0EDE6; --ink:#0d1f29; --muted:#48555C;
+    --dim:#7A8A82; --line:rgba(13,31,41,.14); --green:#4A5D4E; --warn:#8A5A2B;
+    --bar:64px;
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    margin:0; background:var(--paper); color:var(--ink);
+    font:15px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif;
+    -webkit-font-smoothing:antialiased; overflow:hidden;
+  }
+  button{font:inherit; cursor:pointer; border:none; background:none; color:inherit}
+  button:disabled{opacity:.4; cursor:not-allowed}
+  a{color:var(--green)}
+
+  /* ------------------------------------------------------------ top bar */
+  .bar{
+    height:var(--bar); display:flex; align-items:center; gap:14px;
+    padding:0 18px; background:rgba(250,248,244,.94);
+    backdrop-filter:blur(10px); border-bottom:1px solid var(--line);
+    position:relative; z-index:5;
+  }
+  .brand{
+    font-family:Georgia,serif; letter-spacing:.2em; font-size:15px;
+    padding-right:14px; border-right:1px solid var(--line); white-space:nowrap;
+  }
+  .spacer{flex:1}
+  .btn{
+    padding:9px 16px; border-radius:999px; font-size:14px;
+    border:1px solid var(--line); transition:background .18s,color .18s;
+    white-space:nowrap;
+  }
+  .btn:hover:not(:disabled){background:var(--panel)}
+  .btn.primary{background:var(--ink); color:var(--paper); border-color:var(--ink)}
+  .btn.primary:hover:not(:disabled){background:var(--green); border-color:var(--green)}
+  .btn.on{background:var(--green); color:var(--paper); border-color:var(--green)}
+  .btn.ghost{border-color:transparent; color:var(--muted)}
+  .btn.ghost:hover:not(:disabled){background:var(--panel); color:var(--ink)}
+
+  .status{font-size:13.5px; color:var(--dim); display:flex; align-items:center; gap:8px}
+  .dot{width:7px; height:7px; border-radius:50%; background:var(--dim); flex:none}
+  .dot.unsaved{background:var(--warn)}
+  .dot.saved{background:var(--green)}
+  .who{display:flex; align-items:center; gap:8px; font-size:13.5px; color:var(--muted)}
+  .who img{width:26px; height:26px; border-radius:50%; display:block}
+
+  /* --------------------------------------------------------------- stage */
+  .stage{position:absolute; inset:var(--bar) 0 0 0; display:flex}
+  iframe{flex:1; width:100%; height:100%; border:0; background:var(--paper)}
+
+  /* -------------------------------------------------------- changes panel */
+  .panel{
+    width:390px; flex:none; border-left:1px solid var(--line);
+    background:var(--panel); display:none; flex-direction:column;
+  }
+  .panel.open{display:flex}
+  .panel header{
+    padding:16px 18px; border-bottom:1px solid var(--line);
+    display:flex; align-items:center; gap:10px;
+  }
+  .panel h2{margin:0; font-size:14px; font-weight:600; letter-spacing:.02em}
+  .panel .list{flex:1; overflow:auto; padding:6px 0}
+  .panel footer{padding:12px 14px; border-top:1px solid var(--line); display:flex; gap:8px}
+  .chg{padding:14px 18px; border-bottom:1px solid rgba(13,31,41,.07)}
+  .chg .sec{
+    font:11px/1.4 ui-monospace,Menlo,monospace; letter-spacing:.12em;
+    text-transform:uppercase; color:var(--dim); margin-bottom:8px;
+  }
+  .chg .row{display:flex; gap:8px; font-size:13.5px; line-height:1.55; margin-top:5px}
+  .chg .tag{flex:none; width:44px; color:var(--dim); font-size:11.5px; padding-top:2px}
+  .chg .was{color:var(--muted); text-decoration:line-through; text-decoration-color:rgba(13,31,41,.3)}
+  .chg .now{color:var(--ink)}
+  .empty{padding:28px 18px; color:var(--dim); font-size:14px; text-align:center}
+
+  /* --------------------------------------------------------------- gates */
+  .gate{
+    position:absolute; inset:0; display:grid; place-items:center;
+    background:var(--paper); z-index:20; padding:24px;
+  }
+  .gate .card{max-width:27rem; text-align:center}
+  .gate h1{font-family:Georgia,serif; font-weight:400; font-size:27px; margin:0 0 12px}
+  .gate p{color:var(--muted); line-height:1.7; margin:0 0 22px}
+  .gate .err{
+    color:var(--warn); background:#F6EFE6; border-radius:12px;
+    padding:12px 16px; font-size:14px; text-align:left; margin-bottom:18px;
+  }
+  .hidden{display:none !important}
+  .spin{
+    width:22px; height:22px; border-radius:50%; margin:0 auto 14px;
+    border:2px solid var(--line); border-top-color:var(--green);
+    animation:spin .8s linear infinite;
+  }
+  @keyframes spin{to{transform:rotate(360deg)}}
+
+  .toast{
+    position:fixed; left:50%; bottom:26px; transform:translateX(-50%);
+    background:var(--ink); color:var(--paper); padding:12px 20px;
+    border-radius:999px; font-size:14px; z-index:40; max-width:80vw;
+    opacity:0; pointer-events:none; transition:opacity .2s;
+  }
+  .toast.show{opacity:1}
+  .toast.bad{background:var(--warn)}
+</style>
+</head>
+<body>
+
+<!-- signed out ------------------------------------------------------------ -->
+<div class="gate" id="gate-in">
+  <div class="card">
+    <h1>Althean sisällönmuokkaus</h1>
+    <p>Kirjaudu GitHub-tunnuksella. Muutokset tallentuvat luonnokseksi, ja
+       näet ne oikealla sivustolla ennen julkaisua.</p>
+    <div class="err hidden" id="gate-err"></div>
+    <a class="btn primary" href="/api/auth" style="text-decoration:none">
+      Kirjaudu GitHubilla</a>
+  </div>
+</div>
+
+<!-- loading --------------------------------------------------------------- -->
+<div class="gate hidden" id="gate-load">
+  <div class="card"><div class="spin"></div><p id="load-msg">Ladataan sivua…</p></div>
+</div>
+
+<!-- editor ---------------------------------------------------------------- -->
+<div class="bar hidden" id="bar">
+  <span class="brand">ALTHEA</span>
+  <button class="btn" id="b-edit">Muokkaa tekstiä</button>
+  <button class="btn" id="b-save" disabled>Tallenna luonnos</button>
+  <button class="btn primary" id="b-pub" disabled>Julkaise</button>
+  <button class="btn ghost" id="b-changes">Muutokset</button>
+  <span class="status"><span class="dot" id="dot"></span><span id="status">Ei muutoksia</span></span>
+  <span class="spacer"></span>
+  <a class="btn ghost hidden" id="b-preview" target="_blank" rel="noopener"
+     style="text-decoration:none">Esikatselu ↗</a>
+  <button class="btn ghost" id="b-discard">Hylkää luonnos</button>
+  <span class="who" id="who"></span>
+  <a class="btn ghost" href="/api/logout" style="text-decoration:none">Ulos</a>
+</div>
+
+<div class="stage hidden" id="stage">
+  <iframe id="page" title="Sivun esikatselu"></iframe>
+  <aside class="panel" id="panel">
+    <header>
+      <h2>Muutokset</h2><span class="spacer"></span>
+      <button class="btn ghost" id="b-close-panel">Sulje</button>
+    </header>
+    <div class="list" id="chg-list"></div>
+    <footer>
+      <button class="btn" id="b-copy">Kopioi</button>
+      <button class="btn" id="b-dl">Lataa .md</button>
+    </footer>
+  </aside>
+</div>
+
+<div class="toast" id="toast"></div>
+<script src="./admin.js"></script>
+</body></html>
