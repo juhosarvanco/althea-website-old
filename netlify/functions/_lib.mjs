@@ -117,8 +117,17 @@ export function b64decode(str) {
   return Buffer.from(str, "base64").toString("utf8");
 }
 
-/** Preview URL Netlify gives a pull request. */
+/** Preview URL Netlify gives a pull request.
+ *
+ *  Netlify injects SITE_NAME itself, so this usually needs no configuration.
+ *  If it is absent we recover the name from URL, which Netlify also sets — but
+ *  that only helps while the primary domain is still *.netlify.app. Once a
+ *  custom domain is primary, set SITE_NAME explicitly. */
 export function previewUrl(pr) {
-  const site = process.env.SITE_NAME;
+  let site = process.env.SITE_NAME;
+  if (!site && process.env.URL) {
+    const m = /^https?:\/\/([^.]+)\.netlify\.app/.exec(process.env.URL);
+    if (m) site = m[1];
+  }
   return site ? `https://deploy-preview-${pr}--${site}.netlify.app` : null;
 }
