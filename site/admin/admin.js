@@ -67,6 +67,18 @@
     return t.trim();
   }
 
+  /* <br> contributes nothing to textContent, so a field read that way reports a
+     line break as no change at all — the review list would stay empty while the
+     page is plainly different. Read fields with the break spelled out instead. */
+  function fieldText(el) {
+    const c = el.cloneNode(true);
+    for (const br of c.querySelectorAll("br")) br.replaceWith("\n");
+    return c.textContent
+      .replace(/[^\S\n]+/g, " ")   // collapse runs of spaces, keep newlines
+      .replace(/ *\n */g, "\n")
+      .trim();
+  }
+
   function qualifies(el) {
     if (SKIP.has(el.tagName) || el.closest("[data-ce-chrome]")) return false;
     if (!norm(el.textContent)) return false;
@@ -125,7 +137,7 @@
     const doc = new DOMParser().parseFromString(html, "text/html");
     const text = new Map(), links = new Map(), images = new Map();
     for (const el of collectFields(doc)) {
-      text.set(fieldId(el), { text: norm(el.textContent), section: sectionLabel(el) });
+      text.set(fieldId(el), { text: fieldText(el), section: sectionLabel(el) });
     }
     for (const el of doc.body.querySelectorAll("a[href]")) {
       links.set(fieldId(el), {
@@ -279,7 +291,21 @@
     });
     doc.addEventListener("input", refresh);
     doc.addEventListener("keydown", (e) => {
-      if (e.key === "Enter" && e.target.isContentEditable) e.preventDefault();
+      if (e.key === "Enter" && e.target.isContentEditable) {
+        // Left to itself, Enter splits the block into <div>s or <p>s. That
+        // wrecks the markup and shifts every position-derived field id after
+        // it. A <br> is what the writer actually means by Enter — a line break
+        // inside the same element — and it commits as a one-line diff.
+        e.preventDefault();
+        // At the very end of a field the browser writes <br><br>: one break
+        // plus filler to make the empty line visible. Nothing follows it, so
+        // it reads as trailing whitespace and never reaches the change list —
+        // the file would move while the review panel showed nothing. There is
+        // no new paragraph to give them here, so leave the text alone.
+        if (!caretAtEnd(e.target, doc.getSelection())) {
+          doc.execCommand("insertLineBreak");
+        }
+      }
       if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "s") {
         e.preventDefault();
         save();
@@ -291,6 +317,15 @@
       const text = (e.clipboardData || window.clipboardData).getData("text/plain");
       doc.execCommand("insertText", false, norm(text));
     });
+  }
+
+  /** True when nothing but whitespace follows the caret inside `el`. */
+  function caretAtEnd(el, sel) {
+    if (!sel || !sel.rangeCount) return false;
+    const r = sel.getRangeAt(0).cloneRange();
+    r.selectNodeContents(el);
+    r.setStart(sel.focusNode, sel.focusOffset);
+    return !r.toString().trim();
   }
 
   function serialize() {
@@ -317,7 +352,7 @@
     for (const [id, el] of S.fields) {
       const base = S.baseline.text.get(id);
       if (!base) continue;
-      const after = norm(el.textContent);
+      const after = fieldText(el);
       if (base.text !== after) {
         out.push({ kind: "text", id, section: base.section,
                    before: base.text, after });
@@ -363,6 +398,10 @@
 
   const dirty = () => S.saved !== null && serialize() !== S.saved;
 
+  // A line break has to be visible in the review list, and a raw newline would
+  // break a markdown bullet in the pull request body.
+  const showBreaks = (s) => String(s).replace(/\n/g, " \u21b5 ");
+
   function markdown(list) {
     const who = S.session.user.name || S.session.user.login;
     const date = new Date().toISOString().slice(0, 10);
@@ -371,8 +410,8 @@
     list.forEach((c, i) => {
       const what = c.kind === "text" ? "" : ` — ${KIND[c.kind]}`;
       md += `${i + 1}. **${c.section}**${what}\n`;
-      md += `   - Ennen: ${c.before || "_tyhjä_"}\n`;
-      md += `   - Nyt: ${c.after || "_tyhjä_"}\n\n`;
+      md += `   - Ennen: ${showBreaks(c.before) || "_tyhjä_"}\n`;
+      md += `   - Nyt: ${showBreaks(c.after) || "_tyhjä_"}\n\n`;
     });
     return md;
   }
@@ -393,8 +432,8 @@
          <div class="row"><span class="tag">Nyt</span><span class="now"></span></div>`;
       el.querySelector(".sec").textContent =
         c.kind === "text" ? c.section : `${c.section} · ${KIND[c.kind]}`;
-      el.querySelector(".was").textContent = c.before;
-      el.querySelector(".now").textContent = c.after;
+      el.querySelector(".was").textContent = showBreaks(c.before);
+      el.querySelector(".now").textContent = showBreaks(c.after);
       box.appendChild(el);
     }
   }
@@ -698,7 +737,15 @@
       // field, so leave those for the person to redo rather than quietly
       // destroying markup.
       if (!el || el.children.length) return false;
-      el.textContent = c.after;
+      if (c.after.includes("\n")) {
+        el.textContent = "";
+        c.after.split("\n").forEach((part, i) => {
+          if (i) el.appendChild(el.ownerDocument.createElement("br"));
+          el.appendChild(el.ownerDocument.createTextNode(part));
+        });
+      } else {
+        el.textContent = c.after;
+      }
       return true;
     }
     if (c.kind === "link") {
