@@ -101,6 +101,10 @@ export async function requireUser(req) {
   if (allow.length && !allow.includes(String(me.login).toLowerCase())) {
     const e = new Error(`${me.login} is not on the editor allowlist`);
     e.status = 403;
+    // The admin shows this one in Finnish, so send a code to switch on and the
+    // login to name — a new editor needs to read their username off the screen.
+    e.code = "not_allowed";
+    e.login = me.login;
     throw e;
   }
   return { token, login: me.login, name: me.name, avatar: me.avatar_url };

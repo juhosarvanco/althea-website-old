@@ -131,6 +131,13 @@ console.log("\ngh.mjs");
   process.env.ALLOWED_LOGINS = "juho";           // julia removed
   res = await api(req("https://althea.fi/api/gh?action=session", auth));
   ok("403 for a login off the allowlist", res.status === 403);
+  // The admin renders this one in Finnish and names the login, so both the
+  // code it switches on and the login it prints have to survive the envelope.
+  const denied = await res.json();
+  ok("403 carries a code the admin can switch on", denied.code === "not_allowed",
+     `got: ${JSON.stringify(denied)}`);
+  ok("403 names the rejected login", denied.login === "julia",
+     `got: ${JSON.stringify(denied)}`);
   process.env.ALLOWED_LOGINS = "juho,julia";
 
   calls.length = 0;

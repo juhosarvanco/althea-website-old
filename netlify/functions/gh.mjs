@@ -244,7 +244,9 @@ export default async (req) => {
   try {
     user = await requireUser(req);
   } catch (e) {
-    return json({ error: e.message, signedIn: false }, e.status || 401);
+    return json(
+      { error: e.message, code: e.code, login: e.login, signedIn: false },
+      e.status || 401);
   }
 
   const r = repo();

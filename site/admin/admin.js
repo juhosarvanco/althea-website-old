@@ -837,6 +837,26 @@
     });
   }
 
+  /* The first screen a new editor is likely to hit: GitHub sign-in worked, but
+     the login is not on the allowlist yet. The server speaks English here, so
+     translate the case we know and say what to do about it. */
+  function showGateError(e) {
+    const box = $("#gate-err");
+    const d = e.data || {};
+    if (d.code === "not_allowed") {
+      box.innerHTML =
+        `<strong>Tunnuksellasi <span class="login"></span> ei ole vielä
+           muokkausoikeutta.</strong>
+         <p>Lähetä tuo nimi Juholle, niin hän avaa oikeuden. Sen jälkeen
+            riittää, että päivität tämän sivun — sinun ei tarvitse kirjautua
+            uudelleen.</p>`;
+      box.querySelector(".login").textContent = d.login || "";
+    } else {
+      box.textContent = e.message;
+    }
+    box.classList.remove("hidden");
+  }
+
   async function boot() {
     try {
       S.session = await api("session");
@@ -844,9 +864,7 @@
       $("#gate-load").classList.add("hidden");
       $("#gate-in").classList.remove("hidden");
       if (e.status !== 401) {
-        const box = $("#gate-err");
-        box.textContent = e.message;
-        box.classList.remove("hidden");
+        showGateError(e);
       }
       return;
     }

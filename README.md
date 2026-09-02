@@ -63,53 +63,48 @@ Live: **https://althea-retriitit.netlify.app**
 Repo: **https://github.com/juhosarvanco/althea-website** (private)
 Netlify project: `althea-retriitit`, team `juhosarvanco`
 
-Already done: repo created and pushed, Netlify project created and connected to
-`main` (pushes deploy automatically, pull requests get deploy previews), and
-these environment variables set:
+Setup is complete. The repository is connected to Netlify (pushes to `main`
+deploy automatically, pull requests get deploy previews), the GitHub OAuth app
+is registered, and both editors can sign in.
 
-| Variable | Value |
-| --- | --- |
-| `GITHUB_REPO` | `juhosarvanco/althea-website` |
-| `ALLOWED_LOGINS` | `juhosarvanco` |
+| Variable | Value | Where it comes from |
+| --- | --- | --- |
+| `GITHUB_REPO` | `juhosarvanco/althea-website` | set once |
+| `ALLOWED_LOGINS` | `juhosarvanco,juliagrahn` | one login per editor |
+| `GITHUB_CLIENT_ID` | the OAuth app's id | public; appears in every authorize URL |
+| `GITHUB_CLIENT_SECRET` | the OAuth app's secret | never committed, never pasted into chat |
 
 `SITE_NAME` is reserved — Netlify injects it, so it needs no configuration.
 
-### Still to do
+The OAuth app lives at *Settings → Developer settings → OAuth Apps*, with
+homepage `https://althea-retriitit.netlify.app` and callback
+`https://althea-retriitit.netlify.app/api/callback`. Both URLs have to change
+when the real domain is connected.
 
-**1. Create the GitHub OAuth app.** GitHub has no API for this; it is web UI
-only. At *Settings → Developer settings → OAuth Apps → New OAuth App*:
+### Adding or removing an editor
 
-| Field | Value |
-| --- | --- |
-| Application name | Althea admin |
-| Homepage URL | `https://althea-retriitit.netlify.app` |
-| Authorization callback URL | `https://althea-retriitit.netlify.app/api/callback` |
-
-Register it, then generate a client secret.
-
-**2. Store the credentials.** The secret must never be committed:
-
-```bash
-npx netlify-cli env:set GITHUB_CLIENT_ID <client-id>
-npx netlify-cli env:set GITHUB_CLIENT_SECRET <client-secret>
-npx netlify-cli api createSiteBuild --data '{"site_id":"32ed0e2d-d89b-409d-a3a4-468ec772d7b2"}'
-```
-
-The last line redeploys — environment changes do not reach already-deployed
-functions until you do. Until this step is done, `/api/auth` returns a page
-saying so rather than an error.
-
-**3. Add the second editor.** Append their GitHub login to `ALLOWED_LOGINS` and
-invite them to the repository:
+Access has two halves, and both are required. `ALLOWED_LOGINS` is the admin's
+front door: anyone in the world can complete a GitHub login, only listed logins
+get past it. Repository write access is what lets their saves become branches
+and their Julkaise merge.
 
 ```bash
 npx netlify-cli env:set ALLOWED_LOGINS "juhosarvanco,<their-login>"
 gh api -X PUT /repos/juhosarvanco/althea-website/collaborators/<their-login> -f permission=push
+npx netlify-cli api createSiteBuild --data '{"site_id":"32ed0e2d-d89b-409d-a3a4-468ec772d7b2"}'
 ```
 
-`ALLOWED_LOGINS` is the access control. Anyone can complete a GitHub login;
-only listed logins get past it. Repository write access is what lets their
-saves become branches and their Julkaise merge.
+To invite someone who has no GitHub account yet, invite them by email address
+from the repository's *Settings → Collaborators* page instead — that merges
+signing up and accepting into one flow. `docs/julia-aloitus.md` is the Finnish
+walkthrough to send them.
+
+The last line redeploys. Environment changes do not reach already-deployed
+functions until you do, so a login added without a rebuild still gets turned
+away at the door.
+
+To remove someone, drop their login from `ALLOWED_LOGINS`, redeploy, and revoke
+their repository access. Either half alone is enough to stop them saving.
 
 ## Editing copy
 
